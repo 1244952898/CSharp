@@ -10,6 +10,9 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            Parent p=new Parent();
+            int? d = p.Childrens?.Count;
+
         }
     }
 }
