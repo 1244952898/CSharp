@@ -47,8 +47,11 @@
     <Compile Include="GetAllProcesses.cs" />
     <Compile Include="IOperation.cs" />
     <Compile Include="LimitByWorkingSetSize.cs" />
+    <Compile Include="Pipeline.cs" />
+    <Compile Include="PrintProcessName.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrivialProcessesPipeline.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
