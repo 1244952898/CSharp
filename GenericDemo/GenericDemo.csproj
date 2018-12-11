@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenericList.cs" />
+    <Compile Include="GetAllProcesses.cs" />
+    <Compile Include="IOperation.cs" />
+    <Compile Include="LimitByWorkingSetSize.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
