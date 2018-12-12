@@ -31,16 +31,6 @@ namespace GenericDemo
             head = node;
         }
 
-        //public IEnumerator<T> GetEnumerator()
-        //{
-        //    Node now = head;
-        //    while (now != null)
-        //    {
-        //        yield return now.Data;
-        //        now = now.Next;
-        //    }
-        //}
-
         public IEnumerator<T> GetEnumerator()
         {
             Node current = head;

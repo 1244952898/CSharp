@@ -44,14 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericList.cs" />
-    <Compile Include="GetAllProcesses.cs" />
-    <Compile Include="IOperation.cs" />
-    <Compile Include="LimitByWorkingSetSize.cs" />
-    <Compile Include="Pipeline.cs" />
-    <Compile Include="PrintProcessName.cs" />
+    <Compile Include="Pipelines\GetAllProcesses.cs" />
+    <Compile Include="Pipelines\IOperation.cs" />
+    <Compile Include="Pipelines\LimitByWorkingSetSize.cs" />
+    <Compile Include="Pipelines\Pipeline.cs" />
+    <Compile Include="Pipelines\PrintProcessName.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrivialProcessesPipeline.cs" />
+    <Compile Include="Pipelines\TrivialProcessesPipeline.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
