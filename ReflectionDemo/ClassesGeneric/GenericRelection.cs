@@ -12,11 +12,19 @@ namespace ReflectionDemo.ClassesGeneric
         public static void GMain()
         {
             Type type = typeof(GenericDemo<>);
-            Console.WriteLine("IsGenericType="+ type.IsGenericType);
+            GenericDemo<int> genericDemo=new GenericDemo<int>();
+            Type typeDemo = genericDemo.GetType();
+            Console.WriteLine("type.IsGenericType=" + type.IsGenericType);
+            Console.WriteLine("type.ContainsGenericParameters=" + type.ContainsGenericParameters);
+            Console.WriteLine("typeDemo.ContainsGenericParameters=" + typeDemo.ContainsGenericParameters);
             MethodInfo[] methodInfos = type.GetMethods();
             Console.WriteLine("methodInfos.Length=" + methodInfos.Length);
             Print(methodInfos);
+           Type[] t1= type.GetGenericArguments();
+            Type t = type.GetGenericTypeDefinition();
 
+           Type newTye = type.MakeGenericType(typeof(string));
+            Console.WriteLine("newTye.ContainsGenericParameters=" + newTye.ContainsGenericParameters);
         }
 
         public static void Print(MemberInfo[] infos)

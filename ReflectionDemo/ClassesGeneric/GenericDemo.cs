@@ -34,4 +34,5 @@ namespace ReflectionDemo.ClassesGeneric
             Console.WriteLine("Method");
         }
     }
+    
 }
