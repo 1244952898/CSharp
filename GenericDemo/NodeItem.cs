@@ -8,6 +8,9 @@ namespace GenericDemo
 {
     public class NodeItem<T> where T : System.IComparable<T>
     {
-
+        public NodeItem()
+        {
+            Console.WriteLine("NodeItem");
+        }
     }
 }

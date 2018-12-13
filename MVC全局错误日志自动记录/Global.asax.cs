@@ -9,6 +9,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
 using MVC全局错误日志自动记录.Attributes;
+using MVC全局错误日志自动记录.Classes;
 
 namespace MVC全局错误日志自动记录
 {
@@ -21,6 +22,7 @@ namespace MVC全局错误日志自动记录
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalFilters.Filters.Add(new ExceptionAttribute());
+            FlashLogger.GetInstance().Register();
         }
     }
 }
