@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace 简单爬取商品信息
 {
-    public class UrlLoadHtmlHelper
+    public class HttpHelper
     {
+        public static string DownloadUrl(string url)
+        {
+            return DownloadHtml(url, Encoding.UTF8);
+        }
         public static string DownloadHtml(string url, Encoding encoding)
         {
             string html=String.Empty;
