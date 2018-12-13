@@ -11,7 +11,8 @@
     <title>Index</title>
 </head>
 <body>
-    <div>     HandleErrorInfo model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
+    <div>
+        HandleErrorInfo model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
         ViewResult result = new ViewResult
         {
         ViewName = this.View,
@@ -20,5 +21,7 @@
         TempData = filterContext.Controller.TempData
         };
     </div>
+    <div>@ViewBag.msg</div>
+    <div>@ViewBag.code</div>
 </body>
 </html>

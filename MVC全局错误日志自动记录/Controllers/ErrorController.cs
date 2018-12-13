@@ -9,8 +9,10 @@ namespace MVC全局错误日志自动记录.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult Index()
+        public ActionResult Index(string code,string msg)
         {
+            ViewBag.code = code;
+            ViewBag.msg = msg;
             return View();
         }
     }

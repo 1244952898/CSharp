@@ -55,7 +55,7 @@ namespace MVC全局错误日志自动记录.Attributes
                 //    ViewData = new ViewDataDictionary<HandleErrorInfo>(model),
                 //    TempData = filterContext.Controller.TempData
                 //};
-                filterContext.HttpContext.Response.Redirect("/Error/Index",true);
+                filterContext.HttpContext.Response.Redirect("/Error/Index?code=E001&msg="+ filterContext.Exception.Message, true);
                 //filterContext.Result = result;
             }
 

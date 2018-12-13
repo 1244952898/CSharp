@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC全局错误日志自动
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI全局错误日志自动记录", "WebAPI全局错误日志自动记录\WebAPI全局错误日志自动记录.csproj", "{FBA5F81A-219A-4C44-9B22-63F2999EBFEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "简单爬取商品信息", "简单爬取商品信息\简单爬取商品信息.csproj", "{435ABF1B-AA73-459A-998C-4558F9C662C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FBA5F81A-219A-4C44-9B22-63F2999EBFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBA5F81A-219A-4C44-9B22-63F2999EBFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBA5F81A-219A-4C44-9B22-63F2999EBFEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{435ABF1B-AA73-459A-998C-4558F9C662C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435ABF1B-AA73-459A-998C-4558F9C662C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435ABF1B-AA73-459A-998C-4558F9C662C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435ABF1B-AA73-459A-998C-4558F9C662C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
