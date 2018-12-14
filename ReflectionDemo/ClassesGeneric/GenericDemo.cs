@@ -22,6 +22,7 @@ namespace ReflectionDemo.ClassesGeneric
             List<TV> sVs = new List<TV>();
             Console.WriteLine("GenericMethod");
         }
+        
 
         public void GenericMethod<TV>()
         {

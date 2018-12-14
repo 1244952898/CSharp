@@ -20,7 +20,7 @@ namespace ReflectionDemo.ClassesGeneric
             MethodInfo[] methodInfos = type.GetMethods();
             Console.WriteLine("methodInfos.Length=" + methodInfos.Length);
             Print(methodInfos);
-           Type[] t1= type.GetGenericArguments();
+            Type[] t1= type.GetGenericArguments();
             Type t = type.GetGenericTypeDefinition();
 
            Type newTye = type.MakeGenericType(typeof(string));
@@ -33,7 +33,12 @@ namespace ReflectionDemo.ClassesGeneric
             {
                 if (memberInfo is MethodInfo info)
                 {
-                    Console.WriteLine(memberInfo.Name+" =>IsGenericMethod=" + info.IsGenericMethod);
+                    Console.WriteLine(memberInfo.Name+" =>IsGenericMethod=" + info.IsGenericMethod+ "========info.IsGenericMethodDefinition=" + info.IsGenericMethodDefinition);
+                    if (info.IsGenericMethodDefinition)
+                    {
+                        MethodInfo methodInfo = info.MakeGenericMethod(typeof(int));
+                        Console.WriteLine("========methodInfo.IsGenericMethodDefinition=" + methodInfo.IsGenericMethodDefinition);
+                    }
                 }
             }
         }
