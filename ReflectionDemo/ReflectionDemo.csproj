@@ -46,11 +46,13 @@
     <Compile Include="ClassesGeneric\GenericDemo.cs" />
     <Compile Include="ClassesGeneric\GenericParameterDemo.cs" />
     <Compile Include="ClassesGeneric\GenericRelection.cs" />
+    <Compile Include="ImplReflection.cs" />
     <Compile Include="ListMembers.cs" />
     <Compile Include="Mymemberinfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="构造泛型类型的实例\Example.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
