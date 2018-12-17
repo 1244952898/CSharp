@@ -20,6 +20,8 @@ namespace ReflectionDemo
 
             GenericRelection.GMain();
 
+            //GenericParameterDemo.GMain();
+
             Console.ReadKey();
         }
     }

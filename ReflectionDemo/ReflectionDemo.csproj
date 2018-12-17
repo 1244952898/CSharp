@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassesGeneric\GenericDemo.cs" />
+    <Compile Include="ClassesGeneric\GenericParameterDemo.cs" />
     <Compile Include="ClassesGeneric\GenericRelection.cs" />
     <Compile Include="ListMembers.cs" />
     <Compile Include="Mymemberinfo.cs" />

@@ -23,7 +23,7 @@ namespace ReflectionDemo.ClassesGeneric
             Type[] t1= type.GetGenericArguments();
             Type t = type.GetGenericTypeDefinition();
 
-           Type newTye = type.MakeGenericType(typeof(string));
+            Type newTye = type.MakeGenericType(typeof(string));
             Console.WriteLine("newTye.ContainsGenericParameters=" + newTye.ContainsGenericParameters);
         }
 
