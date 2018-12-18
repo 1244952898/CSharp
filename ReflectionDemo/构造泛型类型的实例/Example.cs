@@ -44,7 +44,7 @@ namespace ReflectionDemo.构造泛型类型的实例
         private static void DisplayGenericParameter(Type tp)
         {
             Console.WriteLine("      Type parameter: {0} position {1}",tp,tp.GenericParameterPosition);
-            Type classConstraint = null;
+            Type classConstraint = tp.BaseType;
             foreach (Type genericParameterConstraint in tp.GetGenericParameterConstraints())
             {
                 if (genericParameterConstraint.IsInterface)
