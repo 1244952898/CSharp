@@ -73,14 +73,30 @@ namespace ReflectionDemo
 
             Type myType = typeof(MySimpleClass);
             MySimpleClass myInstance = new MySimpleClass();
-            MyCustomBinder myCustomBinder=new MyCustomBinder();
+            MyCustomBinder binder = new MyCustomBinder();
 
-            MethodInfo methodInfo = myType.GetMethod("MySimpleClass",BindingFlags.Public|BindingFlags.Instance, myCustomBinder,new Type[]{typeof(string),typeof(int)},null);
+            MethodInfo methodInfo = myType.GetMethod("MyMethod", BindingFlags.Public|BindingFlags.Instance, binder, new Type[]{typeof(string),typeof(int)},null);
 
             Console.WriteLine(methodInfo.ToString());
 
-            myType.InvokeMember("MyMethod", BindingFlags.InvokeMethod, myCustomBinder, myInstance,
-                new Object[] {"Testing...", (int) 32});
+            myType.InvokeMember("MyMethod", BindingFlags.InvokeMethod, binder, myInstance,new Object[] {"Testing...", (int) 32});
+           // myType.InvokeMember("MyMethod", BindingFlags.InvokeMethod,null,myInstance, new Object[] { "Testing...", (int)32 });
+
+            Type t = typeof(CustomBinderDriver);
+            BindingFlags flags = BindingFlags.InvokeMethod | BindingFlags.Instance |
+                                 BindingFlags.Public | BindingFlags.Static;
+            object[] argss;
+            // Case 1. Neither argument coercion nor member selection is needed.
+            argss = new object[] { };
+            t.InvokeMember("PrintBob", flags, binder, null, args);
+
+            // Case 2. Only member selection is needed.
+            argss = new object[] { 42 };
+            t.InvokeMember("PrintValue", flags, binder, null, args);
+
+            // Case 3. Only argument coercion is needed.
+            argss = new object[] { "5.5" };
+            t.InvokeMember("PrintNumber", flags, binder, null, args);
             #endregion
 
             Console.ReadKey();

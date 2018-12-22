@@ -23,15 +23,15 @@ namespace ReflectionDemo.构造泛型类型的实例
             foreach (var mb in match)
             {
                 ParameterInfo[] parameters = mb.GetParameters();
-                if (ParametersMatch(parameters, args))
-                {
-                    return mb;
-                }
+                //if (ParametersMatch(parameters, args))
+                //{
+                //    return mb;
+                //}
             }
             return null;
         }
 
-        private bool ParametersMatch(ParameterInfo[] parameters, object[] types)
+        private bool ParametersMatch(ParameterInfo[] parameters, Type[] types)
         {
             if (parameters.Length!=types.Length)
             {
@@ -40,7 +40,7 @@ namespace ReflectionDemo.构造泛型类型的实例
 
             for (int i = 0; i < parameters.Length; i++)
             {
-                if (parameters[i].ParameterType!=types[i].GetType())
+                if (parameters[i].ParameterType!=types[i])
                 {
                     return false;
                 }
