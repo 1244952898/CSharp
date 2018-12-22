@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using ReflectionDemo.ClassesGeneric;
+using ReflectionDemo.动态加载和使用类型;
 using ReflectionDemo.构造泛型类型的实例;
 
 namespace ReflectionDemo
@@ -69,8 +71,16 @@ namespace ReflectionDemo
 
             #region 动态加载和使用类型
 
+            Type myType = typeof(MySimpleClass);
+            MySimpleClass myInstance = new MySimpleClass();
+            MyCustomBinder myCustomBinder=new MyCustomBinder();
 
+            MethodInfo methodInfo = myType.GetMethod("MySimpleClass",BindingFlags.Public|BindingFlags.Instance, myCustomBinder,new Type[]{typeof(string),typeof(int)},null);
 
+            Console.WriteLine(methodInfo.ToString());
+
+            myType.InvokeMember("MyMethod", BindingFlags.InvokeMethod, myCustomBinder, myInstance,
+                new Object[] {"Testing...", (int) 32});
             #endregion
 
             Console.ReadKey();

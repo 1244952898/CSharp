@@ -54,7 +54,7 @@
     <Compile Include="Test.cs" />
     <Compile Include="动态加载和使用类型\MySimpleClass.cs" />
     <Compile Include="构造泛型类型的实例\Example.cs" />
-    <Compile Include="构造泛型类型的实例\MyCustomBinder.cs" />
+    <Compile Include="动态加载和使用类型\MyCustomBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
