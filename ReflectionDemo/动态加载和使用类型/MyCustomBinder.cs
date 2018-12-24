@@ -13,6 +13,8 @@ namespace ReflectionDemo.构造泛型类型的实例
         public override MethodBase BindToMethod(BindingFlags bindingAttr, MethodBase[] match, ref object[] args, ParameterModifier[] modifiers,
             CultureInfo culture, string[] names, out object state)
         {
+            Console.WriteLine("BindToMethod");
+
             if (match==null)
             {
                 throw new ArgumentNullException("BindToMethod--------mehtod");
@@ -23,12 +25,29 @@ namespace ReflectionDemo.构造泛型类型的实例
             foreach (var mb in match)
             {
                 ParameterInfo[] parameters = mb.GetParameters();
-                //if (ParametersMatch(parameters, args))
-                //{
-                //    return mb;
-                //}
+
+                if (ParametersMatch(parameters, args))
+                {
+                    return mb;
+                }
             }
             return null;
+        }
+
+        private bool ParametersMatch(ParameterInfo[] a, object[] b)
+        {
+            if (a.Length != b.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i].ParameterType != b[i].GetType())
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private bool ParametersMatch(ParameterInfo[] parameters, Type[] types)
@@ -51,6 +70,8 @@ namespace ReflectionDemo.构造泛型类型的实例
 
         public override FieldInfo BindToField(BindingFlags bindingAttr, FieldInfo[] match, object value, CultureInfo culture)
         {
+            Console.WriteLine("BindToField");
+
             if (match==null)
             {
                 throw new ArgumentNullException("BindToField------match");
@@ -69,11 +90,13 @@ namespace ReflectionDemo.构造泛型类型的实例
 
         private bool FieldMatch(FieldInfo fieldInfo, object value)
         {
+            Console.WriteLine("FieldMatch");
             return fieldInfo.FieldType == value.GetType();
         }
 
         public override MethodBase SelectMethod(BindingFlags bindingAttr, MethodBase[] match, Type[] types, ParameterModifier[] modifiers)
         {
+            Console.WriteLine("SelectMethod");
             if (match == null)
             {
                 throw new ArgumentNullException("match");
@@ -96,6 +119,7 @@ namespace ReflectionDemo.构造泛型类型的实例
         public override PropertyInfo SelectProperty(BindingFlags bindingAttr, PropertyInfo[] match, Type returnType, Type[] indexes,
             ParameterModifier[] modifiers)
         {
+            Console.WriteLine("SelectProperty");
             if (match == null)
             {
                 throw new ArgumentNullException("SelectProperty-----match");
@@ -113,6 +137,7 @@ namespace ReflectionDemo.构造泛型类型的实例
 
         public override object ChangeType(object value, Type type, CultureInfo culture)
         {
+            Console.WriteLine("ChangeType");
             try
             {
                 object newType;
@@ -129,7 +154,8 @@ namespace ReflectionDemo.构造泛型类型的实例
 
         public override void ReorderArgumentArray(ref object[] args, object state)
         {
-           // throw new NotImplementedException();
+            Console.WriteLine("ReorderArgumentArray");
+            // throw new NotImplementedException();
         }
     }
 }

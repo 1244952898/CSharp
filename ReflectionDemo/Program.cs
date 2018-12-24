@@ -88,15 +88,15 @@ namespace ReflectionDemo
             object[] argss;
             // Case 1. Neither argument coercion nor member selection is needed.
             argss = new object[] { };
-            t.InvokeMember("PrintBob", flags, binder, null, args);
+            t.InvokeMember("PrintBob", flags, binder, null, argss);
 
             // Case 2. Only member selection is needed.
             argss = new object[] { 42 };
-            t.InvokeMember("PrintValue", flags, binder, null, args);
+            t.InvokeMember("PrintValue", flags, binder, null, argss);
 
             // Case 3. Only argument coercion is needed.
             argss = new object[] { "5.5" };
-            t.InvokeMember("PrintNumber", flags, binder, null, args);
+            t.InvokeMember("PrintNumber", flags, binder, null, argss);
             #endregion
 
             Console.ReadKey();
