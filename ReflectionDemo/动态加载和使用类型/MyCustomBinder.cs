@@ -34,40 +34,6 @@ namespace ReflectionDemo.构造泛型类型的实例
             return null;
         }
 
-        private bool ParametersMatch(ParameterInfo[] a, object[] b)
-        {
-            if (a.Length != b.Length)
-            {
-                return false;
-            }
-            for (int i = 0; i < a.Length; i++)
-            {
-                if (a[i].ParameterType != b[i].GetType())
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool ParametersMatch(ParameterInfo[] parameters, Type[] types)
-        {
-            if (parameters.Length!=types.Length)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < parameters.Length; i++)
-            {
-                if (parameters[i].ParameterType!=types[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         public override FieldInfo BindToField(BindingFlags bindingAttr, FieldInfo[] match, object value, CultureInfo culture)
         {
             Console.WriteLine("BindToField");
@@ -156,6 +122,41 @@ namespace ReflectionDemo.构造泛型类型的实例
         {
             Console.WriteLine("ReorderArgumentArray");
             // throw new NotImplementedException();
+        }
+
+
+        private bool ParametersMatch(ParameterInfo[] a, object[] b)
+        {
+            if (a.Length != b.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i].ParameterType != b[i].GetType())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool ParametersMatch(ParameterInfo[] parameters, Type[] types)
+        {
+            if (parameters.Length != types.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                if (parameters[i].ParameterType != types[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

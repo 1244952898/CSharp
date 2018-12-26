@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "简单爬取商品信息", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionDemo", "ReflectionDemo\ReflectionDemo.csproj", "{AF3745F1-9CB1-4E8D-9338-B49A0A8A6D85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelflectionDemo_将程序集加载到仅反射上下文中", "RelflectionDemo_将程序集加载到仅反射上下文中\RelflectionDemo_将程序集加载到仅反射上下文中.csproj", "{8B06303A-A809-4371-8587-FF17081286E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionDemo_Example", "ReflectionDemo_Example\ReflectionDemo_Example.csproj", "{9667CC9E-7269-4E49-8F3E-95235E4521EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{AF3745F1-9CB1-4E8D-9338-B49A0A8A6D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF3745F1-9CB1-4E8D-9338-B49A0A8A6D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF3745F1-9CB1-4E8D-9338-B49A0A8A6D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B06303A-A809-4371-8587-FF17081286E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B06303A-A809-4371-8587-FF17081286E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B06303A-A809-4371-8587-FF17081286E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B06303A-A809-4371-8587-FF17081286E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9667CC9E-7269-4E49-8F3E-95235E4521EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9667CC9E-7269-4E49-8F3E-95235E4521EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9667CC9E-7269-4E49-8F3E-95235E4521EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9667CC9E-7269-4E49-8F3E-95235E4521EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

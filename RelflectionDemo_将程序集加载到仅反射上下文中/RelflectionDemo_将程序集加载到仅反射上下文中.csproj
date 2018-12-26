@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AF3745F1-9CB1-4E8D-9338-B49A0A8A6D85}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ReflectionDemo</RootNamespace>
-    <AssemblyName>ReflectionDemo</AssemblyName>
+    <ProjectGuid>{8B06303A-A809-4371-8587-FF17081286E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RelflectionDemo_将程序集加载到仅反射上下文中</RootNamespace>
+    <AssemblyName>RelflectionDemo_将程序集加载到仅反射上下文中</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,31 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassesGeneric\GenericDemo.cs" />
-    <Compile Include="ClassesGeneric\GenericParameterDemo.cs" />
-    <Compile Include="ClassesGeneric\GenericRelection.cs" />
-    <Compile Include="ImplReflection.cs" />
-    <Compile Include="ListMembers.cs" />
-    <Compile Include="Mymemberinfo.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ExampleAttribute.cs" />
+    <Compile Include="ExampleKind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs" />
-    <Compile Include="使用反射将委托挂钩\EventTest.cs" />
-    <Compile Include="动态加载和使用类型\CustomBinderDriver.cs" />
-    <Compile Include="动态加载和使用类型\MySimpleClass.cs" />
-    <Compile Include="构造泛型类型的实例\Example.cs" />
-    <Compile Include="动态加载和使用类型\MyCustomBinder.cs" />
-    <Compile Include="访问自定义特性\Class1.cs" />
-    <Compile Include="访问自定义特性\ExampleAttribute.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ReflectionDemo_Example\ReflectionDemo_Example.csproj">
-      <Project>{9667cc9e-7269-4e49-8f3e-95235e4521eb}</Project>
-      <Name>ReflectionDemo_Example</Name>
-    </ProjectReference>
+    <Compile Include="Test1.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
