@@ -68,6 +68,10 @@
       <Project>{9667cc9e-7269-4e49-8f3e-95235e4521eb}</Project>
       <Name>ReflectionDemo_Example</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RelflectionDemo_将程序集加载到仅反射上下文中\RelflectionDemo_将程序集加载到仅反射上下文中.csproj">
+      <Project>{8b06303a-a809-4371-8587-ff17081286e0}</Project>
+      <Name>RelflectionDemo_将程序集加载到仅反射上下文中</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using ReflectionDemo.ClassesGeneric;
@@ -108,7 +109,25 @@ namespace ReflectionDemo
 
             #region 访问自定义特性
 
-Class1.Main1();
+            //Class1.Main1();
+
+            #endregion
+
+            #region 使用反射将委托挂钩
+
+            Assembly assem = typeof(Example).Assembly;
+            Type texType = assem.GetType("ExampleForm");
+            Object exFormAsObj = Activator.CreateInstance(texType);
+            EventInfo evClick = texType.GetEvent("Click");
+            Type tDelegate = evClick.EventHandlerType;
+
+            MethodInfo methodInfo = typeof(Example).GetMethod("LuckyHandler", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            Delegate d = Delegate.CreateDelegate(tDelegate, texType, methodInfo);
+
+            MethodInfo addHandler = evClick.GetAddMethod();
+            Object[] addHandlerArgs = { d };
+            addHandler.Invoke(exFormAsObj, addHandlerArgs);
 
             #endregion
 
