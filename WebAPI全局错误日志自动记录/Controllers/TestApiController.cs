@@ -14,6 +14,7 @@ namespace WebAPI全局错误日志自动记录.Controllers
         {
             int a = 50;
             long b = a / 0;
+
         }
     }
 }
