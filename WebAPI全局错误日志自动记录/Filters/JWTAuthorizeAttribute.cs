@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -61,9 +62,45 @@ namespace WebAPI全局错误日志自动记录.Filters
             var validationParameters = _validationParameters.Clone();
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 
+            try
+            {
+                var principal = handler.ValidateToken(tokenString, validationParameters, out validatedToken);
+                Thread.CurrentPrincipal = principal;
+                if (HttpContext.Current != null)
+                {
+                    HttpContext.Current.User = principal;
+                }
 
+                return true;
+            }
+            catch (SecurityTokenExpiredException e)
+            {
+                var response = request.CreateResponse(HttpStatusCode.Unauthorized, new
+                {
+                    ErrorCode = (int)HttpStatusCode.Unauthorized,
+                    Result = false,
+                    Message = "token is expired"
+                });
 
-            return null;
+                actionContext.Response = response;
+                return false;
+            }
+            catch (SecurityTokenSignatureKeyNotFoundException e)
+            {
+                var response = request.CreateResponse(HttpStatusCode.Unauthorized, new
+                {
+                    ErrorCode = (int)HttpStatusCode.Unauthorized,
+                    Result = false,
+                    Message = "Untrusted signing cert"
+                });
+
+                actionContext.Response = response;
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public virtual string GetTokenStringFromHeader(HttpRequestMessage request)

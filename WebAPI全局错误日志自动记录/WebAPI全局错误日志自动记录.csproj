@@ -127,6 +127,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AuthorizationConfigure.cs" />
     <Compile Include="App_Start\JWTConfiguration.cs" />
     <Compile Include="Controllers\TestApiController.cs" />
     <Compile Include="Filters\GlobalFiltersConfig.cs" />

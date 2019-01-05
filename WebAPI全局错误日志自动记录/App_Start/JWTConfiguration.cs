@@ -25,7 +25,7 @@ namespace WebAPI全局错误日志自动记录.App_Start
                 new JwtBearerAuthenticationOptions
                 {
                     AuthenticationMode = AuthenticationMode.Active,
-                    TokenValidationParameters = new TokenValidationParameters()
+                    TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidAudience = apiIdentifier,
                         ValidIssuer = domain,
