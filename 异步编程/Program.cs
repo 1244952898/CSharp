@@ -10,14 +10,9 @@ namespace 异步编程
     {
         static void Main(string[] args)
         {
-            //分支1
-            //分支2
-            //分支3
-            //分支4
-            //分支5
-            //分支6
-            //分支7
-            //分支8
+            // Demo1.Main1();
+            Demo2.MainAsync();
+            Console.Read();
         }
     }
 }
