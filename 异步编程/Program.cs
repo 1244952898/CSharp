@@ -11,7 +11,7 @@ namespace 异步编程
         static void Main(string[] args)
         {
             // Demo1.Main1();
-            Demo2.MainAsync();
+            //Demo2.MainAsync();
             Console.Read();
         }
     }
