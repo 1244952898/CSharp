@@ -26,14 +26,32 @@ namespace 异步多线程学习
         {
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 开始", Thread.CurrentThread.ManagedThreadId);
 
-            int i = 1;
-            int l = 3;
-            int k = i + 1;
+          
             doSomeMethodDelegate doSomeMethod = new doSomeMethodDelegate(DoSomeThing);
 
-            AsyncCallback asyncCallback = new AsyncCallback(x => Console.WriteLine("回调函数！"));
+            IAsyncResult asyncResult = null;
 
-            doSomeMethod.BeginInvoke("btn_Async_Click", asyncCallback, null);
+            AsyncCallback asyncCallback = x => {
+                Console.WriteLine(asyncResult.Equals(x));
+                Console.WriteLine(x.AsyncState);
+                Console.WriteLine("回调函数！");
+            };
+            
+           asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", asyncCallback, "abcdefg");
+            //asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", x => {
+            //    Console.WriteLine(x.AsyncState);
+            //    Console.WriteLine("回调函数！");
+            //}, "abcdefg");
+
+            //int i = 1;
+            //while (!asyncResult.IsCompleted)
+            //{
+            //    Console.WriteLine("+++++++++++正在计算中！++++++++++ + 已经完成 {0}", 10 * i++);
+            //    Thread.Sleep(100);
+            //}
+
+            asyncResult.AsyncWaitHandle.WaitOne();
+
 
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 结束", Thread.CurrentThread.ManagedThreadId);
 
@@ -44,7 +62,7 @@ namespace 异步多线程学习
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++DoSomeThing {0} 开始", Thread.CurrentThread.ManagedThreadId);
 
             long result = 0;
-            for (int i = 0; i < 10000000; i++)
+            for (int i = 0; i < 1000000000; i++)
             {
                 result += i;
             }

@@ -37,7 +37,7 @@
             this.btn_Async.Name = "btn_Async";
             this.btn_Async.Size = new System.Drawing.Size(142, 42);
             this.btn_Async.TabIndex = 0;
-            this.btn_Async.Text = "button1";
+            this.btn_Async.Text = "异步";
             this.btn_Async.UseVisualStyleBackColor = true;
             this.btn_Async.Click += new System.EventHandler(this.btn_Async_Click);
             // 
