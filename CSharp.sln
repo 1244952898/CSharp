@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelflectionDemo_将程序�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionDemo_Example", "ReflectionDemo_Example\ReflectionDemo_Example.csproj", "{9667CC9E-7269-4E49-8F3E-95235E4521EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "异步编程", "异步编程\异步编程.csproj", "{743EF9C2-7B64-43A0-880E-F71F36E0B765}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "异步多线程编程", "异步编程\异步多线程编程.csproj", "{743EF9C2-7B64-43A0-880E-F71F36E0B765}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
