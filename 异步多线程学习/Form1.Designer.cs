@@ -33,7 +33,7 @@
             // 
             // btn_Async
             // 
-            this.btn_Async.Location = new System.Drawing.Point(61, 92);
+            this.btn_Async.Location = new System.Drawing.Point(49, 12);
             this.btn_Async.Name = "btn_Async";
             this.btn_Async.Size = new System.Drawing.Size(142, 42);
             this.btn_Async.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 251);
+            this.ClientSize = new System.Drawing.Size(374, 683);
             this.Controls.Add(this.btn_Async);
             this.Name = "Form1";
             this.Text = "Form1";

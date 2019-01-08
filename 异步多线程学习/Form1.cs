@@ -67,6 +67,8 @@ namespace 异步多线程学习
             }, "AlwaysOnline");
 
             string sresult = func.EndInvoke(asyncResult);
+            
+            //ThreadPool.QueueUserWorkItem(x => { });
 
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 结束", Thread.CurrentThread.ManagedThreadId);
 
