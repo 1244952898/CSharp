@@ -37,7 +37,7 @@ namespace 异步多线程学习
                 Console.WriteLine("回调函数！");
             };
             
-           asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", asyncCallback, "abcdefg");
+           //asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", asyncCallback, "abcdefg");
             //asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", x => {
             //    Console.WriteLine(x.AsyncState);
             //    Console.WriteLine("回调函数！");
@@ -50,8 +50,23 @@ namespace 异步多线程学习
             //    Thread.Sleep(100);
             //}
 
-            asyncResult.AsyncWaitHandle.WaitOne();
+            //asyncResult.AsyncWaitHandle.WaitOne();
+            //asyncResult.AsyncWaitHandle.WaitOne(100);
+            //asyncResult.AsyncWaitHandle.WaitOne(1000);
 
+            //doSomeMethod.EndInvoke(asyncResult);
+
+            Func<int, string> func = x => {
+                DoSomeThing("btn_Async_Click");
+                return "2017----";
+            } ;
+            asyncResult = func.BeginInvoke(DateTime.Now.Millisecond, x =>
+            {
+                Console.WriteLine(x.AsyncState);
+                Console.WriteLine("这里是回调函数 {0}", Thread.CurrentThread.ManagedThreadId);
+            }, "AlwaysOnline");
+
+            string sresult = func.EndInvoke(asyncResult);
 
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 结束", Thread.CurrentThread.ManagedThreadId);
 
