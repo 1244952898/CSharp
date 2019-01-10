@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btn_Async = new System.Windows.Forms.Button();
+            this.btnFor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Async
@@ -41,11 +42,22 @@
             this.btn_Async.UseVisualStyleBackColor = true;
             this.btn_Async.Click += new System.EventHandler(this.btn_Async_Click);
             // 
+            // btnFor
+            // 
+            this.btnFor.Location = new System.Drawing.Point(49, 118);
+            this.btnFor.Name = "btnFor";
+            this.btnFor.Size = new System.Drawing.Size(75, 23);
+            this.btnFor.TabIndex = 1;
+            this.btnFor.Text = "多线程循环";
+            this.btnFor.UseVisualStyleBackColor = true;
+            this.btnFor.Click += new System.EventHandler(this.btnFor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 683);
+            this.Controls.Add(this.btnFor);
             this.Controls.Add(this.btn_Async);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -56,6 +68,7 @@
         #endregion
 
         private System.Windows.Forms.Button btn_Async;
+        private System.Windows.Forms.Button btnFor;
     }
 }
 

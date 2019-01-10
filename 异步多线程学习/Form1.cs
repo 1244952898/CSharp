@@ -31,9 +31,9 @@ namespace 异步多线程学习
 
             IAsyncResult asyncResult = null;
 
-            AsyncCallback asyncCallback = x => {
-                Console.WriteLine(asyncResult.Equals(x));
-                Console.WriteLine(x.AsyncState);
+            AsyncCallback asyncCallback = b => {
+                Console.WriteLine(asyncResult.Equals(b));
+                Console.WriteLine(b.AsyncState);
                 Console.WriteLine("回调函数！");
             };
             
@@ -56,13 +56,13 @@ namespace 异步多线程学习
 
             //doSomeMethod.EndInvoke(asyncResult);
 
-            Func<int, string> func = x => {
+            Func<int, string> func = z => {
                 DoSomeThing("btn_Async_Click");
                 return "2017----";
             } ;
-            asyncResult = func.BeginInvoke(DateTime.Now.Millisecond, x =>
+            asyncResult = func.BeginInvoke(DateTime.Now.Millisecond, a =>
             {
-                Console.WriteLine(x.AsyncState);
+                Console.WriteLine(a.AsyncState);
                 Console.WriteLine("这里是回调函数 {0}", Thread.CurrentThread.ManagedThreadId);
             }, "AlwaysOnline");
 
@@ -73,13 +73,59 @@ namespace 异步多线程学习
             //manualResetEvent.Set();
             //manualResetEvent.Reset();
             TaskFactory taskFactory = new TaskFactory();
-            taskFactory.ContinueWhenAll(new Task[3], x => { });
+            taskFactory.ContinueWhenAll(new Task[3], x0 => { });
+            Action<string> action = x3 => { Console.WriteLine("{0}", x3); };
+            Action<string> action1 =x1=> DoSomeThing("a");
 
+            Func<string,int> funccc = x2 => {
+                Console.WriteLine("{0}", x2);
+                return 3;
+            };
+            int x = funccc("ab");
+
+            Parallel.Invoke();
+            Parallel.ForEach(new string[] { "a" }, (y,state) => {
+                Console.Write(y);
+                state.Break();
+            });
+
+            ParallelOptions parallelOptions = new ParallelOptions();
+            parallelOptions.MaxDegreeOfParallelism = 5;
+
+            //Parallel.For<string>()
+            CancellationTokenSource cts = new CancellationTokenSource();
+            //cts.Token;
+            cts.Cancel();
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 结束", Thread.CurrentThread.ManagedThreadId);
 
         }
 
-        private void DoSomeThing(string name) {
+        private void btnFor_Click(object sender, EventArgs e)
+        {
+            //List<Person> pers = new List<Person>();
+            for (int i = 0; i < 10; i++)
+            {
+                Person p = new Person();
+                TaskFactory taskFactory = new TaskFactory();
+                int k = i;
+                Task task = taskFactory.StartNew(() =>
+                {
+                    Thread.Sleep(1000);
+                    Console.WriteLine(k + "  ManagedThreadId" + Thread.CurrentThread.ManagedThreadId);
+                });
+
+                //p.Age = i;
+                //Action<Person> action = x => {
+                //    Thread.Sleep(1000);
+                //    Console.WriteLine("Person :"+x.Age + "  ManagedThreadId" + Thread.CurrentThread.ManagedThreadId);
+                //};
+                //action.BeginInvoke(p,null,null);
+            }
+         
+            
+        }
+        private void DoSomeThing(string name)
+        {
 
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++DoSomeThing {0} 开始", Thread.CurrentThread.ManagedThreadId);
 
@@ -92,3 +138,6 @@ namespace 异步多线程学习
         }
     }
 }
+
+
+   
