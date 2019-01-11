@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "异步多线程", "异步�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "异步多线程学习", "异步多线程学习\异步多线程学习.csproj", "{5C946825-7E95-448F-B98D-D9783AF6BB90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "天龙八部", "天龙八部\天龙八部.csproj", "{71D5E037-B44A-4821-83CE-A28085EF0BE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{5C946825-7E95-448F-B98D-D9783AF6BB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C946825-7E95-448F-B98D-D9783AF6BB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C946825-7E95-448F-B98D-D9783AF6BB90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D5E037-B44A-4821-83CE-A28085EF0BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D5E037-B44A-4821-83CE-A28085EF0BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D5E037-B44A-4821-83CE-A28085EF0BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D5E037-B44A-4821-83CE-A28085EF0BE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{743EF9C2-7B64-43A0-880E-F71F36E0B765} = {B0FB96CB-CA2A-429C-A211-DF69B016823D}
 		{5C946825-7E95-448F-B98D-D9783AF6BB90} = {B0FB96CB-CA2A-429C-A211-DF69B016823D}
+		{71D5E037-B44A-4821-83CE-A28085EF0BE6} = {B0FB96CB-CA2A-429C-A211-DF69B016823D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44EBE1E8-CE16-4421-853F-B84F36E27F1A}

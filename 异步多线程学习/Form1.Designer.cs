@@ -30,13 +30,16 @@
         {
             this.btn_Async = new System.Windows.Forms.Button();
             this.btnFor = new System.Windows.Forms.Button();
+            this.btnAsyc = new System.Windows.Forms.Button();
+            this.btnThread = new System.Windows.Forms.Button();
+            this.btnCalBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Async
             // 
             this.btn_Async.Location = new System.Drawing.Point(49, 12);
             this.btn_Async.Name = "btn_Async";
-            this.btn_Async.Size = new System.Drawing.Size(142, 42);
+            this.btn_Async.Size = new System.Drawing.Size(75, 23);
             this.btn_Async.TabIndex = 0;
             this.btn_Async.Text = "异步";
             this.btn_Async.UseVisualStyleBackColor = true;
@@ -52,11 +55,44 @@
             this.btnFor.UseVisualStyleBackColor = true;
             this.btnFor.Click += new System.EventHandler(this.btnFor_Click);
             // 
+            // btnAsyc
+            // 
+            this.btnAsyc.Location = new System.Drawing.Point(49, 167);
+            this.btnAsyc.Name = "btnAsyc";
+            this.btnAsyc.Size = new System.Drawing.Size(75, 23);
+            this.btnAsyc.TabIndex = 2;
+            this.btnAsyc.Text = "Async";
+            this.btnAsyc.UseVisualStyleBackColor = true;
+            this.btnAsyc.Click += new System.EventHandler(this.btnAsyc_Click);
+            // 
+            // btnThread
+            // 
+            this.btnThread.Location = new System.Drawing.Point(49, 79);
+            this.btnThread.Name = "btnThread";
+            this.btnThread.Size = new System.Drawing.Size(75, 23);
+            this.btnThread.TabIndex = 3;
+            this.btnThread.Text = "Thread";
+            this.btnThread.UseVisualStyleBackColor = true;
+            this.btnThread.Click += new System.EventHandler(this.btnThread_Click);
+            // 
+            // btnCalBack
+            // 
+            this.btnCalBack.Location = new System.Drawing.Point(151, 79);
+            this.btnCalBack.Name = "btnCalBack";
+            this.btnCalBack.Size = new System.Drawing.Size(111, 23);
+            this.btnCalBack.TabIndex = 4;
+            this.btnCalBack.Text = "Thread自定义返回";
+            this.btnCalBack.UseVisualStyleBackColor = true;
+            this.btnCalBack.Click += new System.EventHandler(this.btnCalBack_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 683);
+            this.Controls.Add(this.btnCalBack);
+            this.Controls.Add(this.btnThread);
+            this.Controls.Add(this.btnAsyc);
             this.Controls.Add(this.btnFor);
             this.Controls.Add(this.btn_Async);
             this.Name = "Form1";
@@ -69,6 +105,9 @@
 
         private System.Windows.Forms.Button btn_Async;
         private System.Windows.Forms.Button btnFor;
+        private System.Windows.Forms.Button btnAsyc;
+        private System.Windows.Forms.Button btnThread;
+        private System.Windows.Forms.Button btnCalBack;
     }
 }
 

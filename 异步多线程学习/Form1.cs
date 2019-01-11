@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static 异步多线程学习.ThreadExtesion;
 namespace 异步多线程学习
 {
   
@@ -135,6 +135,72 @@ namespace 异步多线程学习
                 result += i;
             }
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++DoSomeThing {0} 结束", Thread.CurrentThread.ManagedThreadId);
+        }
+
+        private void btnAsyc_Click(object sender, EventArgs e)
+        {
+           btnAsycClick();
+        } 
+
+        private async Task btnAsycClick() {
+            Console.WriteLine("++btnAsyc {0} 开始", Thread.CurrentThread.ManagedThreadId);
+            Task task = new Task(() => {
+                Console.WriteLine("Task{0} 开始", Thread.CurrentThread.ManagedThreadId);
+                Thread.Sleep(1000);
+                Console.WriteLine("Task {0} 结束", Thread.CurrentThread.ManagedThreadId);
+            });
+            task.Start();
+            Console.WriteLine("++btnAsyc {0} 结束", Thread.CurrentThread.ManagedThreadId);
+
+        }
+
+        private void btnThread_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("--------- btnThread_Click开始");
+
+            for (int i = 0; i < 10; i++)
+            {
+                ThreadStart threadStart = () => {
+                    Thread.Sleep(100);
+                    Console.WriteLine("+++++++++++开始线程ThreadStart {0}", Thread.CurrentThread.ManagedThreadId);
+
+                };
+                Thread thread = new Thread(threadStart);
+                thread.Start();
+
+                ParameterizedThreadStart parameterizedThreadStart =x=> {
+                    Thread.Sleep(100);
+                    Console.WriteLine("+++++++++++开始线程ParameterizedThreadStart {0}", Thread.CurrentThread.ManagedThreadId);
+                    Console.WriteLine("+++++++++++ParameterizedThreadStart输出 {0}",x);
+                };
+
+                Thread threadp = new Thread(parameterizedThreadStart);
+                threadp.Start(i);
+            }
+
+            Console.WriteLine("--------- btnThread_Click结束");
+        }
+
+        private void btnCalBack_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("--------- btnCalBack_Click");
+
+            for (int i = 0; i < 10; i++)
+            {
+                ParameterizedThreadStart parameterizedThreadStart = x => {
+                    Thread.Sleep(100);
+                    Console.WriteLine("+++++++++++开始btnCalBack_Click线程 {0}", Thread.CurrentThread.ManagedThreadId);
+                    Console.WriteLine("+++++++++++PbtnCalBack_Click输出 {0}", x);
+                };
+                ThreadExtesion thread = new ThreadExtesion();
+                thread.ThreadCallBack(parameterizedThreadStart, () =>
+                {
+                    Console.WriteLine("回调方法");
+                },i);
+                
+            }
+
+            Console.WriteLine("--------- btnCalBack_Click");
         }
     }
 }
