@@ -18,6 +18,20 @@ namespace 异步多线程学习
             Thread thread = new Thread(st);
             thread.Start(ii[0]);
         }
+
+        public string ThreadCallBack(ParameterizedThreadStart pts, Func<string> func, params int[] ii)
+        {
+            string s=string.Empty;
+            ParameterizedThreadStart st = new ParameterizedThreadStart(x =>
+            {
+                pts.Invoke(x);
+                s = func.Invoke();
+            });
+            Thread thread = new Thread(st);
+            thread.Start(ii[0]);
+            return s;
+        }
+
     }
 
     public static class StringUtilities

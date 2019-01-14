@@ -33,6 +33,7 @@
             this.btnAsyc = new System.Windows.Forms.Button();
             this.btnThread = new System.Windows.Forms.Button();
             this.btnCalBack = new System.Windows.Forms.Button();
+            this.btnPara = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Async
@@ -85,11 +86,22 @@
             this.btnCalBack.UseVisualStyleBackColor = true;
             this.btnCalBack.Click += new System.EventHandler(this.btnCalBack_Click);
             // 
+            // btnPara
+            // 
+            this.btnPara.Location = new System.Drawing.Point(299, 79);
+            this.btnPara.Name = "btnPara";
+            this.btnPara.Size = new System.Drawing.Size(111, 23);
+            this.btnPara.TabIndex = 5;
+            this.btnPara.Text = "Thread自定义返回有参数";
+            this.btnPara.UseVisualStyleBackColor = true;
+            this.btnPara.Click += new System.EventHandler(this.btnPara_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 683);
+            this.ClientSize = new System.Drawing.Size(718, 683);
+            this.Controls.Add(this.btnPara);
             this.Controls.Add(this.btnCalBack);
             this.Controls.Add(this.btnThread);
             this.Controls.Add(this.btnAsyc);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button btnAsyc;
         private System.Windows.Forms.Button btnThread;
         private System.Windows.Forms.Button btnCalBack;
+        private System.Windows.Forms.Button btnPara;
     }
 }
 

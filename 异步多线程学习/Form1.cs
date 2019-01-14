@@ -197,10 +197,32 @@ namespace 异步多线程学习
                 {
                     Console.WriteLine("回调方法");
                 },i);
-                
             }
 
+
             Console.WriteLine("--------- btnCalBack_Click");
+        }
+
+        private void btnPara_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("--------- btnPara_Click");
+
+            for (int i = 0; i < 10; i++)
+            {
+                ParameterizedThreadStart parameterizedThreadStart = x => {
+                    Thread.Sleep(100);
+                    Console.WriteLine("+++++++++++开始btnCalBack_Click线程 {0}", Thread.CurrentThread.ManagedThreadId);
+                    Console.WriteLine("+++++++++++PbtnCalBack_Click输出 {0}", x);
+                };
+                ThreadExtesion thread = new ThreadExtesion();
+                Func<string> ss = ()=> {return "a";};
+
+                string s= thread.ThreadCallBack(parameterizedThreadStart, ss, i);
+                Console.WriteLine("+++++++++++带有返回值 {0}", s);
+            }
+
+
+            Console.WriteLine("--------- btnPara_Click");
         }
     }
 }
