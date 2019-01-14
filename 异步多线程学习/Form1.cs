@@ -205,7 +205,7 @@ namespace 异步多线程学习
 
         private void btnPara_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("--------- btnPara_Click");
+            Console.WriteLine("--------- btnPara_Click开始");
 
             for (int i = 0; i < 10; i++)
             {
@@ -220,9 +220,160 @@ namespace 异步多线程学习
                 string s= thread.ThreadCallBack(parameterizedThreadStart, ss, i);
                 Console.WriteLine("+++++++++++带有返回值 {0}", s);
             }
+            
+            Console.WriteLine("--------- btnPara_Click结束");
+        }
+
+        private void btnpool_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("--------- btnpool_Click开始");
+
+            ManualResetEvent manualResetEvent = new ManualResetEvent(false);
+            for (int i = 0; i < 10; i++)
+            {
+                WaitCallback waitCallback = x => {
+                    Thread.Sleep(100);
+                   
+                    Console.WriteLine("+++++++++++开始btnCalBack_Click线程 {0}", Thread.CurrentThread.ManagedThreadId);
+                    Console.WriteLine(x);
+                    manualResetEvent.Set();
+                };
+                ThreadPool.QueueUserWorkItem(waitCallback,i);
+            }
+
+            Console.WriteLine("do something else");
+            Console.WriteLine("do something else");
+            Console.WriteLine("do something else");
+            manualResetEvent.WaitOne();
+            new Action(() => {
+                Thread.Sleep(3000);
+                Console.WriteLine("改变新哈量ManualResetEvent");
+                manualResetEvent.Set();
+            }).BeginInvoke(null,null);
+            manualResetEvent.WaitOne();
+            Console.WriteLine(" manualResetEvent.WaitOne();");
+
+            manualResetEvent.Reset();
+            new Action(() => {
+                Thread.Sleep(2000);
+                Console.WriteLine("改变新哈量ManualResetEvent");
+                manualResetEvent.Set();
+            }).BeginInvoke(null, null);
+            manualResetEvent.WaitOne();
+            Console.WriteLine("再次 manualResetEvent.WaitOne();");
 
 
-            Console.WriteLine("--------- btnPara_Click");
+
+            Console.WriteLine("--------- btnpool_Click结束");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            ManualResetEvent mre = new ManualResetEvent(false);
+            for (int i = 0; i < 10; i++)
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(x =>
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine("+++++++++++线程Id={0} ,属于{1}", Thread.CurrentThread.ManagedThreadId,x);
+                }), i);
+            }
+            while (true) {
+                int maxWorkerThreads, workerThreads;
+                int portThreads;
+                ThreadPool.GetMaxThreads(out maxWorkerThreads, out portThreads);
+                ThreadPool.GetAvailableThreads(out workerThreads, out portThreads);
+                if (maxWorkerThreads== workerThreads)
+                {
+                    break;
+                }
+            }
+            
+            Console.WriteLine("结束==============");
+        }
+
+        static object lockObj=new object();
+
+        /// <summary>
+        /// 错误，有问题
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            int runingThread = 10;
+            for (int i = 0; i < runingThread; i++)
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(x =>
+                {
+                    Thread.Sleep(500);
+                    Monitor.Pulse(lockObj);
+                    Console.WriteLine("+++++++++++线程Id={0} ,属于{1}", Thread.CurrentThread.ManagedThreadId, x);
+                }), i);
+            }
+            lock (lockObj) {
+                while (runingThread > 0)
+                {
+                    Monitor.Wait(lockObj);
+                }
+            }
+            
+            Console.WriteLine("结束==============");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            int runingThread = 10;
+            //List<ManualResetEvent> mreList = new List<ManualResetEvent>();
+            ManualResetEvent[] _ManualEvents = new ManualResetEvent[10];
+            for (int i = 0; i < runingThread; i++)
+            {
+                //mreList.Add(new ManualResetEvent(false));
+                _ManualEvents[i] = new ManualResetEvent(false);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(x =>
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine("+++++++++++线程Id={0} ,属于{1}", Thread.CurrentThread.ManagedThreadId, x);
+                    _ManualEvents[Convert.ToInt32(x)].Set();
+                }), i);
+            }
+
+            //WaitHandle.WaitAll(mreList.ToArray());
+            WaitHandle.WaitAll(_ManualEvents);//注释掉[STAThread]
+
+            Console.WriteLine("结束==============");
+        }
+
+        static int count = 10;
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            Console.WriteLine("开始==============");
+            int runingThread = 10;
+            //List<ManualResetEvent> mreList = new List<ManualResetEvent>();
+            ManualResetEvent _ManualEvents = new ManualResetEvent(false);
+            for (int i = 0; i < runingThread; i++)
+            {
+                //mreList.Add(new ManualResetEvent(false));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(x =>
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine("+++++++++++线程Id={0} ,属于{1}", Thread.CurrentThread.ManagedThreadId, x);
+                    count--;
+                    if (count==0)
+                    {
+                        _ManualEvents.Set();
+                    }
+                    
+                }), i);
+            }
+
+            _ManualEvents.WaitOne();
+
+            Console.WriteLine("结束==============");
         }
     }
 }

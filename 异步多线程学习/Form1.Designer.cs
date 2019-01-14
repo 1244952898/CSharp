@@ -34,6 +34,11 @@
             this.btnThread = new System.Windows.Forms.Button();
             this.btnCalBack = new System.Windows.Forms.Button();
             this.btnPara = new System.Windows.Forms.Button();
+            this.btnpool = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Async
@@ -48,7 +53,7 @@
             // 
             // btnFor
             // 
-            this.btnFor.Location = new System.Drawing.Point(49, 118);
+            this.btnFor.Location = new System.Drawing.Point(49, 70);
             this.btnFor.Name = "btnFor";
             this.btnFor.Size = new System.Drawing.Size(75, 23);
             this.btnFor.TabIndex = 1;
@@ -58,7 +63,7 @@
             // 
             // btnAsyc
             // 
-            this.btnAsyc.Location = new System.Drawing.Point(49, 167);
+            this.btnAsyc.Location = new System.Drawing.Point(49, 99);
             this.btnAsyc.Name = "btnAsyc";
             this.btnAsyc.Size = new System.Drawing.Size(75, 23);
             this.btnAsyc.TabIndex = 2;
@@ -68,7 +73,7 @@
             // 
             // btnThread
             // 
-            this.btnThread.Location = new System.Drawing.Point(49, 79);
+            this.btnThread.Location = new System.Drawing.Point(49, 41);
             this.btnThread.Name = "btnThread";
             this.btnThread.Size = new System.Drawing.Size(75, 23);
             this.btnThread.TabIndex = 3;
@@ -78,7 +83,7 @@
             // 
             // btnCalBack
             // 
-            this.btnCalBack.Location = new System.Drawing.Point(151, 79);
+            this.btnCalBack.Location = new System.Drawing.Point(130, 41);
             this.btnCalBack.Name = "btnCalBack";
             this.btnCalBack.Size = new System.Drawing.Size(111, 23);
             this.btnCalBack.TabIndex = 4;
@@ -88,7 +93,7 @@
             // 
             // btnPara
             // 
-            this.btnPara.Location = new System.Drawing.Point(299, 79);
+            this.btnPara.Location = new System.Drawing.Point(247, 41);
             this.btnPara.Name = "btnPara";
             this.btnPara.Size = new System.Drawing.Size(111, 23);
             this.btnPara.TabIndex = 5;
@@ -96,11 +101,66 @@
             this.btnPara.UseVisualStyleBackColor = true;
             this.btnPara.Click += new System.EventHandler(this.btnPara_Click);
             // 
+            // btnpool
+            // 
+            this.btnpool.Location = new System.Drawing.Point(49, 137);
+            this.btnpool.Name = "btnpool";
+            this.btnpool.Size = new System.Drawing.Size(75, 23);
+            this.btnpool.TabIndex = 6;
+            this.btnpool.Text = "Threadpool";
+            this.btnpool.UseVisualStyleBackColor = true;
+            this.btnpool.Click += new System.EventHandler(this.btnpool_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(130, 137);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(154, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Threadpool子线程执行完1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(130, 166);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(154, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Threadpool子线程执行完2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(130, 195);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(154, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Threadpool子线程执行完3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(130, 224);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(154, 23);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Threadpool子线程执行完4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 683);
+            this.ClientSize = new System.Drawing.Size(428, 372);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnpool);
             this.Controls.Add(this.btnPara);
             this.Controls.Add(this.btnCalBack);
             this.Controls.Add(this.btnThread);
@@ -121,6 +181,11 @@
         private System.Windows.Forms.Button btnThread;
         private System.Windows.Forms.Button btnCalBack;
         private System.Windows.Forms.Button btnPara;
+        private System.Windows.Forms.Button btnpool;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
