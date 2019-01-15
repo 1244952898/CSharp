@@ -384,20 +384,20 @@ namespace 异步多线程学习
             List<Task> tasks = new List<Task>();
             for (int i = 0; i < 10; i++)
             {
-                //Action<int> action = () => this.method1(i);
                 Task task = factory.StartNew(()=> {
-                   Thread.Sleep(5000);
+                   Thread.Sleep(2000);
                    Console.WriteLine("+++++++++++线程Id={0} ,属于", Thread.CurrentThread.ManagedThreadId);
                });
                 tasks.Add(task);
             }
-            
-            factory.ContinueWhenAll(tasks.ToArray(),tList=> {
-                Console.WriteLine("TaskFactory.ContinueWhenAll结束==============");
-            });
 
+            factory.ContinueWhenAll(tasks.ToArray(), tList =>
+            {
+                Console.WriteLine("TaskFactory.ContinueWhenAll结束===线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            });
+            
             factory.ContinueWhenAny(tasks.ToArray(), tList =>{
-                Console.WriteLine("TaskFactory.ContinueWhenAny结束==============");
+                Console.WriteLine("TaskFactory.ContinueWhenAny结束===线程Id={0}", Thread.CurrentThread.ManagedThreadId);
             });
 
             Task.WaitAny(tasks.ToArray());
@@ -411,6 +411,72 @@ namespace 异步多线程学习
 
         private void method1(int i) {
             Console.WriteLine(i);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            Task[] tasks = new Task[10];
+            
+            for (int i = 0; i < 10; i++)
+            {
+                int k = i;
+                tasks[i] = new Task(() => {
+                    Console.WriteLine("+++++++++++ask[] tasks1 = new Task[10];++++++++++ 参数{0}", k);
+                });
+            }
+            Action<Task[]> action = x => {
+                foreach (var item in x)
+                {
+                    item.Start();
+                }
+            };
+            action.Invoke(tasks);
+            Console.WriteLine("结束==============");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            Console.WriteLine("住线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            TaskFactory factory = new TaskFactory();
+            List<Task> tasks = new List<Task>();
+            for (int i = 0; i < 10; i++)
+            {
+                Action<object> action = x =>
+                {
+                    Thread.Sleep(2000);
+                    Console.WriteLine("+++++++++++线程Id={0} ,属于", Thread.CurrentThread.ManagedThreadId);
+                };
+                Task task = factory.StartNew(action,i);
+                tasks.Add(task);
+            }
+
+            factory.ContinueWhenAll(tasks.ToArray(), tList =>
+            {
+                Console.WriteLine("TaskFactory.ContinueWhenAll线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+                foreach (var item in tList)
+                {
+                    Console.WriteLine(item.AsyncState);
+                }
+            });
+
+            factory.ContinueWhenAny(tasks.ToArray(), t => 
+            {
+                Console.WriteLine(t.AsyncState);
+                Console.WriteLine("TaskFactory.ContinueWhenAny线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            });
+            
+            Console.WriteLine("结束==============");
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+
+
+
+            Console.WriteLine("结束==============");
         }
     }
 }

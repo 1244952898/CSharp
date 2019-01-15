@@ -40,6 +40,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnTask = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Async
@@ -162,11 +165,44 @@
             this.btnTask.UseVisualStyleBackColor = true;
             this.btnTask.Click += new System.EventHandler(this.btnTask_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(141, 263);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "Task1";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(222, 263);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(87, 23);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "Task_WhenAny";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(49, 311);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(87, 23);
+            this.button7.TabIndex = 14;
+            this.button7.Text = "Parallel";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 632);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.btnTask);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -199,6 +235,9 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnTask;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }
 
