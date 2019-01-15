@@ -375,6 +375,43 @@ namespace 异步多线程学习
 
             Console.WriteLine("结束==============");
         }
+
+        private void btnTask_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+
+            TaskFactory factory = new TaskFactory();
+            List<Task> tasks = new List<Task>();
+            for (int i = 0; i < 10; i++)
+            {
+                //Action<int> action = () => this.method1(i);
+                Task task = factory.StartNew(()=> {
+                   Thread.Sleep(5000);
+                   Console.WriteLine("+++++++++++线程Id={0} ,属于", Thread.CurrentThread.ManagedThreadId);
+               });
+                tasks.Add(task);
+            }
+            
+            factory.ContinueWhenAll(tasks.ToArray(),tList=> {
+                Console.WriteLine("TaskFactory.ContinueWhenAll结束==============");
+            });
+
+            factory.ContinueWhenAny(tasks.ToArray(), tList =>{
+                Console.WriteLine("TaskFactory.ContinueWhenAny结束==============");
+            });
+
+            Task.WaitAny(tasks.ToArray());
+            Console.WriteLine("Task.WaitAny结束==============");
+            Task.WaitAll(tasks.ToArray());
+            Console.WriteLine("Task.WaitAll全部结束==============");
+
+
+            Console.WriteLine("结束==============");
+        }
+
+        private void method1(int i) {
+            Console.WriteLine(i);
+        }
     }
 }
 
