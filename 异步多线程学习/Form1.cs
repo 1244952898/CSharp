@@ -474,9 +474,299 @@ namespace 异步多线程学习
         {
             Console.WriteLine("开始==============");
 
-
+            Parallel.Invoke(() =>
+            {
+                Thread.Sleep(2000);
+                Console.WriteLine("Parallel1");
+                Console.WriteLine("线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            }, () =>
+            {
+                Thread.Sleep(2000);
+                Console.WriteLine("Parallel2");
+                Console.WriteLine("线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            }, () =>
+            {
+                Thread.Sleep(2000);
+                Console.WriteLine("Parallel3");
+                Console.WriteLine("线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            }, () =>
+            {
+                Thread.Sleep(2000);
+                Console.WriteLine("Parallel4");
+                Console.WriteLine("线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            });
 
             Console.WriteLine("结束==============");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            Console.WriteLine("住线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+
+            ParallelOptions parallelOptions = new ParallelOptions();
+            parallelOptions.MaxDegreeOfParallelism = 3;
+            Parallel.For(1, 5, parallelOptions, x => {
+                Thread.Sleep(2000);
+                Console.WriteLine(x);
+                Console.WriteLine("For线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            });
+
+            Parallel.ForEach(new int[] { 3, 4, 5, 6, 7,8 }, parallelOptions, x =>
+            {
+                Thread.Sleep(2000);
+                Console.WriteLine(x);
+                Console.WriteLine("ForEach线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+            });
+
+           
+
+            Console.WriteLine("结束==============");
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            //WatchTime
+
+            TaskFactory factory = new TaskFactory();
+            List<Task> tasks = new List<Task>();
+            try
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Action<object> action = x => {
+                        if (x.Equals(2))
+                        {
+                            Console.WriteLine("抛出异常 值{0}", x);
+                           // throw new Exception("抛出异常！");
+                        }
+
+                        Console.WriteLine("线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+                        Console.WriteLine("值{0}", x);
+                    };
+                    Task task = factory.StartNew(action, i);
+                    tasks.Add(task);
+                }
+                Task.WaitAll(tasks.ToArray());
+                Console.WriteLine("Task.WaitAll完成");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception出异常 {0}", ex.Message);
+            }
+            
+            Console.WriteLine("结束==============");
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            //WatchTime
+
+            TaskFactory factory = new TaskFactory();
+            List<Task> tasks = new List<Task>();
+            try
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Action<object> action = x => {
+                        if (x.Equals(2))
+                        {
+                            Console.WriteLine("抛出异常 值{0}", x);
+                            throw new Exception("抛出异常！");
+                        }
+
+                        Console.WriteLine("线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+                        Console.WriteLine("值{0}", x);
+                    };
+                    Task task = factory.StartNew(action, i);
+                    tasks.Add(task);
+                }
+                Task.WaitAll(tasks.ToArray());
+                Console.WriteLine("Task.WaitAll完成");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception出异常 {0}", ex.Message);
+            }
+
+            Console.WriteLine("结束==============");
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            Console.WriteLine("住线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+
+            ParallelOptions parallelOptions = new ParallelOptions();
+            parallelOptions.MaxDegreeOfParallelism = 3;
+
+            Parallel.For(1, 5, parallelOptions, x => {
+                try
+                {
+                    Thread.Sleep(2000);
+                    Console.WriteLine(x);
+                    Console.WriteLine("For线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+                    if (x == 2)
+                    {
+                        throw new Exception("抛出异常！");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("For线程Id={0},抛出异常！", Thread.CurrentThread.ManagedThreadId);
+                }
+               
+            });
+
+            try
+            {
+                Parallel.ForEach(new int[] { 3, 4, 5, 6, 7, 8 }, parallelOptions, x =>
+                {
+                    Thread.Sleep(2000);
+                    Console.WriteLine(x);
+                    Console.WriteLine("ForEach线程Id={0}", Thread.CurrentThread.ManagedThreadId);
+                    if (x == 4)
+                    {
+                        throw new Exception("抛出异常！");
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("ForEach线程Id={0},抛出异常！", Thread.CurrentThread.ManagedThreadId);
+            }
+            
+            
+            Console.WriteLine("结束==============");
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+
+            TaskFactory factory = new TaskFactory();
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            List<Task> taskList = new List<Task>();
+            for (int i = 0; i < 20; i++)
+            {
+                Action<object> action = x => {
+                    try
+                    {
+                        Thread.Sleep(2000);
+                        if (x.Equals(1))
+                        {
+                            throw new Exception("抛出异常！");
+                        }
+                        if (cancellationTokenSource.IsCancellationRequested)
+                        {
+                            Console.WriteLine("线程执行取消 值{0}", x);
+                        }
+                        else
+                        {
+                            Console.WriteLine("线程执行成功 值{0}", x);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        cancellationTokenSource.Cancel();
+                        Console.WriteLine("抛出异常 值{0}", x);
+                    }
+                };
+                Task task = factory.StartNew(action, i, cancellationTokenSource.Token);
+                taskList.Add(task);
+            }
+            Task.WaitAll(taskList.ToArray());
+
+            Console.WriteLine("结束==============");
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+            d.Add("a1", "11");
+            d.Add("a2", "6");
+            Console.WriteLine(d["a1"]);
+            DealDatas(d, 3, "a1");
+            Console.WriteLine(d["a1"]);
+        }
+        private static void DealDatas(Dictionary<string, string> configDic, int count, string code)
+        {
+            if (configDic == null)
+                return ;
+            if (configDic.ContainsKey(code))
+            {
+                configDic[code] = Convert.ToInt32(configDic[code]) > count ? count.ToString() : configDic[code];
+            }
+        }
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            for (int i = 0; i < 10; i++)
+            {
+                int k = i;
+                Thread.Sleep(1000);
+                Action action = () => {
+                    Console.WriteLine(k);
+                };
+
+                action.BeginInvoke(null, null);
+            }
+            Console.WriteLine("结束==============");
+        }
+        private object lockOb = new object();
+        private void button15_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+
+            TaskFactory taskFactory = new TaskFactory();
+            List<Task> tasks = new List<Task>();
+            int cpunt = 0;
+            for (int i = 0; i < 10000; i++)
+            {
+                int k = i;
+                tasks.Add(taskFactory.StartNew(()=> {
+                    lock (lockOb)
+                    {
+                        cpunt += k;
+                    }
+                }));
+            }
+            Task.WaitAll(tasks.ToArray());
+            Console.WriteLine(cpunt);
+            Console.WriteLine("结束==============");
+        }
+
+        private async Task<int> NoReturn()
+        {
+            Console.WriteLine("开始async==============");
+            TaskFactory taskFactory = new TaskFactory();
+
+            return await Task.Run(() =>
+            {
+                Console.WriteLine("执行async");
+                return 1;
+            });
+          
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("开始==============");
+            var result = NoReturn();
+            Console.WriteLine("结束{0}", result.Result);
+            Console.WriteLine("结束==============");
+
+            Task<long> task = new Task<long>(() => {
+                return 1L;
+            });
         }
     }
 }
