@@ -16,10 +16,8 @@ namespace ReflectionDemo
         public Test(string i){ }
         public Test(TestParent p){ }
         protected Test(long p){ }
+        private Test(double d){}
 
-        private Test(double d)
-        {
-        }
         public void GetInt()
         {
         }

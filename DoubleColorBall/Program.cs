@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 异步多线程学习
+namespace DoubleColorBall
 {
     static class Program
     {
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
-        //[STAThread]
+        [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
