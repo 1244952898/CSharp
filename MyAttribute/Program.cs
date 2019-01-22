@@ -26,6 +26,13 @@ namespace MyAttribute
                 Decorator.Show();
 
                 Console.WriteLine("***********************");
+                Proxy.Show();
+
+                Console.WriteLine("***********************");
+                CastleProxy.Show();
+
+                Console.WriteLine("***********************");
+                UnityAOP.Show();
 
                 #endregion
             }
