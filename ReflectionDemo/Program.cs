@@ -20,9 +20,9 @@ namespace ReflectionDemo
             Type type = typeof(Test);
             //ListMembers.GetMain(type);
 
-            Mymemberinfo.GMain();
+            //Mymemberinfo.GMain();
 
-            //Mymemberinfo.MainAll();
+            Mymemberinfo.MainAll();
 
             //GenericRelection.GMain();
 
