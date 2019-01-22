@@ -30,8 +30,10 @@ namespace MyAttribute
 
                 Console.WriteLine("***********************");
                 CastleProxy.Show();
+
                 Console.WriteLine("***********************");
                 UnityAOP.Show();
+
                 #endregion
             }
             catch (Exception)
