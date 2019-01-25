@@ -17,16 +17,19 @@ namespace OwinSelfHostDemo
     {
         static void Main(string[] args)
         {
-            //TopShelfConfigure.Config1();
-            string baseAddress = "http://localhost:9000/";
-            using (WebApp.Start<Startup>(baseAddress))
-            {
-                HttpClient httpClient = new HttpClient();
-                var response = httpClient.GetAsync(baseAddress + "api/values").Result;
-                Console.WriteLine(response);
-                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-                Console.ReadLine();
-            }
+            #region Web API 代码的自定义主机
+            //var baseAddress = new Uri("http://localhost:5000");
+
+            //var config = new HttpSelfHostConfiguration(baseAddress);
+            //config.Routes.MapHttpRoute("default", "{controller}");
+
+            //using (var svr = new HttpSelfHostServer(config))
+            //{
+            //    svr.OpenAsync().Wait();
+            //    Console.WriteLine("Press Enter to quit.");
+            //    Console.ReadLine();
+            //}
+            #endregion
         }
     }
 }
