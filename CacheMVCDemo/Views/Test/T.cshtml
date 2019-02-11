@@ -1,0 +1,23 @@
+﻿@model List<Person>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>T</title>
+</head>
+<body>
+    <div>@ViewBag.msg</div>
+    @foreach (var p in Model)
+    {
+        <div>
+            @p.ToString();
+        </div>
+    }
+
+</body>
+</html>

@@ -16,7 +16,7 @@ namespace CacheDemo
         static CacheManager()
         {
             //可以创建不同的cache对象
-            cache = (ICache)Activator.CreateInstance(typeof(MemoryCacheCache));// 这里可以根据配置文件来选择
+            cache = (ICache)Activator.CreateInstance(typeof(MyCacheHelper));// 这里可以根据配置文件来选择
             //cache = (ICache)Activator.CreateInstance(typeof(CustomerCache));
         }
         #endregion Identity

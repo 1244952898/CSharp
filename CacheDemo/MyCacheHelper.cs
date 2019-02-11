@@ -2,17 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CacheDemo
 {
     public class MyCacheHelper : ICache
     {
-        private static Dictionary<string, KeyValuePair<object,DateTime>> _Dictionary = new Dictionary<string, KeyValuePair<object, DateTime>>();
+        static MyCacheHelper()
+        {
+            new Action(() => {
+                while (true) {
+                    Thread.Sleep(100);
+                    foreach (var item in _Dictionary.Where(x => x.Value.Value < DateTime.Now))
+                    {
+                        _Dictionary.Remove(item.Key);
+                    } 
+                }
+            }).BeginInvoke(null,null);
+        }
 
-        public object this[string key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    private static Dictionary<string, KeyValuePair<object, DateTime>> _Dictionary = new Dictionary<string, KeyValuePair<object, DateTime>>();
+        //过期处理
+       
 
-        public int Count => throw new NotImplementedException();
+        public object this[string key] {
+            get {
+                if (string.IsNullOrEmpty(key))
+                {
+                    KeyValuePair<object, DateTime> keyValuePair = _Dictionary[key];
+                    if (keyValuePair.Value >= DateTime.Now)
+                    {
+                       return keyValuePair.Key;
+                    }
+                    else
+                    {
+                        _Dictionary.Remove(key);
+                    }
+                }
+                return null;
+            }
+            set {
+                this.Add(key, value);
+            }
+        }
+
+        public int Count {
+            get
+            {
+                foreach (var item in _Dictionary)
+                {
+                    if (item.Value.Value<DateTime.Now)
+                    {
+                        _Dictionary.Remove(item.Key);
+                    }
+                }
+                return _Dictionary.Count;
+            }
+        }
 
         public void Add(string key, object data, int cacheTime = 30)
         {
