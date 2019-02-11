@@ -124,6 +124,8 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Test\T.cshtml" />
+    <Content Include="Views\Test\ExampleCache.cshtml" />
+    <Content Include="Views\Test\ExampleCache1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

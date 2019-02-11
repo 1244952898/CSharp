@@ -17,5 +17,22 @@ namespace CacheMVCDemo.Controllers
             ViewBag.msg = msg;
             return View(ps);
         }
+
+        [OutputCache(Duration =20)]
+        public ActionResult ExampleCache()
+        {
+            var timeStr = DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒");
+            ViewBag.timeStr = timeStr;
+            return View();
+        }
+
+        [OutputCache(Duration = 2)]
+        public ActionResult ExampleCache1()
+
+        {
+            var timeStr = DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒");
+            ViewBag.timeStr = timeStr;
+            return View();
+        }
     }
 }
