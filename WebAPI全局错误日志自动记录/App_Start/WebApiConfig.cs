@@ -17,9 +17,9 @@ namespace WebAPI全局错误日志自动记录
             config.Filters.Add(new GlobalFiltersConfig());
             
             //配置cross-origin resource sharing(cors 跨域资源共享)
-            var origins = ConfigurationManager.AppSettings["cors:allowOrigins"];
-            var allowHeaders = ConfigurationManager.AppSettings["cors:allowHeaders"];
-            var allowMethods = ConfigurationManager.AppSettings["cors:allowMethods"];
+            var origins = ConfigurationManager.AppSettings["cors:allowOrigins"]??"*";
+            var allowHeaders = ConfigurationManager.AppSettings["cors:allowHeaders"] ?? "*";
+            var allowMethods = ConfigurationManager.AppSettings["cors:allowMethods"] ?? "*";
             var cors = new EnableCorsAttribute(origins, allowHeaders, allowMethods);
             config.EnableCors(cors);
 

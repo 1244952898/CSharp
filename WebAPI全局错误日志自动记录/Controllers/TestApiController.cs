@@ -16,5 +16,18 @@ namespace WebAPI全局错误日志自动记录.Controllers
             long b = a / 0;
 
         }
+
+        [HttpGet]
+        public void T1()
+        {
+
+        }
+
+        [Route("abc")]
+        [HttpGet]
+        public void T2()
+        {
+
+        }
     }
 }

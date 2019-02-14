@@ -22,11 +22,11 @@ namespace ReflectionDemo
 
             //Mymemberinfo.GMain();
 
-            Mymemberinfo.MainAll();
+            //Mymemberinfo.MainAll();
 
             //GenericRelection.GMain();
 
-            //GenericParameterDemo.GMain();
+            GenericParameterDemo.GMain();
 
             // Dictionary <string,string> dictionary=new Dictionary<string, string>();
 

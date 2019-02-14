@@ -16,7 +16,7 @@ namespace CacheMVCDemo.Controllers
             List<Person> ps = _dBHelper.GetData(out msg);
             ViewBag.msg = msg;
             return View(ps);
-        }
+        }  
 
         [OutputCache(Duration =20)]
         public ActionResult ExampleCache()
