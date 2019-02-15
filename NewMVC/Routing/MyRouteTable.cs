@@ -9,6 +9,17 @@ namespace NewMVC.Routing
     public class MyRouteTable
     {
         //静态构造函数，约束这个静态对象是一个不被释放的全局变量
-
+        static MyRouteTable()
+        {
+            routes = new MyRouteCollection();
+        }
+        private static MyRouteCollection routes;
+        public static MyRouteCollection Routes
+        {
+            get
+            {
+                return routes;
+            }
+        }
     }
 }
