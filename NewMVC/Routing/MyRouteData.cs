@@ -8,7 +8,7 @@ namespace NewMVC.Routing
 {
     public class MyRouteData
     {
-        public IRouteHandler RouteHandler { get; set; }
+        public IMyRouteHandler RouteHandler { get; set; }
 
         public Dictionary<string, object> RouteValue { get; set; }
     }

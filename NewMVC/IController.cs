@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewMVC.Routing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace NewMVC
 {
     public interface IController
     {
-        void Execute(RequestContext requestContext);
+        void Execute(MyRouteData routeData);
     }
 }

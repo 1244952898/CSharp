@@ -8,8 +8,8 @@ using System.Web.Routing;
 
 namespace NewMVC.Routing
 {
-    public interface IRouteHandler
+    public interface IMyRouteHandler
     {
-        IHttpHandler GetHttpHandler(RouteData routeData, HttpContextBase context);
+        IHttpHandler GetHttpHandler(MyRouteData routeData, HttpContextBase context);
     }
 }

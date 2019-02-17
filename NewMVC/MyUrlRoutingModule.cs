@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewMVC.Routing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,17 @@ namespace NewMVC
     public class MyUrlRoutingModule : IHttpModule
     {
         #region Property
-        private RouteCollection _routeCollection;
+        private MyRouteCollection _routeCollection;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly",
             Justification = "This needs to be settable for unit tests.")]
-        public RouteCollection RouteCollection
+        public MyRouteCollection RouteCollection
         {
             get
             {
                 if (_routeCollection == null)
                 {
-                    _routeCollection = RouteTable.Routes;
+                    _routeCollection = MyRouteTable.Routes;
                 }
                 return _routeCollection;
             }
@@ -54,30 +55,26 @@ namespace NewMVC
         public virtual void PostResolveRequestCache(HttpContextBase context)
         {
             //1.传入当前上下文对象，得到与当前请求匹配的RouteData对象
-            RouteData routeData = RouteCollection.GetRouteData(context);
+            MyRouteData routeData = RouteCollection.GetRouteData(context);
 
             if (routeData == null)
                 return;
 
             //2.从RouteData对象里面得到当前的RouteHandler对象。
-            IRouteHandler routeHandler = routeData.RouteHandler;
+            IMyRouteHandler routeHandler = routeData.RouteHandler;
             if (routeHandler == null)
             {
                 return;
             }
-
-            //3.根据HttpContext和RouteData得到RequestContext对象
-            RequestContext requestContext = new RequestContext(context, routeData);
-            context.Request.RequestContext = requestContext;
-
-            //4.根据RequestContext对象得到处理当前请求的HttpHandler（MvcHandler）。
-            IHttpHandler httpHandler = routeHandler.GetHttpHandler(requestContext);
+            
+            //3.根据RequestContext对象得到处理当前请求的HttpHandler（MvcHandler）。
+            IHttpHandler httpHandler = routeHandler.GetHttpHandler(routeData, context);
             if (httpHandler == null)
             {
                 return;
             }
 
-            //5.请求转到HttpHandler进行处理（进入到ProcessRequest方法）。这一步很重要，由这一步开始，请求才由UrlRoutingModule转到了MvcHandler里面
+            //4.请求转到HttpHandler进行处理（进入到ProcessRequest方法）。这一步很重要，由这一步开始，请求才由UrlRoutingModule转到了MvcHandler里面
             context.RemapHandler(httpHandler);
 
         }

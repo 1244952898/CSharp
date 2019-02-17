@@ -1,11 +1,7 @@
 ﻿using NewMVC;
+using NewMVC.Routing;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace NewMVCRun
 {
@@ -14,17 +10,26 @@ namespace NewMVCRun
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            RouteTable.Routes.Add("defaultRoute", 
-                new Route("{controller}/{action}/{id}", 
-                new RouteValueDictionary(
-                    new {
-                        controller = "Home",
-                        action = "Index",
-                        id = "",
-                        namespaces = "NewMVCRun.Controllers",
-                        assembly = "NewMVCRun"
-                    }),
-                new MyMvcRouteHandler()));
+            var defaultPath = new Dictionary<string, object>();
+            defaultPath.Add("controller", "Home");
+            defaultPath.Add("action", "Index");
+            defaultPath.Add("id", null);
+            defaultPath.Add("namespaces", "NewMVCRun.Controllers");
+            defaultPath.Add("assembly", "NewMVCRun");
+
+            MyRouteTable.Routes.Add("defaultRoute", new MyRoute("{controller}/{action}/{id}", defaultPath,new MyMvcRouteHandler()));
+
+            //RouteTable.Routes.Add("defaultRoute", 
+            //    new Route("{controller}/{action}/{id}", 
+            //    new RouteValueDictionary(
+            //        new {
+            //            controller = "Home",
+            //            action = "Index",
+            //            id = "",
+            //            namespaces = "NewMVCRun.Controllers",
+            //            assembly = "NewMVCRun"
+            //        }),
+            //    new MyMvcRouteHandler()));
         }
 
         protected void Session_Start(object sender, EventArgs e)

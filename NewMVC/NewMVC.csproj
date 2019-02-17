@@ -48,10 +48,10 @@
     <Compile Include="IControllerFactory.cs" />
     <Compile Include="MyControllerFactory.cs" />
     <Compile Include="MyMvcHandler.cs" />
-    <Compile Include="MyMvcRouteHandler.cs" />
     <Compile Include="MyUrlRoutingModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Routing\IRouteHandler.cs" />
+    <Compile Include="Routing\IMyRouteHandler.cs" />
+    <Compile Include="Routing\MyMvcRouteHandler.cs" />
     <Compile Include="Routing\MyRoute.cs" />
     <Compile Include="Routing\MyRouteCollection.cs" />
     <Compile Include="Routing\MyRouteData.cs" />

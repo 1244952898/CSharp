@@ -12,7 +12,7 @@ namespace NewMVC.Routing
         { }
 
         //在全局配置里面写入路由规则以及默认配置
-        public MyRoute(string url, Dictionary<string, object> defaultPath, IRouteHandler routeHandler)
+        public MyRoute(string url, Dictionary<string, object> defaultPath, IMyRouteHandler routeHandler)
         {
             TemplateUrl = url;
             DefaultPath = defaultPath;
@@ -25,7 +25,7 @@ namespace NewMVC.Routing
         /// <summary>
         /// mvcHander处理器
         /// </summary>
-        public IRouteHandler RouteHandler { get; set; }
+        public IMyRouteHandler RouteHandler { get; set; }
 
         /// <summary>
         /// 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewMVC.Routing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,11 +12,11 @@ namespace NewMVC
     public class MyControllerFactory : IControllerFactory
     {
         //通过当前的请求上下文和控制器名称得到控制器的对象
-        public IController CreateController(RequestContext requestContext, string controllerName)
+        public IController CreateController(MyRouteData routeData, string controllerName)
         {
-            if(requestContext == null)
+            if(routeData == null)
             {
-                throw new ArgumentNullException("requestContext");
+                throw new ArgumentNullException("MyRouteData");
             }
 
             if (string.IsNullOrEmpty(controllerName))
@@ -24,29 +25,29 @@ namespace NewMVC
             }
 
             //得到当前的控制类型
-            Type controllerType = GetControllerType(requestContext, controllerName);
+            Type controllerType = GetControllerType(routeData, controllerName);
             if (controllerType == null)
             {
                 return null;
             }
 
             //得到控制器对象
-            IController controller = GetControllerInstance(requestContext, controllerType);
+            IController controller = GetControllerInstance(controllerType);
             return controller;
         }
 
-        private IController GetControllerInstance(RequestContext requestContext, Type controllerType)
+        private IController GetControllerInstance(Type controllerType)
         {
             return Activator.CreateInstance(controllerType) as IController;
         }
 
-        private Type GetControllerType(RequestContext requestContext, string controllerName)
+        private Type GetControllerType(MyRouteData routeData, string controllerName)
         {
             //从路由配置信息里面读取命名空间和程序集
             object routeNamespaces;
             object routeAssembly;
-            requestContext.RouteData.Values.TryGetValue("namespaces",out routeNamespaces);
-            requestContext.RouteData.Values.TryGetValue("assembly", out routeAssembly);
+            routeData.RouteValue.TryGetValue("namespaces",out routeNamespaces);
+            routeData.RouteValue.TryGetValue("assembly", out routeAssembly);
 
             var type = Assembly.Load(routeAssembly.ToString()).GetType(routeNamespaces.ToString() + "." + controllerName + "Controller");
 
