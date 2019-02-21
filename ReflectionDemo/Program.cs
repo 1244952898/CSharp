@@ -24,13 +24,13 @@ namespace ReflectionDemo
 
             //Mymemberinfo.MainAll();
 
-            //GenericRelection.GMain();
+           GenericRelection.GMain();
 
             GenericParameterDemo.GMain();
 
-            // Dictionary <string,string> dictionary=new Dictionary<string, string>();
+            Dictionary <string,string> dictionary=new Dictionary<string, string>();
 
-            //   ImplReflection.GMain(dictionary.GetType());
+            ImplReflection.GMain(dictionary.GetType());
 
             //#region 构造泛型类型的实例
 
