@@ -10,4 +10,8 @@ namespace ConsoleTest
     {
         public bool Allow => true;
     }
+
+    public class A {}
+
+    public class B:A { }
 }
