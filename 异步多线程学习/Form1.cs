@@ -30,25 +30,26 @@ namespace 异步多线程学习
                 Console.WriteLine(b.AsyncState);
                 Console.WriteLine("回调函数！");
             };
-            
-           //asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", asyncCallback, "abcdefg");
-            //asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", x => {
-            //    Console.WriteLine(x.AsyncState);
-            //    Console.WriteLine("回调函数！");
-            //}, "abcdefg");
 
-            //int i = 1;
-            //while (!asyncResult.IsCompleted)
-            //{
-            //    Console.WriteLine("+++++++++++正在计算中！++++++++++ + 已经完成 {0}", 10 * i++);
-            //    Thread.Sleep(100);
-            //}
+            asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", asyncCallback, "abcdefg");
+            asyncResult = doSomeMethod.BeginInvoke("btn_Async_Click", xx =>
+            {
+                Console.WriteLine(xx.AsyncState);
+                Console.WriteLine("回调函数！");
+            }, "abcdefg");
 
-            //asyncResult.AsyncWaitHandle.WaitOne();
-            //asyncResult.AsyncWaitHandle.WaitOne(100);
-            //asyncResult.AsyncWaitHandle.WaitOne(1000);
+            int i = 1;
+            while (!asyncResult.IsCompleted)
+            {
+                Console.WriteLine("+++++++++++正在计算中！++++++++++ + 已经完成 {0}", 10 * i++);
+                Thread.Sleep(100);
+            }
 
-            //doSomeMethod.EndInvoke(asyncResult);
+            asyncResult.AsyncWaitHandle.WaitOne();
+            asyncResult.AsyncWaitHandle.WaitOne(100);
+            asyncResult.AsyncWaitHandle.WaitOne(1000);
+
+            doSomeMethod.EndInvoke(asyncResult);
 
             Func<int, string> func = z => {
                 DoSomeThing("btn_Async_Click");
@@ -533,7 +534,7 @@ namespace 异步多线程学习
                         if (x.Equals(2))
                         {
                             Console.WriteLine("抛出异常 值{0}", x);
-                           // throw new Exception("抛出异常！");
+                            throw new Exception("抛出异常！");
                         }
 
                         Console.WriteLine("线程Id={0}", Thread.CurrentThread.ManagedThreadId);
@@ -761,6 +762,33 @@ namespace 异步多线程学习
             Task<long> task = new Task<long>(() => {
                 return 1L;
             });
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 开始", Thread.CurrentThread.ManagedThreadId);
+
+            IAsyncResult asyncResult = null;
+
+            doSomeMethodDelegate methodDelegate = new doSomeMethodDelegate(DoSomeThing);
+            AsyncCallback asyncCallback = x => {
+                Console.WriteLine("AsyncState="+x.AsyncState);
+                Console.WriteLine("asyncCallback");
+                Console.WriteLine("asyncResult==asyncCallback?"+x.Equals(asyncResult));
+
+            };
+
+            asyncResult = methodDelegate.BeginInvoke("复习", asyncCallback, "@object");
+
+            int i = 0;
+            while (!asyncResult.IsCompleted)
+            {
+                Console.WriteLine("+++++++++++正在计算中！++++++++++ + 已经完成 {0}", 10 * i++);
+                Thread.Sleep(100);
+            }
+
+
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 结束", Thread.CurrentThread.ManagedThreadId);
         }
     }
 }
