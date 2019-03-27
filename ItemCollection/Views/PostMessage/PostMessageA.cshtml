@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PostMessageA</title>
+</head>
+<body>
+    <iframe id="iframe" src="http://localhost:57562/PostMessage/B" style="display:none;"></iframe>
+    <script type="text/javascript">
+
+        var iframe = document.getElementById('iframe');
+        iframe.onload = function () {
+            var data = {
+                name: 'aym'
+            };
+             // 向domain2传送跨域数据
+            iframe.contentWindow.postMessage(JSON.stringify(data), 'http://localhost:57562/');
+
+        }
+
+        // 接受domain2返回数据
+        window.addEventListener('message', function (e) {
+            alert('data from domain2 ---> ' + e.data);
+        }, false);
+    </script>
+</body>
+</html>

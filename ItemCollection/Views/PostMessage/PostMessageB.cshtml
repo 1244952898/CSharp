@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PostMessageB</title>
+</head>
+<body>
+    <div id="dv">dddddddddddddddddddd</div>
+    <script>
+    // 接收domain1的数据
+    window.addEventListener('message', function(e) {
+        alert('data from domain1 ---> ' + e.data);
+
+        var data = JSON.parse(e.data);
+        if (data) {
+            var dv = document.getElementById('iframe');
+            data.number = dv.nodeValue();
+
+            // 处理后再发回domain1
+            window.parent.postMessage(JSON.stringify(data), 'http://localhost:49685/');
+        }
+    }, false);
+    </script>
+</body>
+</html>
