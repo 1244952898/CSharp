@@ -29,8 +29,8 @@ namespace CSharp
             string result4 = StringCycle.GetCycleString3(s1);
             Console.WriteLine("result3最长是：{0}", result3);
             Console.WriteLine("result4最长是：{0}", result4);
-
-            Parent p=new Parent();
+            //#[^#]+#
+            Parent p =new Parent();
             int? d = p.Childrens?.Count;
             Console.ReadKey();
         }
