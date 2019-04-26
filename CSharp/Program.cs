@@ -5,13 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharp.Queens;
+using GintokiCommon.ImageUtils;
+
 namespace CSharp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            SevenQueen.MainMethod(0);
+            ImageDemo.StreamDemo();
+            ImageDemo.StreamDemo1();
+
+            // SevenQueen.MainMethod(0);
 
             //Queen.FindQueen(0);
 
