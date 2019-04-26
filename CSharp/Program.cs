@@ -11,7 +11,9 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            Queen.FindQueen(0);
+            SevenQueen.MainMethod(0);
+
+            //Queen.FindQueen(0);
 
 
             //string s = "123qwertyuuytrewq321";
