@@ -1,0 +1,38 @@
+cd /usr/local/services/consul/data
+
+export CONSUL_HOME=/usr/local/services/consul/data
+export PATH=/usr/local/mysql/bin:/usr/local/mysql/lib:$PATH/bin:$CONSUL_HOME:$PATH
+
+cd /etc
+rm .profile.swp
+
+
+
+
+consul members --http-addr 120.27.213.67:8500
+
+
+
+nc
+
+cat <<EOF | sudo tee ./consul.d/socat.json
+{
+  "service": {
+    "name": "socat",
+    "port": 8181,
+    "connect": { "sidecar_service": {} }
+  }
+}
+EOF
+
+
+
+
+
+
+curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-linux-x86_64.tar.gz
+
+chown -R elsearch:elsearch  elasticsearch-7.0.1
+
+su elsearch cd elasticsearch-7.0.1/bin
+./elasticsearch

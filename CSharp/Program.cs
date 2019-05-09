@@ -13,8 +13,10 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            ImageDemo.StreamDemo();
-            ImageDemo.StreamDemo1();
+            ImgDemo.AAsync().GetAwaiter();
+
+            //ImageDemo.StreamDemo();
+            //ImageDemo.StreamDemo1();
 
             // SevenQueen.MainMethod(0);
 
