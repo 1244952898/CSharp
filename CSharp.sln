@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "异步多线程学习", "�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "天龙八部", "天龙八部\天龙八部.csproj", "{71D5E037-B44A-4821-83CE-A28085EF0BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleColorBall", "DoubleColorBall\DoubleColorBall.csproj", "{5048F87A-3CA3-48A8-992F-2A64EF144BEC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "特性和AOP", "特性和AOP", "{21BDD12D-C890-460C-A4EA-573165FC9667}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAttribute", "MyAttribute\MyAttribute.csproj", "{43D9A0F0-D160-4BC0-B2AE-5AD79E1DE46D}"
@@ -66,6 +64,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACollection", "ACollection", "{7EAA7414-B2E5-4724-A69A-B1C0FAF69409}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GintamaApi", "GintamaApi\GintamaApi.csproj", "{3D6DDB37-5CDE-421A-80EA-80A01FA2036A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GintokiCommon", "GintokiCommon\GintokiCommon.csproj", "{9913CD24-2C40-4FBB-B8F0-6F104B22BF21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,10 +121,6 @@ Global
 		{71D5E037-B44A-4821-83CE-A28085EF0BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71D5E037-B44A-4821-83CE-A28085EF0BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71D5E037-B44A-4821-83CE-A28085EF0BE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5048F87A-3CA3-48A8-992F-2A64EF144BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5048F87A-3CA3-48A8-992F-2A64EF144BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5048F87A-3CA3-48A8-992F-2A64EF144BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5048F87A-3CA3-48A8-992F-2A64EF144BEC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43D9A0F0-D160-4BC0-B2AE-5AD79E1DE46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43D9A0F0-D160-4BC0-B2AE-5AD79E1DE46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43D9A0F0-D160-4BC0-B2AE-5AD79E1DE46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -169,6 +165,10 @@ Global
 		{3D6DDB37-5CDE-421A-80EA-80A01FA2036A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D6DDB37-5CDE-421A-80EA-80A01FA2036A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D6DDB37-5CDE-421A-80EA-80A01FA2036A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9913CD24-2C40-4FBB-B8F0-6F104B22BF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9913CD24-2C40-4FBB-B8F0-6F104B22BF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9913CD24-2C40-4FBB-B8F0-6F104B22BF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9913CD24-2C40-4FBB-B8F0-6F104B22BF21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +191,7 @@ Global
 		{F9B152FA-1967-48FD-A73A-74CE4ABA9D61} = {B0FB96CB-CA2A-429C-A211-DF69B016823D}
 		{D86EED6F-42C0-46EC-BF65-8112A19A0294} = {7EAA7414-B2E5-4724-A69A-B1C0FAF69409}
 		{3D6DDB37-5CDE-421A-80EA-80A01FA2036A} = {7EAA7414-B2E5-4724-A69A-B1C0FAF69409}
+		{9913CD24-2C40-4FBB-B8F0-6F104B22BF21} = {7EAA7414-B2E5-4724-A69A-B1C0FAF69409}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44EBE1E8-CE16-4421-853F-B84F36E27F1A}

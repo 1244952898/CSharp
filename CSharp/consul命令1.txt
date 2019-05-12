@@ -1,0 +1,188 @@
+cd /usr/local/services/consul/data
+
+export CONSUL_HOME=/usr/local/services/consul/data
+export PATH=/usr/local/mysql/bin:/usr/local/mysql/lib:$PATH/bin:$CONSUL_HOME:$PATH
+
+cd /etc
+rm .profile.swp
+
+
+
+
+consul members --http-addr 120.27.213.67:8500
+
+
+
+nc
+
+cat <<EOF | sudo tee ./consul.d/socat.json
+{
+  "service": {
+    "name": "socat",
+    "port": 8181,
+    "connect": { "sidecar_service": {} }
+  }
+}
+EOF
+
+
+
+
+
+
+curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-linux-x86_64.tar.gz
+
+chown -R elsearch:elsearch  elasticsearch-7.0.1
+
+su elsearch cd elasticsearch-7.0.1/bin
+./elasticsearch
+/usr/local/services/ElasticSearch/elasticsearch-7.0.1/bin
+
+GET /_cat/master?v
+curl -X PUT "localhost:9200/customer"
+curl -X PUT "localhost:9200/customer/_doc/1" -H 'Content-Type: application/json' -d'
+{
+  "name": "John Doe"
+}
+'
+curl -X GET "localhost:9200/customer/_doc/1"
+curl -X DELETE "localhost:9200/customer"
+
+
+curl -X PUT "localhost:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "John Doe"
+}
+'
+
+curl -X PUT "localhost:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "Jane Doe"
+}
+'
+curl -X POST "localhost:9200/customer/_doc?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "Jane Doe"
+}
+'
+curl -X POST "localhost:9200/customer/_update/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "doc": { "name": "Jane Doe" }
+}
+'
+curl -X POST "localhost:9200/customer/_update/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "doc": { "name": "Jane Doe", "age": 20 }
+}
+'
+
+curl -X POST "localhost:9200/customer/_update/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "script" : "ctx._source.age += 5"
+}
+'
+curl -X DELETE "localhost:9200/customer/_doc/2?pretty"
+curl -X POST "localhost:9200/customer/_bulk?pretty" -H 'Content-Type: application/json' -d'
+{"index":{"_id":"1"}}
+{"name": "John Doe" }
+{"index":{"_id":"2"}}
+{"name": "Jane Doe" }
+'
+curl -X POST "localhost:9200/customer/_bulk?pretty" -H 'Content-Type: application/json' -d'
+{"update":{"_id":"1"}}
+{"doc": { "name": "John Doe becomes Jane Doe" } }
+{"delete":{"_id":"2"}}
+'
+
+curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_bulk?pretty&refresh" --data-binary "@accounts.json"
+curl "localhost:9200/_cat/indices?v"
+
+curl -X GET "localhost:9200/bank/_search?q=*&sort=account_number:asc&pretty"
+
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "sort": [
+    { "account_number": "asc" }
+  ]
+}
+'
+
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} }
+}
+'
+
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "size": 1
+}
+'
+
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "from": 10,
+  "size": 10
+}
+'
+
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "sort": { "balance": { "order": "desc" } }
+}
+'
+
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "_source": ["account_number", "balance"]
+}
+'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+curl -L -O https://download.elastic.co/kibana/kibana/kibana-7.0.1-linux-x64.tar.gz
+tar xvf elasticsearch-7.0.1-linux-x86_64.tar.gz
+tar -vxf kibana-7.0.1-linux-x64.tar.gz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
