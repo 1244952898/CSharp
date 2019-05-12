@@ -1,4 +1,5 @@
-﻿using CSharp.字符串回文;
+﻿using CSharp.八皇后;
+using CSharp.字符串回文;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-
+            QueenMethod q = new QueenMethod();
+            q.MainMethod();
+            Console.ReadKey();
             string s = "123qwertyuuytrewq321";
             string a = s.Substring(0, 3);
             Console.WriteLine(a);
