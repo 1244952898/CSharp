@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharp.Queens;
 using GintokiCommon.ImageUtils;
+using CSharp.ElsaticSearch;
 
 namespace CSharp
 {
@@ -13,7 +14,9 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            ImgDemo.AAsync().GetAwaiter();
+            ElasticLowLevelClientDemo.MainMethod();
+
+            //ImgDemo.AAsync().GetAwaiter();
 
             //ImageDemo.StreamDemo();
             //ImageDemo.StreamDemo1();
