@@ -3,10 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Katanta.Startup1))]
-namespace Katanta
+[assembly: OwinStartup(typeof(KatanaDemo.Startup))]
+
+namespace KatanaDemo
 {
-    public class Startup1
+    public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
@@ -14,10 +15,8 @@ namespace Katanta
             app.Run(context =>
             {
                 context.Response.ContentType = "text/plain";
-                return context.Response.WriteAsync("Hello, world.");
+                return context.Response.WriteAsync("Hello World!");
             });
-
-            
         }
     }
 }
