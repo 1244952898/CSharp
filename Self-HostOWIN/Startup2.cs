@@ -4,11 +4,9 @@ using Microsoft.Owin;
 using Owin;
 using Self_HostOWIN;
 
-//[assembly: OwinStartup(typeof(Startup))]
-
 namespace Self_HostOWIN
 {
-    public class Startup
+    public class Startup2
     {
         public void Configuration(IAppBuilder app)
         { 
@@ -24,7 +22,7 @@ namespace Self_HostOWIN
                 }
 
                 context.Response.ContentType = "text/plain";
-                return context.Response.WriteAsync("Hello World!");
+                return context.Response.WriteAsync("Hello World!--------------2");
             });
         }
     }
