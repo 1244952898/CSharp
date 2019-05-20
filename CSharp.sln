@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2.Self-HostOWIN", "Self-Hos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.StartupDemo", "3.StartupDemo\3.StartupDemo.csproj", "{C9CEAA69-5668-49DE-9A61-8709EF899DBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatanaWebHost", "KatanaWebHost\KatanaWebHost.csproj", "{77E18AD9-0675-47E9-91F0-327B0717FB6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,10 @@ Global
 		{C9CEAA69-5668-49DE-9A61-8709EF899DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9CEAA69-5668-49DE-9A61-8709EF899DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9CEAA69-5668-49DE-9A61-8709EF899DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E18AD9-0675-47E9-91F0-327B0717FB6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E18AD9-0675-47E9-91F0-327B0717FB6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E18AD9-0675-47E9-91F0-327B0717FB6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E18AD9-0675-47E9-91F0-327B0717FB6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -206,6 +212,7 @@ Global
 		{E28A826E-111D-4667-A21A-32C892DC07AF} = {F523AA4E-05CA-4958-A131-CEF16360EAF4}
 		{E22274E1-3ED1-45E6-9B54-BAC7F6C5D219} = {F523AA4E-05CA-4958-A131-CEF16360EAF4}
 		{C9CEAA69-5668-49DE-9A61-8709EF899DBE} = {F523AA4E-05CA-4958-A131-CEF16360EAF4}
+		{77E18AD9-0675-47E9-91F0-327B0717FB6E} = {F523AA4E-05CA-4958-A131-CEF16360EAF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44EBE1E8-CE16-4421-853F-B84F36E27F1A}
