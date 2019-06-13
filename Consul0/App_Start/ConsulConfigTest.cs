@@ -34,7 +34,6 @@ namespace Consul0.App_Start
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
            
