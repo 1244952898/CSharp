@@ -57,7 +57,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelTest", "ParallelTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GintokiMVC", "ItemCollection\GintokiMVC.csproj", "{D86EED6F-42C0-46EC-BF65-8112A19A0294}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACollection", "ACollection", "{7EAA7414-B2E5-4724-A69A-B1C0FAF69409}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACollection+VUE", "ACollection+VUE", "{7EAA7414-B2E5-4724-A69A-B1C0FAF69409}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GintamaApi", "GintamaApi\GintamaApi.csproj", "{3D6DDB37-5CDE-421A-80EA-80A01FA2036A}"
 EndProject

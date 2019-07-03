@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div onclick="btn();">111 
+    </div>
+    <script type="text/javascript">
+        function btn() {
+            $.get("~/Error/d", function () {
+                alert(11111111);
+            });
+        }
+    </script>
+</body>
+</html>
