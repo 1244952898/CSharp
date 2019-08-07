@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/vue.js"></script>
+    <title>Vue</title>
+</head>
+<body>
+    <div id="vue"> 
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            data: {
+                a:1
+            },
+            created: function () {
+                console.log('a is: ' + this.a);
+            }
+        });
+    </script>
+</body>
+</html>

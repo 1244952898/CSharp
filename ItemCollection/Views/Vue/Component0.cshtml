@@ -1,0 +1,99 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/vue.js"></script>
+</head>
+<body>
+    <div id="components-demo">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+    </div>
+    <script type="text/javascript">
+        Vue.component('button-counter', {
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+        });
+        new Vue({ el: '#components-demo' });
+    </script>
+
+    <div id="blog-List">
+        <blog-title v-for="post in posts" :key="post.id" :title="post.val"></blog-title>
+    </div>
+    <script type="text/javascript">
+        Vue.component("blog-title",{
+            props: ['title'],
+            template: '<h2>{{title}}</h2>'
+        });
+        new Vue({
+            el: '#blog-List',
+            data: {
+                posts: [
+                    { id: 1, val:'title1' },
+                    { id: 2, val:'title2' },
+                    { id: 3, val:'title3' }
+                ]
+            }
+        });
+    </script>
+
+    <div id="blog-content">
+        <blog-cont v-for="blog in blogs" :key="blog.id" :blog="blog"></blog-cont>
+    </div>
+    <script type="text/javascript">
+        Vue.component('blog-cont', {
+            props: ['blog'],
+            template: '<div><h2>{{blog.title}}</h2><div v-html="blog.content"></div></div>'
+        });
+        new Vue({
+            el:'#blog-content',
+            data: {
+                blogs: [
+                    { id: 1, title: 'tttt1', content: '<span style="background-color:aliceblue">1</span>' },
+                    { id: 2, title: 'tttt2', content: '<span style="background-color:aliceblue">2</span>' },
+                    { id: 3, title: 'tttt3', content:'<span style="background-color:aliceblue">3</span>'},
+                ]
+            }
+        })
+    </script>
+
+    <div id="blog-posts-events-demo">
+        <div v-bind:style="{ fontSize: postFontSize + 'em' }">
+            <blog-post v-for="post in posts"
+                       v-bind:key="post.id"
+                       v-bind:post="post"
+                       v-on:enlarge-text="postFontSize += $event">
+
+            </blog-post>
+        </div>
+    </div>
+    <script type="text/javascript">
+        Vue.component('blog-post', {
+            props: ['post'],
+            template: '<div class= "blog-post" ><h3>{{ post.title }}</h3><button v-on:click="$emit(\'enlarge-text\',\'0.01\')">Enlarge text</button><div v-html="post.content"></div></div>'
+        })
+        new Vue({
+            el:'#blog-posts-events-demo',
+            data: {
+                posts: [
+                    { id: 1, title: 'tttt1', content: '<span style="background-color:aliceblue">1</span>' },
+                    { id: 2, title: 'tttt2', content: '<span style="background-color:aliceblue">2</span>' }
+                ],
+                postFontSize: 1
+            }
+        })
+    </script>
+</body>
+</html >
