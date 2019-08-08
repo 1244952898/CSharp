@@ -13,5 +13,9 @@ namespace VueDemo.Controllers
         {
             return View();
         }
+        public ActionResult v1()
+        {
+            return View();
+        }
     }
 }

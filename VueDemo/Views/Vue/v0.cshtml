@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>v0</title>
+    <title>Vue 实例</title>
     <script src="~/Scripts/vue.min.js"></script>
 </head>
 <body>
@@ -19,12 +19,15 @@
         <button onclick="fz();">Object.freeze</button>
         <p>vm.$data === data // => true</p>
         <p>vm.$el === document.getElementById('example') // => true</p>
+        <p>{{c}}</p>
+        <p v-html="c"></p>
     </div>
     <script>
         var data =
         {
             a: 1,
             b: 2,
+            c:'<p style="background-color:aquamarine">html</p>'
         };
         //  Object.freeze(data);
         var vm = new Vue({
