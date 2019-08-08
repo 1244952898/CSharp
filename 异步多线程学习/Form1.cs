@@ -507,10 +507,29 @@ namespace 异步多线程学习
                 Console.WriteLine("For线程Id={0}", Thread.CurrentThread.ManagedThreadId);
             });
 
-            Parallel.ForEach(new int[] { 3, 4, 5, 6, 7,8 }, parallelOptions, x =>
+            List<User> users = new List<User>();
+            users.Add(new User { Id = 1, Name = "a" });
+            users.Add(new User { Id = 2, Name = "b" });
+            users.Add(new User { Id = 3, Name = "c" });
+            users.Add(new User { Id = 4, Name = "c" });
+            users.Add(new User { Id = 5, Name = "c" });
+            users.Add(new User { Id = 6, Name = "c" });
+            users.Add(new User { Id = 7, Name = "c" });
+            users.Add(new User { Id = 8, Name = "c" });
+            users.Add(new User { Id = 9, Name = "c" });
+            users.Add(new User { Id = 0, Name = "c" });
+            users.Add(new User { Id = 11, Name = "c" });
+            users.Add(new User { Id = 12, Name = "c" });
+            users.Add(new User { Id = 13, Name = "c" });
+            users.Add(new User { Id = 14, Name = "c" });
+            users.Add(new User { Id = 15, Name = "c" });
+            users.Add(new User { Id = 16, Name = "c" });
+            users.Add(new User { Id = 17, Name = "c" });
+            Parallel.ForEach(users, parallelOptions, x =>
             {
                 Thread.Sleep(2000);
                 Console.WriteLine(x);
+                Console.WriteLine(x.Id);
                 Console.WriteLine("ForEach线程Id={0}", Thread.CurrentThread.ManagedThreadId);
             });
 

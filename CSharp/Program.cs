@@ -15,23 +15,32 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            string[] strs = new []
-            {
-                "2018年05月30日至长期",
-                "2011年03月23日至2031年03月22日",
-                "2016年5月18日至2036年5月月17日",
-                "2008年05月12日至2028年05月11日止日",
-                "2018年09月03日至永久",
-                "长期",
-                "二0一五年三月五日至长期",
-                "2016年6月24日至不约定期限",
-                "二零零四年十月二十九日至长期",
+
+
+            List<Province> provinces = new List<Province> {
+                new Province{ProvinceId=1,ProvinceName="a"},
+                new Province{ProvinceId=2,ProvinceName="b"},
+                new Province{ProvinceId=1,ProvinceName="a"},
+                new Province{ProvinceId=1,ProvinceName="a"},
             };
-            foreach (var item in strs)
-            {
-                testRegex(item);
-            }
-          
+            var l = provinces.Distinct(new DistinctExtend<Province>("ProvinceId"));
+            //string[] strs = new []
+            //{
+            //    "2018年05月30日至长期",
+            //    "2011年03月23日至2031年03月22日",
+            //    "2016年5月18日至2036年5月月17日",
+            //    "2008年05月12日至2028年05月11日止日",
+            //    "2018年09月03日至永久",
+            //    "长期",
+            //    "二0一五年三月五日至长期",
+            //    "2016年6月24日至不约定期限",
+            //    "二零零四年十月二十九日至长期",
+            //};
+            //foreach (var item in strs)
+            //{
+            //    testRegex(item);
+            //}
+
             //ElasticLowLevelClientDemo.MainMethod();
 
             //ImgDemo.AAsync().GetAwaiter();

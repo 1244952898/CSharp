@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DistinctExtend.cs" />
     <Compile Include="Children.cs" />
     <Compile Include="ElsaticSearch\AConnectionSettings.cs" />
     <Compile Include="ElsaticSearch\ElasticLowLevelClientDemo.cs" />
