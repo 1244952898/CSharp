@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>v1</title>
+    <script src="~/Scripts/vue.min.js"></script>
+</head>
+<body>
+    <div id="v">
+        <p>{{c}}</p>
+        <p v-html="c">11111</p>
+        <p v-bind:id="d+a">22222</p>
+        <p>{{e?'c=true':'c=false'}}</p>
+        <button v-bind:disabled="e">ccc</button>
+        <p>{{f.split('c').reverse().join('#')}}</p>
+        <p v-if="g">{{g?'T':F}}</p>
+        <button @@click="g=!g">gggg</button><br />
+        <a v-bind:href="h">v-bind:href</a><br />
+        <button @@click="h='https://www.iviewui.com/components/icon'">href</button>
+        <p>计算属性:{{i}}</p>
+        <p>方法：{{j()}}</p>
+        <p>k：{{k}}</p>
+        <p>a：{{a}}</p>
+        <p>d：{{d}}</p>
+        <p>l：{{l}}</p>
+        <input v-model="l" />
+        <p>m：{{m}}</p>
+        <input v-model="m" />
+        <p>n：{{n}}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#v',
+            data: {
+                a: 1,
+                b: 2,
+                c: '<p style="background-color:aquamarine">html</p>',
+                d: 'p0',
+                e: true,
+                f: 'abcdefg',
+                g: false,
+                h: 'https://cn.vuejs.org/v2/guide/syntax.html',
+                m:'mmm',
+                n:'',
+            },
+            computed: {
+                i: function () {
+                    return Date.now();
+                },
+                k: function () {
+                    return this.a + this.b;
+                },
+                l: {
+                    get: function () {
+                        return this.a + this.d;
+                    },
+                    set: function (newD) {
+                        this.a = newD + ' a';
+                        this.d = newD + ' d';
+                    }
+                },
+            },
+            methods: {
+                j: function () {
+                    return Date.now();
+                }
+            },
+            watch: {
+                m: function (newd, oldd) {
+                    alert(newd);
+                    alert(oldd);
+                    this.n = newd + 'nnn';
+                }
+            },
+        });
+        
+    </script>
+</body>
+</html>

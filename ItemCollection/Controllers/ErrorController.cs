@@ -18,5 +18,16 @@ namespace ItemCollection.Controllers
         {
             return View();
         }
+
+        public ActionResult Error404(string aspxerrorpath)
+        {
+            ViewBag.aspxerrorpath = aspxerrorpath;
+            return View();
+        }
+        public ActionResult Error500(string aspxerrorpath)
+        {
+            ViewBag.aspxerrorpath = aspxerrorpath;
+            return View();
+        }
     }
 }
