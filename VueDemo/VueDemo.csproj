@@ -120,6 +120,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Vue\v0.cshtml" />
     <Content Include="Views\Vue\v1.cshtml" />
+    <Content Include="Views\Vue\v2.cshtml" />
+    <Content Include="Views\Vue\v3.cshtml" />
+    <Content Include="Views\Vue\v4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>列表渲染</title>
+    <script src="~/Scripts/vue.min.js"></script>
+</head>
+<body>
+    <div id="v">
+        <ul>
+            <li v-for="(item,i) in items">{{i}}-{{item.a}}</li>
+        </ul>
+        <ul>
+            <li v-for="(v,name,index) in itemObj">{{v}}-{{name}}-{{index}}</li>
+        </ul>
+        <button onclick="push();">push</button>
+        <button onclick="pop();">pop</button>
+        <button onclick="shift();">shift</button>
+        <button onclick="unshift();">unshift</button>
+        <button onclick="sort();">sort</button>
+        <button onclick="reverse();">reverse</button><br />
+
+        <button onclick="Vueset();">Vue.set(vm.items, indexOfItem, newValue)</button><br />
+        <button onclick="vmItemsSplice();">vm.items.splice(indexOfItem, 1, newValue)</button><br />
+        <button onclick="vm$set();">vm.$set(vm.items, indexOfItem, newValue)</button><br />
+        <button onclick="vmlength();">  vm.items.splice(1)</button><br />
+        <button onclick="Vueset();"> Vue.set(vm.userProfile,'age', 27)</button><br />
+        <button onclick="vm$set();"> vm.$set(vm.userProfile, 'age', 27)</button><br />
+        <p>Object.assign() 或 _.extend()</p>
+        <ul>
+            <li v-for="num in filterNums">{{num}}</li>
+        </ul>
+        <ul>
+            <li v-for="num in filterNums1(numbers)">{{num}}</li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#v',
+            data: {
+                items: [{ a: 'aa', b: 2 }, { a: 'bb', b: 3 }, { a: 'cc', b: 4 }],
+                itemObj: { name: 'name11', age: 'age11', aa: 'aa' },
+                numbers:[1,2,3,4,5,6,7,8,9],
+            },
+            computed: {
+                filterNums2: function () {
+                    return this.numbers.filter(function (num) {
+                        return num % 2 === 0;
+                    });
+                },
+            },
+            methods: {
+                filterNums1: function (numbers) {
+                    return numbers.filter(function (num) {
+                        return num % 1 === 0;
+                    });
+                }
+            },
+        });
+
+        function push() {
+            vm.items.push({ a: 'dd', b: 5 });
+        }
+        function pop() {
+            var result = vm.items.pop();
+            console.log(result);
+        }
+        function shift() {
+            var result = vm.items.shift();
+            console.log(result);
+        }
+        function unshift() {
+            vm.items.unshift({ a: 'dd', b: 5 });
+        }
+
+        function Vueset() {
+            Vue.set(vm.items, 0, { a: 'aa1', b: 2 })
+        }
+        function vmItemsSplice() {
+            vm.items.splice(0, 1, { a: 'aa2', b: 2 })
+        }
+        function vmlength() {
+            vm.items.splice(1)
+        }
+
+        function Vueset() {
+            Vue.set(vm.itemObj,  'ces1','ceshi1')
+        }
+        function vm$set() {
+            vm.$set(vm.itemObj, 'ces2', 'ceshi122')
+        }
+    </script>
+</body>
+</html>

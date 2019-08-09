@@ -17,5 +17,17 @@ namespace VueDemo.Controllers
         {
             return View();
         }
+        public ActionResult v2()
+        {
+            return View();
+        }
+        public ActionResult v3()
+        {
+            return View();
+        }
+        public ActionResult v4()
+        {
+            return View();
+        }
     }
 }
