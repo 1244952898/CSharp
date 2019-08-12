@@ -37,5 +37,10 @@ namespace VueDemo.Controllers
         {
             return View();
         }
+        public ActionResult 组件基础()
+        {
+            return View();
+        }
+        
     }
 }

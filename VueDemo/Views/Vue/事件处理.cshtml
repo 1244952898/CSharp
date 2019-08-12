@@ -16,16 +16,95 @@
         <span>{{a}}</span>
         <button @@click="a +=1">a +=1</button>
         <button v-on:click="greet">greet</button>
-        <button @@:click="say('abc')">say('abc')</button>
-        <button @@:click="say('def')">say('def')</button>
+        <button @@click="say('abc')">say('abc')</button>
+        <button @@click="say('def')">say('def')</button>
+        <button @@click="warn('def',$event)">say('def')</button>
+        <div @@click="c1">
+            1111 <div @@click="c2">2222</div>
+        </div>
+        <div @@click="c3">
+            333 <div @@click.stop="c4">stop</div>
+        </div>
+        <div @@click.self="c5">
+            self <div @@click="c6">666</div>
+        </div>
+        <a v-on:click.once="c7.once">once</a>
+        <!-- 按enter键 抬起触发 -->
+        <input type="text" @@keyup.enter="fn">按键盘enter键触发<br>
+        <input type="text" @@keyup.13="fn">按键盘enter键触发<br>
+
+        <!-- 按"删除"和"退格"键 抬起触发 -->
+        <input type="text" @@keyup.delete="fn">按键盘"删除"和"退格"键触发<br>
+
+        <!-- 按tab键 抬起触发 -->
+        <input type="text" @@keyup.tab="fn">按键盘tab键触发<br>
+
+        <!-- 按 esc 键 抬起触发 -->
+        <input type="text" @@keyup.esc="fn">按键盘 esc 键触发<br>
+
+        <!-- 按 space 键 抬起触发 -->
+        <input type="text" @@keyup.space="fn">按键盘 space 键触发<br>
+
+        <!-- 按 上 下 左 右 键 抬起触发 -->
+        <input type="text" @@keyup.up="fn">按键盘 up 键触发<br>
+        <input type="text" @@keyup.down="fn">按键盘 down 键触发<br>
+        <input type="text" @@keyup.left="fn">按键盘 left 键触发<br>
+        <input type="text" @@keyup.right="fn">按键盘 right 键触发<br>
+
+        <!-- 只要 Ctrl 被按下并点击就触发 -->
+        <button @@click.ctrl="fn">按ctrl键并点击触发</button><br>
+
+        <input v-model="msg" placeholder="edit me" />
+        <span>{{msg}}</span>
+        <br>
+        <input type="radio" id="radio" v-model="rd" />
+        <span>{{rd}}</span>
+        <br>
+        <div>
+            <input type="checkbox" v-model="chk" value="chk1" id="chk1" />
+            <label for="chk1">chk1</label>
+            <input type="checkbox" v-model="chk" value="chk2" />
+            <label for="chk2">chk2</label>
+            <input type="checkbox" v-model="chk" value="chk3" />
+            <label for="chk3">chk3</label>
+            <br>
+            <span>{{chk}}</span>
+            <div>
+                <select v-model="smodel">
+                    <option v-for="s in selects" :value="s.val">{{s.name}}</option>
+                </select>
+                <span>{{smodel}}</span>
+            </div>
+
+            <input type="checkbox" v-model="toggle" true-value="yes" false-value="no" id="s" />
+            <label for="s">选择</label>
+            <span>{{toggle}}</span>
+            <div>
+                <select v-model="omodel">
+                    <option v-for="s in selectObj" :value="s.val">{{s.name}}</option>
+                </select>
+                <span>{{omodel.item1}}+{{omodel.item2}}</span>
+            </div>
+            <input v-model.number="age" type="number">
+        </div>
     </div>
     <script>
         var vm = new Vue({
             el: '#v',
             data: {
-                a:0,
+                a: 0,
+                msg: '',
+                rd: false,
+                chk: [],
+                selects: [{ name: 'a', val: '1' }, { name: 'b', val: '2' }, { name: 'c', val: '3' }],
+                selectObj: [{ name: 'a', val: { item1: 11, item2: 22 } }, { name: 'b', val: { item1: 33, item2: 44 } }, { name: 'c', val: { item1: 55, item2: 66 } }],
+                smodel: '',
+                omodel: '',
+                toggle: '',
+                age:0,
             },
             computed: {
+
             },
             methods: {
                 greet: function (event) {
@@ -37,9 +116,66 @@
                 say: function (world) {
                     alert(world);
                 },
+                warn: function (world, ev) {
+                    if (event) {
+                        alert(event.target.tagName);
+                    }
+                    alert(world);
+                },
+                c1: function () {
+                    alert(1);
+                },
+                c2: function () {
+                    alert(2);
+                },
+                c3: function () {
+                    alert(3);
+                },
+                c4: function () {
+                    alert(4);
+                },
+                c5: function () {
+                    alert(5);
+                },
+                c6: function () {
+                    alert(6);
+                },
+                c7: function () {
+                    alert('once');
+                },
+                enter: function () {
+                    alert('enter')
+                },
+                tab: function () {
+                    alert('tab')
+                },
+                del: function () {
+                    alert('del')
+                },
+                esc: function () {
+                    alert('esc')
+                },
+                space: function () {
+                    alert('space')
+                },
+                up: function () {
+                    alert('up')
+                },
+                down: function () {
+                    alert('down')
+                },
+                left: function () {
+                    alert('left')
+                },
+                right: function () {
+                    alert('right')
+                },
+                fn: function (event) {
+                    alert(event.code);
+                }
             },
         });
-        
+
     </script>
 </body>
 </html>
