@@ -13,7 +13,13 @@
 </head>
 <body>
     <div id="v"> 
-        <btn-count></btn-count>
+        <div>
+            <btn-count></btn-count>
+            <btn-count></btn-count>
+        </div>
+        <div>
+            <post v-for="post in posts" :title="post.title" :id="post.id"></post>
+        </div>
     </div>
     <script>
         Vue.component('btn-count', {
@@ -24,7 +30,23 @@
             },
             template: '<button v-on:click="++count">已经点击了{{count}}次</button>',
         });
-        new Vue({ el: '#v' });
+        Vue.component('post', {
+            data: function () {
+
+            },
+            props: ['title'],
+            template:'<h3>{{ title }}</h3>'
+        });
+        new Vue({
+            el: '#v',
+            data: {
+                posts: [
+                    { id: 1, title: 'title1' },
+                    { id: 2, title: 'title2' },
+                    { id: 3, title: 'title3' },
+                    { id: 4, title: 'title4' }]
+            },
+        });
       
     </script>
 </body>
