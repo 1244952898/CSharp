@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>事件处理</title>
+    <script src="~/Scripts/vue.min.js"></script>
+</head>
+<body>
+    <div id="v">
+        <span>{{a}}</span>
+        <button @@click="a +=1">a +=1</button>
+        <button v-on:click="greet">greet</button>
+        <button @@:click="say('abc')">say('abc')</button>
+        <button @@:click="say('def')">say('def')</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#v',
+            data: {
+                a:0,
+            },
+            computed: {
+            },
+            methods: {
+                greet: function (event) {
+                    alert('hello ' + this.a + ' !');
+                    if (event) {
+                        alert(event.target.tagName);
+                    }
+                },
+                say: function (world) {
+                    alert(world);
+                },
+            },
+        });
+        
+    </script>
+</body>
+</html>

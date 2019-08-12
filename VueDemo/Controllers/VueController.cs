@@ -25,7 +25,15 @@ namespace VueDemo.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 列表渲染
+        /// </summary>
+        /// <returns></returns>
         public ActionResult v4()
+        {
+            return View();
+        }
+        public ActionResult 事件处理()
         {
             return View();
         }

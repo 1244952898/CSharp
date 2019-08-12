@@ -123,6 +123,7 @@
     <Content Include="Views\Vue\v2.cshtml" />
     <Content Include="Views\Vue\v3.cshtml" />
     <Content Include="Views\Vue\v4.cshtml" />
+    <Content Include="Views\Vue\事件处理.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

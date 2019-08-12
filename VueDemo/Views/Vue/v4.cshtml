@@ -34,11 +34,15 @@
         <button onclick="vm$set();"> vm.$set(vm.userProfile, 'age', 27)</button><br />
         <p>Object.assign() 或 _.extend()</p>
         <ul>
-            <li v-for="num in filterNums">{{num}}</li>
+            <li v-for="num in filterNums2">{{num}}</li>
         </ul>
         <ul>
             <li v-for="num in filterNums1(numbers)">{{num}}</li>
         </ul>
+        <div>
+            <span v-for="n in 10">{{n}}</span>
+        </div>
+        <div>不推荐在同一元素上使用 v-if 和 v-for</div>
     </div>
     <script>
         var vm = new Vue({
