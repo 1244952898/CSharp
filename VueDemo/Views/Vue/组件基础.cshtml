@@ -12,13 +12,19 @@
     <script src="~/Scripts/vue.min.js"></script>
 </head>
 <body>
-    <div id="v"> 
+    <div id="v">
         <div>
             <btn-count></btn-count>
             <btn-count></btn-count>
         </div>
         <div>
             <post v-for="post in posts" :title="post.title" :id="post.id"></post>
+        </div>
+        <div>
+            <post1 v-for="post in posts" :post="post" :id="post.id"></post1>
+        </div>
+        <div :style="{ fontSize: fontSize + 'em' }">
+            <post-content v-for="post in postCs" :post="post" :id="post.id" v-on:font-change="fontSize+=$event"></post-content>
         </div>
     </div>
     <script>
@@ -37,14 +43,35 @@
             props: ['title'],
             template:'<h3>{{ title }}</h3>'
         });
+        Vue.component('post1', {
+            data: function () {
+            },
+            props: ['post'],
+            template: '<h3>{{ post.title }}</h3>'
+        });
+
+        Vue.component('postContent', {
+            data: function () {
+                return {
+                    size: 0.2,
+                }
+            },
+            props: ['post'],
+            //props: ['postC'],
+            template: '<div><h3>{{ post.title }}</h3><button v-on:click="$emit(\'font-change\',size)">font-change</button><div v-html="post.content"></div></div>'//
+        });
         new Vue({
             el: '#v',
             data: {
-                posts: [
-                    { id: 1, title: 'title1' },
-                    { id: 2, title: 'title2' },
-                    { id: 3, title: 'title3' },
-                    { id: 4, title: 'title4' }]
+                posts: [{ id: 1, title: 'title1' },
+                        { id: 2, title: 'title2' },
+                        { id: 3, title: 'title3' },
+                        { id: 4, title: 'title4' }],
+                postCs: [{ id: 1, title: 'title1', content:'<span style="background-color:aqua">content1</span>' },
+                    { id: 2, title: 'title2', content: '<span style="background-color:red">content2</span>' },
+                    { id: 3, title: 'title3', content: '<span style="background-color:yellow">content3</span>' },
+                    { id: 4, title: 'title4', content: '<span style="background-color:black">content4</span>' }],
+                fontSize:1,
             },
         });
       
