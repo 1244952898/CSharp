@@ -24,8 +24,10 @@
             <post1 v-for="post in posts" :post="post" :id="post.id"></post1>
         </div>
         <div :style="{ fontSize: fontSize + 'em' }">
-            <post-content v-for="post in postCs" :post="post" :id="post.id" v-on:font-change="fontSize+=$event"></post-content>
+            <post-content v-for="post in postCs" :post="post" :id="post.id" v-on:font-change="fontChange"></post-content>
         </div>
+        <input-comp v-model="inputCom">cessss</input-comp>
+        <p>{{inputCom}}</p>
     </div>
     <script>
         Vue.component('btn-count', {
@@ -58,8 +60,14 @@
             },
             props: ['post'],
             //props: ['postC'],
-            template: '<div><h3>{{ post.title }}</h3><button v-on:click="$emit(\'font-change\',size)">font-change</button><div v-html="post.content"></div></div>'//
+            template: '<div><h3>{{ post.title }}</h3><button v-on:click="$emit(\'font-change\',size,122)">font-change</button><div v-html="post.content"></div></div>'//
         });
+
+        Vue.component('input-comp',{
+            props: ['value'],
+            template:'<div><input type="text" v-bind:value="value" @@input="$emit(\'input\',$event.target.value)"/><slot><slot/></div>'
+        });
+        
         new Vue({
             el: '#v',
             data: {
@@ -71,7 +79,14 @@
                     { id: 2, title: 'title2', content: '<span style="background-color:red">content2</span>' },
                     { id: 3, title: 'title3', content: '<span style="background-color:yellow">content3</span>' },
                     { id: 4, title: 'title4', content: '<span style="background-color:black">content4</span>' }],
-                fontSize:1,
+                fontSize: 1,
+                inputCom: '',
+            },
+            methods: {
+                fontChange: function (eve,a) {
+                    alert(eve);
+                    alert(a);
+                },
             },
         });
       
