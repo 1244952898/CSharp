@@ -41,6 +41,17 @@ namespace VueDemo.Controllers
         {
             return View();
         }
+
+        public ActionResult 组件注册()
+        {
+            return View();
+        }
+
+        public ActionResult Prop()
+        {
+            return View();
+        }
+
         
     }
 }
