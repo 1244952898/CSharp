@@ -15,12 +15,14 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-#if DEV
-            string ssd="a";
-#elif Test
+#if DEBUG
+            string ssd ="a";
+#elif TEST
             string ssd="b";
-#else
+#elif RELEASE
             string ssd = "c";
+#else
+             string ssd = "空";
 #endif
 
             Console.WriteLine(ssd);
