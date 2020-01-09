@@ -15,6 +15,21 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
+#if DEV
+            string ssd="a";
+#elif Test
+            string ssd="b";
+#else
+            string ssd = "c";
+#endif
+
+            Console.WriteLine(ssd);
+            Console.Read();
+            var ds = new DateTime(1, 1, 1);
+          
+            var s = ds.ToString("yyyy-MM-dd");
+            var ddd = DateTime.MinValue;
+            var sss = ddd.ToString("yyyy-MM-dd");
 
             string str = "🌹1231啊啊🍀🍎💰📱🌙🍁🍂🍃";
 
