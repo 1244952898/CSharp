@@ -15,6 +15,44 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
+            //new RegexTelphone().aa();
+
+            string contentab = @"85998437469胜19810198386多负少<em>1009</em>东方发生大发198-1019-8386送到198 1019 8386发送地198<em>1009</em>8386方沙发1353456789111111111上是1111111113534567891的发送到多发15998437469";
+            //var resultcontent =  Regex.Replace(contentab, "(1\\d{10})", "$1 ****$2");
+            // var resultcontent1 = Regex.Replace("18710098386", "^1\\d{10}$", "$1 ****$2");
+
+            string contentabc = "1009";
+            string contentabc2 = "1a009";
+
+            bool isNeedReplace = !string.IsNullOrWhiteSpace(contentabc) && Regex.IsMatch(contentabc, "^[0-9]{0,11}$");
+            bool isNeedReplace2 = !string.IsNullOrWhiteSpace(contentabc2) && Regex.IsMatch(contentabc2, "^[1-9]\\d*|0$");
+
+            contentab = contentab.Replace($"<em>{contentabc}</em>", contentabc);
+
+            var resultcontent2 = Regex.Replace(contentab, "((?<!\\d)1\\d{2}[\\s|-]?)\\d{4}([\\s|-]?\\d{4}(?!\\d))", "$1****$2");
+
+            contentab = resultcontent2.Replace(contentabc,$"<em>{contentabc}</em>");
+
+            var aggg = Regex.Replace(contentab, "(1\\d{2})\\d{4}(\\d{4})", "$1****$2");
+
+            Regex reMobile = new Regex("1\\d{10}");
+            Regex reMobile2 = new Regex(@"\\d+");
+            if (reMobile.IsMatch("18710098386"))
+            {
+
+            }
+
+            MatchCollection matchCollection = reMobile.Matches(contentab);
+            if (matchCollection != null && matchCollection.Count > 0)
+            {
+                for (int i = 0; i < matchCollection.Count; i++)
+                {
+                    var phone = matchCollection[i].Value;
+                    var newphone =  Regex.Replace(contentab, @"(^1\\d{10}$)", "$1 ****$2");
+                    contentab = contentab.Replace(phone, newphone);
+                }
+            }
+
 #if DEBUG
             string ssd ="a";
 #elif TEST
