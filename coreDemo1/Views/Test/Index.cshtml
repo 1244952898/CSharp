@@ -11,6 +11,17 @@
     <title>Index</title>
 </head>
 <body>
-    <div>aaaaaaaaaaaaa</div>
+    <div onclick="myfunction()">aaaaaaaaaaaaa</div>
+    <script>
+        function myfunction() {
+            var a = [];
+            for (var i = 0; i < 10; i++) {
+                a[i] = function () {
+                    console.log(i);
+                };
+            }
+            a[6](); // 10
+        }
+    </script>
 </body>
 </html>
