@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Common;
+using Newtonsoft.Json.Linq;
 
 namespace MVC全局错误日志自动记录.Controllers
 {
@@ -26,5 +29,7 @@ namespace MVC全局错误日志自动记录.Controllers
             int count= strList.Count;
             return View();
         }
+
+  
     }
 }
