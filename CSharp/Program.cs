@@ -10,6 +10,7 @@ using CSharp.ElsaticSearch;
 using System.Text.RegularExpressions;
 using Nest;
 using Newtonsoft.Json;
+using CSharp.TestInterface2;
 
 namespace CSharp
 {
@@ -17,6 +18,18 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+
+            IntefaceClass intefaceClass = new IntefaceClass();
+            intefaceClass.F();
+
+            Interface1 intefaceClass1 =  new IntefaceClass();
+            intefaceClass1.F();
+
+            Interface2 intefaceClass2 = new IntefaceClass();
+            intefaceClass2.F();
+
+
+
             var asd = testt.GetHidenPhoneContent("ddd荣威i6  1198ddddddd", "荣威i6  1198");
 
 
