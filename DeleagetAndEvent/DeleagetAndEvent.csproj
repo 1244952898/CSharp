@@ -46,6 +46,8 @@
     <Compile Include="ClickEventArgs.cs" />
     <Compile Include="IPhone11.cs" />
     <Compile Include="IPhone6.cs" />
+    <Compile Include="NewFolder1\GreetPeople.cs" />
+    <Compile Include="NewFolder1\Heater.cs" />
     <Compile Include="PriceChangedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,5 +55,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
