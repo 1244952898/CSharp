@@ -8,6 +8,9 @@ using CSharp.Queens;
 using GintokiCommon.ImageUtils;
 using CSharp.ElsaticSearch;
 using System.Text.RegularExpressions;
+using Nest;
+using Newtonsoft.Json;
+using CSharp.TestInterface2;
 
 namespace CSharp
 {
@@ -16,6 +19,26 @@ namespace CSharp
         static void Main(string[] args)
         {
 
+            IntefaceClass intefaceClass = new IntefaceClass();
+            intefaceClass.F();
+
+            Interface1 intefaceClass1 =  new IntefaceClass();
+            intefaceClass1.F();
+
+            Interface2 intefaceClass2 = new IntefaceClass();
+            intefaceClass2.F();
+
+
+
+            var asd = testt.GetHidenPhoneContent("ddd荣威i6  1198ddddddd", "荣威i6  1198");
+
+
+            var re = JsonConvert.DeserializeObject<Abc>("{\"names\":\"大连\"}");
+
+            object o1 = "abvasd";
+            object o2 =new string[] { "aaa", "bbb" };
+            var aaaaa1 = o1.GetType().Name;
+            var aaaaa2 = o2.GetType().Name;
 
             List<Province> provinces = new List<Province> {
                 new Province{ProvinceId=1,ProvinceName="a"},
@@ -171,5 +194,10 @@ namespace CSharp
             //}
             return string.Empty;
         }
+    }
+
+    public class Abc
+    { 
+        public List<string> names { get; set; }
     }
 }

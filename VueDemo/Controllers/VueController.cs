@@ -17,5 +17,41 @@ namespace VueDemo.Controllers
         {
             return View();
         }
+        public ActionResult v2()
+        {
+            return View();
+        }
+        public ActionResult v3()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 列表渲染
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult v4()
+        {
+            return View();
+        }
+        public ActionResult 事件处理()
+        {
+            return View();
+        }
+        public ActionResult 组件基础()
+        {
+            return View();
+        }
+
+        public ActionResult 组件注册()
+        {
+            return View();
+        }
+
+        public ActionResult Prop()
+        {
+            return View();
+        }
+
+        
     }
 }

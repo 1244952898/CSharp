@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\IViewController.cs" />
     <Compile Include="Controllers\VueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -120,6 +121,14 @@
     <None Include="packages.config" />
     <Content Include="Views\Vue\v0.cshtml" />
     <Content Include="Views\Vue\v1.cshtml" />
+    <Content Include="Views\Vue\v2.cshtml" />
+    <Content Include="Views\Vue\v3.cshtml" />
+    <Content Include="Views\Vue\v4.cshtml" />
+    <Content Include="Views\Vue\事件处理.cshtml" />
+    <Content Include="Views\Vue\组件基础.cshtml" />
+    <Content Include="Views\Vue\组件注册.cshtml" />
+    <Content Include="Views\Vue\Prop.cshtml" />
+    <Content Include="Views\IView\Test0.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
