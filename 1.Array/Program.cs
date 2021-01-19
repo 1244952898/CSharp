@@ -13,10 +13,11 @@ namespace _1.Array
         {
             #region MyRegion
             int[] nums = new int[] { 1, 1, 3, 4, 5, 5, 6 };
-            int num = RemoveDuplicates.RemoveDuplicates0(nums);
-            Console.WriteLine(num);
+            int num0 = RemoveDuplicates.RemoveDuplicates0(nums);
+            int num1 = RemoveDuplicates.RemoveDuplicates1(nums);
+            Console.WriteLine(num0);
             Console.WriteLine("数组");
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < num0; i++)
             {
                 Console.Write(nums[i]+" ");
             }
