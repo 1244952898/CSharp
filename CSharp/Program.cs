@@ -19,6 +19,9 @@ namespace CSharp
         static void Main(string[] args)
         {
 
+            Class1 class1 = new Class1();
+            class1.class1s.Add(new Class1 { name1 = "1" });
+
             IntefaceClass intefaceClass = new IntefaceClass();
             intefaceClass.F();
 
