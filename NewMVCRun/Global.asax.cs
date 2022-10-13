@@ -30,6 +30,7 @@ namespace NewMVCRun
             //            assembly = "NewMVCRun"
             //        }),
             //    new MyMvcRouteHandler()));
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
