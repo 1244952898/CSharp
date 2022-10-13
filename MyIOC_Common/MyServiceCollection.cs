@@ -47,7 +47,6 @@ namespace MyIOC_Common
             Type type = CacheDictionary[typeof(T).FullName];
             return (T)GetService(type);
             #endregion
-
         }
 
         public object GetService(Type type)
