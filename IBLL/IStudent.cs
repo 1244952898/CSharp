@@ -1,4 +1,5 @@
 ﻿using IDAL;
+using MyIOC_Common.Attributes;
 using System;
 
 namespace IBLL
@@ -7,5 +8,11 @@ namespace IBLL
     {
         void Study();
         void PlayPhone<T>(T t) where T:Phone;
+
+        [LoginAttribute]
+        [CacheAttribute]
+        void VirtualMethod();
+
+        void Method();
     }
 }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IDAL\IDAL.csproj" />
+    <ProjectReference Include="..\MyIOC_Common\MyIOC_Common.csproj" />
   </ItemGroup>
 
 </Project>

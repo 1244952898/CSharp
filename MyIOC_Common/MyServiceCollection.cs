@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Castle.DynamicProxy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -79,7 +80,11 @@ namespace MyIOC_Common
                 }
             }
 
-            return retObj;
+            ProxyGenerator proxyGenerator = new ProxyGenerator();
+            InterceptorExtend interceptorExtend = new InterceptorExtend();
+            var o= proxyGenerator.CreateClassProxyWithTarget(type, retObj, interceptorExtend);
+
+            return o;
         }
     }
 }
