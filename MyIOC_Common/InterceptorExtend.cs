@@ -34,11 +34,13 @@ namespace MyIOC_Common
             #endregion
 
             #region 版本2
+            //生成Action对象，层层生成，套娃，递归
             Action action = () => base.PerformProceed(invocation);
 
             if (invocation.Method.IsDefined(typeof(AbstractAttribute), true))
             {
                 var attributes = invocation.Method.GetCustomAttributes<AbstractAttribute>();
+                //倒叙返回各个Action(为了执行的时候正序)
                 for (int i = attributes.Count()-1; i >=0; i--)
                 {
                     action = attributes.ElementAt(i).Do(action);

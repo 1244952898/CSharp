@@ -45,6 +45,7 @@ namespace MyIOC_Common
             #endregion
 
             #region 版本3
+            //0. 根据接口类型，获取对应的对象类型
             Type type = CacheDictionary[typeof(T).FullName];
             return (T)GetService(type);
             #endregion
@@ -53,22 +54,27 @@ namespace MyIOC_Common
 
         public object GetService(Type type)
         {
+            //1.获取定义的构造函数或者参数最多的构造函数，做为调用的构造函数
             var ctor = type.GetConstructors().FirstOrDefault(c => c.IsDefined(typeof(SelectCtorAttribute), true));
             if (ctor == null)
             {
                 ctor = type.GetConstructors().OrderByDescending(x => x.GetParameters().Length).FirstOrDefault();
             }
 
+            //2.根据构造函数获取，获取构造函数所需要的参数
             var paraList = new List<Object>();
             foreach (ParameterInfo param in ctor.GetParameters())
             {
                 var paraType = CacheDictionary[param.ParameterType.FullName];
+                //3. 递归构造所需要的参数对象
                 var obj = GetService(paraType);
                 paraList.Add(obj);
             }
 
+            //4.创建所需要返回的对象
             var retObj = Activator.CreateInstance(type, paraList.ToArray());
 
+            //5. 递归构造需要容器自动注入的字段的对象
             var properties = type.GetProperties(BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Instance).Where(p => p.IsDefined(typeof(PropertyInjectionAttribute)));
             if (properties != null&&properties.Any())
             {
@@ -80,6 +86,7 @@ namespace MyIOC_Common
                 }
             }
 
+            //生成需要动态代理的对象
             ProxyGenerator proxyGenerator = new ProxyGenerator();
             InterceptorExtend interceptorExtend = new InterceptorExtend();
             var o= proxyGenerator.CreateClassProxyWithTarget(type, retObj, interceptorExtend);
