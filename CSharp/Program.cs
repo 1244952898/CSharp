@@ -18,88 +18,95 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var block = new blockingCollectionClass();
+            for (int i = 0; i < 10000; i++)
+            {
 
-            Class1 class1 = new Class1();
-            class1.class1s.Add(new Class1 { name1 = "1" });
+                block.Add(i.ToString());
 
-            IntefaceClass intefaceClass = new IntefaceClass();
-            intefaceClass.F();
+            }
 
-            Interface1 intefaceClass1 =  new IntefaceClass();
-            intefaceClass1.F();
+                //Class1 class1 = new Class1();
+                //class1.class1s.Add(new Class1 { name1 = "1" });
 
-            Interface2 intefaceClass2 = new IntefaceClass();
-            intefaceClass2.F();
+                //IntefaceClass intefaceClass = new IntefaceClass();
+                //intefaceClass.F();
 
+                //Interface1 intefaceClass1 =  new IntefaceClass();
+                //intefaceClass1.F();
 
-
-            var asd = testt.GetHidenPhoneContent("ddd荣威i6  1198ddddddd", "荣威i6  1198");
-
-
-            var re = JsonConvert.DeserializeObject<Abc>("{\"names\":\"大连\"}");
-
-            object o1 = "abvasd";
-            object o2 =new string[] { "aaa", "bbb" };
-            var aaaaa1 = o1.GetType().Name;
-            var aaaaa2 = o2.GetType().Name;
-
-            List<Province> provinces = new List<Province> {
-                new Province{ProvinceId=1,ProvinceName="a"},
-                new Province{ProvinceId=2,ProvinceName="b"},
-                new Province{ProvinceId=1,ProvinceName="a"},
-                new Province{ProvinceId=1,ProvinceName="a"},
-            };
-            var l = provinces.Distinct(new DistinctExtend<Province>("ProvinceId"));
-            //string[] strs = new []
-            //{
-            //    "2018年05月30日至长期",
-            //    "2011年03月23日至2031年03月22日",
-            //    "2016年5月18日至2036年5月月17日",
-            //    "2008年05月12日至2028年05月11日止日",
-            //    "2018年09月03日至永久",
-            //    "长期",
-            //    "二0一五年三月五日至长期",
-            //    "2016年6月24日至不约定期限",
-            //    "二零零四年十月二十九日至长期",
-            //};
-            //foreach (var item in strs)
-            //{
-            //    testRegex(item);
-            //}
-
-            //ElasticLowLevelClientDemo.MainMethod();
-
-            //ImgDemo.AAsync().GetAwaiter();
-
-            //ImageDemo.StreamDemo();
-            //ImageDemo.StreamDemo1();
-
-            // SevenQueen.MainMethod(0);
-
-            //Queen.FindQueen(0);
+                //Interface2 intefaceClass2 = new IntefaceClass();
+                //intefaceClass2.F();
 
 
-            //string s = "123qwertyuuytrewq321";
-            //string a = s.Substring(0, 3);
-            //Console.WriteLine(a);
-            //bool result = StringCycle.IsCycleMethod(s);
-            //Console.WriteLine("{0}是否是：{1}", s, result);
 
-            //string s1 = "fedca123qwertyuuytrewq321abcdef__123321++qwertyytrewq";
-            //string result1 = StringCycle.GetCycleString1(s1);
-            //Console.WriteLine("result1最长是：{0}", result1);
+                //var asd = testt.GetHidenPhoneContent("ddd荣威i6  1198ddddddd", "荣威i6  1198");
 
-            //string result2 = StringCycle.GetCycleString2(s1);
-            //Console.WriteLine("result2最长是：{0}", result2);
 
-            //string result3 = StringCycle.GetCycleString3("fedca123qwertyu1uytrewq321abcdef__123321++qwertyytrewq");
-            //string result4 = StringCycle.GetCycleString3(s1);
-            //Console.WriteLine("result3最长是：{0}", result3);
-            //Console.WriteLine("result4最长是：{0}", result4);
-            ////#[^#]+#
-            //Parent p =new Parent();
-            //int? d = p.Childrens?.Count;
-            Console.ReadKey();
+                //var re = JsonConvert.DeserializeObject<Abc>("{\"names\":\"大连\"}");
+
+                //object o1 = "abvasd";
+                //object o2 =new string[] { "aaa", "bbb" };
+                //var aaaaa1 = o1.GetType().Name;
+                //var aaaaa2 = o2.GetType().Name;
+
+                //List<Province> provinces = new List<Province> {
+                //    new Province{ProvinceId=1,ProvinceName="a"},
+                //    new Province{ProvinceId=2,ProvinceName="b"},
+                //    new Province{ProvinceId=1,ProvinceName="a"},
+                //    new Province{ProvinceId=1,ProvinceName="a"},
+                //};
+                //var l = provinces.Distinct(new DistinctExtend<Province>("ProvinceId"));
+                //string[] strs = new []
+                //{
+                //    "2018年05月30日至长期",
+                //    "2011年03月23日至2031年03月22日",
+                //    "2016年5月18日至2036年5月月17日",
+                //    "2008年05月12日至2028年05月11日止日",
+                //    "2018年09月03日至永久",
+                //    "长期",
+                //    "二0一五年三月五日至长期",
+                //    "2016年6月24日至不约定期限",
+                //    "二零零四年十月二十九日至长期",
+                //};
+                //foreach (var item in strs)
+                //{
+                //    testRegex(item);
+                //}
+
+                //ElasticLowLevelClientDemo.MainMethod();
+
+                //ImgDemo.AAsync().GetAwaiter();
+
+                //ImageDemo.StreamDemo();
+                //ImageDemo.StreamDemo1();
+
+                // SevenQueen.MainMethod(0);
+
+                //Queen.FindQueen(0);
+
+
+                //string s = "123qwertyuuytrewq321";
+                //string a = s.Substring(0, 3);
+                //Console.WriteLine(a);
+                //bool result = StringCycle.IsCycleMethod(s);
+                //Console.WriteLine("{0}是否是：{1}", s, result);
+
+                //string s1 = "fedca123qwertyuuytrewq321abcdef__123321++qwertyytrewq";
+                //string result1 = StringCycle.GetCycleString1(s1);
+                //Console.WriteLine("result1最长是：{0}", result1);
+
+                //string result2 = StringCycle.GetCycleString2(s1);
+                //Console.WriteLine("result2最长是：{0}", result2);
+
+                //string result3 = StringCycle.GetCycleString3("fedca123qwertyu1uytrewq321abcdef__123321++qwertyytrewq");
+                //string result4 = StringCycle.GetCycleString3(s1);
+                //Console.WriteLine("result3最长是：{0}", result3);
+                //Console.WriteLine("result4最长是：{0}", result4);
+                ////#[^#]+#
+                //Parent p =new Parent();
+                //int? d = p.Childrens?.Count;
+                Console.ReadKey();
         }
 
         public static void testRegex(string ss = "2011年03月23日至2031年03月22日")
