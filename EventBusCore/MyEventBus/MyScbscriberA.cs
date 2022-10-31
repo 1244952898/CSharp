@@ -21,11 +21,11 @@ namespace EventBusCore.MyEventBus
         }
     }
 
-    class ScbscriberB
+    class MyScbscriberB
     {
         public string Name { get; set; }
 
-        public ScbscriberB(string name)
+        public MyScbscriberB(string name)
         {
             Name = name;
             MyEventBus.Default.GetEvent<TestBEvent>().Subscribe(TeatBEventHandler);

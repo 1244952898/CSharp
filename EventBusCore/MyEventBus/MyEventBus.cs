@@ -46,7 +46,7 @@ namespace EventBusCore.MyEventBus
             Type type = typeof(MyEventBase);
             Type typePubSub = typeof(MyPubSubEvent<>);
             Assembly assembly = Assembly.GetAssembly(type);
-            List<Type> typeList = assembly.GetTypes().Where(t=>t!=type&&t!=typePubSub&&t.IsAssignableFrom(type)).ToList();
+            List<Type> typeList = assembly.GetTypes().Where(t => t != type && t != typePubSub && t.IsAssignableFrom(type)).ToList();
             foreach (var ty in typeList)
             {
                 MyEventBase myEventBase = (MyEventBase)assembly.CreateInstance(ty.FullName);

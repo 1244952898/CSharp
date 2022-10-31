@@ -23,8 +23,8 @@ namespace EventBusCore.Controllers
         {
             MyPublisher publisher = new MyPublisher();
             MyScbscriberA scbscriberA = new MyScbscriberA("scbscriberA");
-            ScbscriberB scbscriberB1 = new ScbscriberB("scbscriberB1");
-            ScbscriberB scbscriberB2 = new ScbscriberB("scbscriberB2");
+            MyScbscriberB scbscriberB1 = new MyScbscriberB("scbscriberB1");
+            MyScbscriberB scbscriberB2 = new MyScbscriberB("scbscriberB2");
             publisher.PublishTeatAEvent("test");
             publisher.PublishTeatBEvent(123);
 
