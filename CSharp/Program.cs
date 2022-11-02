@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharp.Queens;
-using GintokiCommon.ImageUtils;
 using CSharp.ElsaticSearch;
 using System.Text.RegularExpressions;
 using Nest;

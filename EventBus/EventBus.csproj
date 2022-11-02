@@ -6,11 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Agile" Version="1.2021.1.24" />
+    <Compile Remove="EventBus2\**" />
+    <EmbeddedResource Remove="EventBus2\**" />
+    <None Remove="EventBus2\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EventBus2\" />
+    <PackageReference Include="Agile" Version="1.2021.1.24" />
   </ItemGroup>
 
 </Project>

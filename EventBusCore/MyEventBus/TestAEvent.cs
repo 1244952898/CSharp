@@ -12,12 +12,12 @@ namespace EventBusCore.MyEventBus
     {
         public override void Publish(object sender, TestAEventArgs eventArgs)
         {
-            lock (locker)
+            lock (Locker)
             {
-                for (int i = 0; i < subscriptions.Count; i++)
+                foreach (var action in Subscriptions)
                 {
-                    var action = subscriptions[i];
-                    Task.Run(() => action(sender, eventArgs));
+                    var action1 = action;
+                    Task.Run(() => action1(sender, eventArgs));
                 }
             }
         }

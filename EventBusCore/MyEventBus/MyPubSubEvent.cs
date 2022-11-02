@@ -10,9 +10,9 @@ namespace EventBusCore.MyEventBus
     /// </summary>
     public class MyPubSubEvent<T>:MyEventBase where T: EventArgs
     {
-        protected static readonly object locker = new object();
+        protected static readonly object Locker = new object();
 
-        protected readonly List<Action<object, T>> subscriptions = new List<Action<object, T>>();
+        protected readonly List<Action<object, T>> Subscriptions = new List<Action<object, T>>();
 
         /// <summary>
         ///  注册
@@ -20,11 +20,11 @@ namespace EventBusCore.MyEventBus
         /// <param name="eventHandler"></param>
         public void Subscribe(Action<object,T> eventHandler)
         {
-            lock (locker)
+            lock (Locker)
             {
-                if (!subscriptions.Contains(eventHandler))
+                if (!Subscriptions.Contains(eventHandler))
                 {
-                    subscriptions.Add(eventHandler);
+                    Subscriptions.Add(eventHandler);
                 }
             }
         }
@@ -33,24 +33,24 @@ namespace EventBusCore.MyEventBus
         /// 移除注册
         /// </summary>
         /// <param name="eventHandler"></param>
-        public void unSubscribe(Action<object, T> eventHandler)
+        public void UnSubscribe(Action<object, T> eventHandler)
         {
-            lock (locker)
+            lock (Locker)
             {
-                if (subscriptions.Contains(eventHandler))
+                if (Subscriptions.Contains(eventHandler))
                 {
-                    subscriptions.Remove(eventHandler);
+                    Subscriptions.Remove(eventHandler);
                 }
             }
         }
 
         public virtual void Publish(object sender,T eventArgs)
         {
-            lock (locker)
+            lock (Locker)
             {
-                for (int i = 0; i < subscriptions.Count; i++)
+                foreach (var action in Subscriptions)
                 {
-                    subscriptions[i](sender, eventArgs);
+                    action(sender, eventArgs);
                 }
             }
         }

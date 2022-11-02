@@ -83,12 +83,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GintokiCommon\GintokiCommon.csproj">
-      <Project>{9913cd24-2c40-4fbb-b8f0-6f104b22bf21}</Project>
-      <Name>GintokiCommon</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="consul命令1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

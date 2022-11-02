@@ -12,5 +12,23 @@ namespace NewMVC
     public abstract class ControllerBase : IController
     {
         public abstract void Execute(MyRouteData routeData);
+
+        public void Dosome()
+        {
+
+        }
+    }
+
+    public class ctsd : ControllerBase
+    {
+        public override void Execute(MyRouteData routeData)
+        {
+            Dosome();
+        }
+    }
+
+    public interface IObeserver
+    {
+        void Method();
     }
 }

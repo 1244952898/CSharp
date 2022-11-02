@@ -12,6 +12,7 @@ namespace EventBusCore.MyEventBus
         public MyScbscriberA(string name)
         {
             Name = name;
+            MyEventBus.Default.AddEvent<TestAEvent>();
             MyEventBus.Default.GetEvent<TestAEvent>().Subscribe(TeatAEventHandler);
         }
 
@@ -33,7 +34,7 @@ namespace EventBusCore.MyEventBus
 
         public void Unsubscribe_TeatBEvent()
         {
-            MyEventBus.Default.GetEvent<TestBEvent>().unSubscribe(TeatBEventHandler);
+            MyEventBus.Default.GetEvent<TestBEvent>().UnSubscribe(TeatBEventHandler);
         }
 
         public void TeatBEventHandler(object sender, TestBEventArgs e)

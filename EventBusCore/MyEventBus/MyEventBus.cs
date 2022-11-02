@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +17,7 @@ namespace EventBusCore.MyEventBus
         private static readonly object locker = new object();
 
         private Dictionary<Type, MyEventBase> eventDic = new Dictionary<Type, MyEventBase>();
+        //ConcurrentDictionary
 
         /// <summary>
         /// 默认事件总线实例，建议只使用此实例
@@ -24,17 +26,18 @@ namespace EventBusCore.MyEventBus
         {
             get
             {
-                if (_default==null)
+                if (_default != null) 
+                    return _default;
+
+                lock (locker)
                 {
-                    lock (locker)
-                    {
-                        if (_default==null)
-                        {
-                            _default = new MyEventBus();
-                        }
-                    }
+                    _default ??= new MyEventBus();
                 }
                 return _default;
+            }
+            set
+            {
+                _default = value;
             }
         }
 
