@@ -4,8 +4,10 @@ using DelegateAndEvent.Version4;
 using DelegateAndEvent.Version5;
 using DelegateAndEvent.Version6;
 using DelegateAndEvent.Version7;
+using DelegateAndEvent.Version8;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DelegateAndEvent
 {
@@ -99,6 +101,7 @@ namespace DelegateAndEvent
                 myPublishser6.DoSomethings();
             }
             #endregion
+
             Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             #region Version7 委托中订阅者方法超时的处理
             var myPublishser7 = new MyPulisher7();
@@ -115,7 +118,32 @@ namespace DelegateAndEvent
             {
                 Console.WriteLine(item);
             }
-           
+
+            #endregion
+
+            Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            #region Version8 
+            //在事件的发布和订阅这一过程中使用了异步调用，而在事件发布者和订阅者之间往往是松耦合的，发布者通常不需要获得订阅者方法执行的情况；而当使用异步调用时，更多情况下是为了提升系统的性能，而并非专用于事件的发布和订阅这一编程模型
+
+            Console.WriteLine("Client application started!\n");
+            Thread.CurrentThread.Name = "Main Thread";
+
+            var cal = new Calculator0();
+            AddDelegate addDelegate = cal.Add;
+            var asyncResult= addDelegate.BeginInvoke(3, 5,null,null);
+
+            // 做某些其它的事情，模拟需要执行3秒钟
+            for (int i = 1; i <= 3; i++)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(i));
+                Console.WriteLine("{0}: Client executed {1} second(s).",
+                    Thread.CurrentThread.Name, i);
+            }
+
+            int rtn = addDelegate.EndInvoke(asyncResult);
+            Console.WriteLine("Result: {0}\n", rtn);
+
+
             #endregion
         }
 
