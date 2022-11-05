@@ -130,7 +130,13 @@ namespace DelegateAndEvent
 
             var cal = new Calculator0();
             AddDelegate addDelegate = cal.Add;
-            var asyncResult= addDelegate.BeginInvoke(3, 5,null,null);
+
+            var asyncResult = addDelegate.BeginInvoke(3, 5,null, null);
+            //var asyncResult= addDelegate.BeginInvoke(3, 5, ar =>
+            //{
+            //    var data = ar.AsyncState;
+            //    Console.WriteLine("{0}: Result, {1}; Data: {2}\n", Thread.CurrentThread.Name, "rtn", data);
+            //}, "Not get Data");
 
             // 做某些其它的事情，模拟需要执行3秒钟
             for (int i = 1; i <= 3; i++)
@@ -140,8 +146,7 @@ namespace DelegateAndEvent
                     Thread.CurrentThread.Name, i);
             }
 
-            int rtn = addDelegate.EndInvoke(asyncResult);
-            Console.WriteLine("Result: {0}\n", rtn);
+            OnAddComplete(addDelegate,asyncResult);
 
 
             #endregion
@@ -159,5 +164,21 @@ namespace DelegateAndEvent
 
             return result.ToArray();
         }
+
+        static void OnAddComplete(AddDelegate del, IAsyncResult asyncResult)
+        {
+            /*
+                AsyncResult result = (AsyncResult)asyncResult;
+                AddDelegate del = (AddDelegate)result.AsyncDelegate;
+                string data = (string)asyncResult.AsyncState;
+
+                int rtn = del.EndInvoke(asyncResult);
+                Console.WriteLine("{0}: Result, {1}; Data: {2}\n",Thread.CurrentThread.Name, rtn, data);
+             */
+            int rtn = del.EndInvoke(asyncResult);
+            Console.WriteLine("{0}: Result, {1}; Data: {2}\n",
+                Thread.CurrentThread.Name, rtn,"");
+        }
+
     }
 }
