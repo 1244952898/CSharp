@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CSharp.Queens;
 using CSharp.ElsaticSearch;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Nest;
 using Newtonsoft.Json;
 using CSharp.TestInterface2;
@@ -17,6 +18,23 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Start");
+            var tsk= Task.Run(() =>
+            {
+                foreach (var i in Enumerable.Range(0, 10))
+                {
+                    Console.WriteLine($"{i}");
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                }
+            });
+            var at= tsk.GetAwaiter();
+            at.OnCompleted(() =>
+            {
+                Console.WriteLine("OVER");
+            });
+            Console.WriteLine("END");
+            Thread.Sleep(TimeSpan.FromSeconds(5));
+
             //var block = new blockingCollectionClass();
             //for (int i = 0; i < 10000; i++)
             //{
