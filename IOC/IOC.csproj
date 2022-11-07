@@ -15,7 +15,7 @@
     <ProjectReference Include="..\Factory\Factory.csproj" />
     <ProjectReference Include="..\IBLL\IBLL.csproj" />
     <ProjectReference Include="..\IDAL\IDAL.csproj" />
-    <ProjectReference Include="..\MyIOC_Common\MyIOC_Common.csproj" />
+    <ProjectReference Include="..\MyIOC_Common\MyIOC_Common_Version1.csproj" />
   </ItemGroup>
 
 </Project>
