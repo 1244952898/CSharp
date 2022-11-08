@@ -31,7 +31,6 @@ namespace EventBusCore.Controllers
             scbscriberB2.Unsubscribe_TeatBEvent();
             publisher.PublishTeatBEvent(12345);
 
-            Console.ReadKey();
             return View();
         }
 

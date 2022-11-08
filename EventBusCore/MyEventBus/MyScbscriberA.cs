@@ -12,7 +12,7 @@ namespace EventBusCore.MyEventBus
         public MyScbscriberA(string name)
         {
             Name = name;
-            MyEventBus.Default.AddEvent<TestAEvent>();
+            //MyEventBus.Default.AddEvent<TestAEvent>();
             MyEventBus.Default.GetEvent<TestAEvent>().Subscribe(TeatAEventHandler);
         }
 
