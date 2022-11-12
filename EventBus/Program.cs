@@ -26,6 +26,8 @@ namespace EventBus
                 Console.WriteLine("-------------------");    //睡眠2s
                 Thread.Sleep(2000);
             }
+
+            ThreadPool.QueueUserWorkItem(x => { });
         }
     }
 }
