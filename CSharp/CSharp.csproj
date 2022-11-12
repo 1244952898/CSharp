@@ -75,6 +75,7 @@
     <Compile Include="TestInterface2\Interface1.cs" />
     <Compile Include="TestInterface2\Interface2.cs" />
     <Compile Include="testt.cs" />
+    <Compile Include="ThreadDemo.cs" />
     <Compile Include="WeiXinErWeiCode.cs" />
     <Compile Include="字符串回文\StringCycle.cs" />
   </ItemGroup>
