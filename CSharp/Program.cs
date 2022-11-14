@@ -19,7 +19,8 @@ namespace CSharp
         static void Main(string[] args)
         {
 
-            ThreadDemo.Run();
+            ThreadDemo.Run2();
+            Console.WriteLine("Over");
             Console.ReadKey();
         }
 
