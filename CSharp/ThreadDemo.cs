@@ -91,7 +91,59 @@ namespace CSharp
             timer.Change(0, Timeout.Infinite);
         }
 
-        public static void TimerCallback(object state)
+        #region Async/Await
+        /// <summary>
+        /// Async Await
+        /// </summary>
+        public static void Run3()
+        {
+
+        }
+
+        private static async Task<string> MethodAsync(Int32 argument)
+        {
+            Int32 local = argument;
+            try
+            {
+                Type1 type1 = await Method1Async();
+                for (int i = 0; i < 3; i++)
+                {
+                    Type2 type2 = await Method2Async();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("catch");
+            }finally
+            {
+                Console.WriteLine("finally");
+            }
+            return "Done";
+        }
+
+        private static async Task<Type1> Method1Async()
+        {
+            return new Type1();
+            //return await new Task<Type1>(() =>
+            //{
+            //    Console.WriteLine("Type1");
+            //    return new Type1();
+            //});
+        }
+
+        private static async Task<Type2> Method2Async()
+        {
+            return new Type2();
+            //return await new Task<Type2>(() =>
+            //{
+            //    Console.WriteLine("Type2");
+            //    return new Type2();
+            //});
+        }
+        #endregion
+
+
+        private static void TimerCallback(object state)
         {
             int i = Int32.Parse(state.ToString())+1;
             Console.WriteLine($"{state}  {DateTime.Now} ThreadId:{Thread.CurrentThread.ManagedThreadId}");
@@ -99,7 +151,7 @@ namespace CSharp
             timer.Change(200, Timeout.Infinite);
         }
 
-        public static int Sum(CancellationToken ct,int m)
+        private static int Sum(CancellationToken ct,int m)
         {
             if (m==-1&&!ct.IsCancellationRequested)
             {
@@ -120,4 +172,7 @@ namespace CSharp
             Token = c;
         }
     }
+
+    public class Type1 { }
+    public class Type2 { }
 }
