@@ -18,7 +18,7 @@ namespace MyIOC_Common_Version2
         /// <summary>
         /// 保存注册信息
         /// </summary>
-        private Dictionary<string, IOCContainerRegistModel> _containerDictionary = new Dictionary<string, IOCContainerRegistModel>();
+        private readonly Dictionary<string, IOCContainerRegistModel> _containerDictionary = new Dictionary<string, IOCContainerRegistModel>();
 
         /// <summary>
         /// 保存常量的值
@@ -28,7 +28,7 @@ namespace MyIOC_Common_Version2
         /// <summary>
         /// 作用域单例的对象
         /// </summary>
-        private Dictionary<string, object> _containerScopeDictionary = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> _containerScopeDictionary = new Dictionary<string, object>();
 
         #endregion
 
