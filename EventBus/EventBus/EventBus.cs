@@ -26,7 +26,7 @@ namespace EventBus.EventBus
         /// </summary>
         private void MapEventToHandler()
         {
-            Assembly[] assemblies = AgileHelper.TypeFinder.GetAssemblies().ToArray();
+            //Assembly[] assemblies = AgileHelper.TypeFinder.GetAssemblies().ToArray();
         }
     }
 }

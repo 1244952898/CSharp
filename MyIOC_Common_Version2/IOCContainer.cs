@@ -23,7 +23,7 @@ namespace MyIOC_Common_Version2
         /// <summary>
         /// 保存常量的值
         /// </summary>
-        private Dictionary<string, object[]> _containerValueDictionary = new Dictionary<string, object[]>();
+        private readonly Dictionary<string, object[]> _containerValueDictionary = new Dictionary<string, object[]>();
 
         /// <summary>
         /// 作用域单例的对象

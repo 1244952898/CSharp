@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 
 namespace DesignModel
 {
-    /*
+    /*注意Volatile
      * 保证一个类仅有一个实例，并提供一个访问它的全局访问点。
      * 单例模式分为：懒汉模式，饿汉模式，双检锁/双重校验锁等。。。
      * 用途：
@@ -40,7 +41,8 @@ namespace DesignModel
         {
             if (instance == null)
             {
-                return new SingletonModel1();
+                var temp= new SingletonModel1();
+                Volatile.Write(ref instance, temp);
             }
             return instance;
         }
@@ -63,7 +65,8 @@ namespace DesignModel
                 lock (obj)
                 {
                     // 获取类对象锁，其他线程在外等待，其他线程进来再次判断，如果对象实例化了，则不需要再实例化
-                    instance ??= new SingletonModel2();
+                    var temp= new SingletonModel2();
+                    Volatile.Write(ref instance, temp);
                 }
             }
             return instance;
