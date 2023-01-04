@@ -10,7 +10,6 @@ namespace IOC_Version2
     {
         static void Main(string[] args)
         {
-           
 
             {
                 IIOCContainer container = new IOCContainer();
