@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesignModel.ClainOfResponsibility_责任链模式_;
+using System;
 
 namespace DesignModel
 {
@@ -7,6 +8,8 @@ namespace DesignModel
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            ClainOfResponsibilityDemo.main();
+            Console.ReadLine();
         }
     }
 }
