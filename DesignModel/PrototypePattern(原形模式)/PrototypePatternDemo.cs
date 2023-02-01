@@ -11,6 +11,9 @@ namespace DesignModel.PrototypePattern
      * 2、JAVA 中的 Object clone() 方法。
      * 
      */
+    /// <summary>
+    /// 原形实例指定创建对象的种类，通过拷贝这些原型创建新的对象
+    /// </summary>
     internal class PrototypePatternDemo
     {
         public static void main()
