@@ -9,6 +9,10 @@ namespace DesignModel.FlyweightPattern
      * 1、JAVA 中的 String，如果有则返回，如果没有则创建一个字符串保存在字符串缓存池里面。
      * 2、数据库的数据池。
      */
+
+    /// <summary>
+    /// 运用共享技术大量的实现
+    /// </summary>
     internal class FlyweightPatternDemo
     {
         private static string[] colors = new string[] { "Red", "Green", "Blue", "White", "Black" };
