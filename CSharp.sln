@@ -83,11 +83,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "23设计模式", "23设计�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignModel", "DesignModel\DesignModel.csproj", "{B3E34EA0-A7E7-43F6-9DDC-4B91B8A50675}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tesla", "Tesla\Tesla.csproj", "{A308F81B-21E5-4804-972D-346EDF2A5AFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T0", "Tesla\T0.csproj", "{A308F81B-21E5-4804-972D-346EDF2A5AFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{161C2E9D-9974-4E9F-8786-895D9EFC3BE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{161C2E9D-9974-4E9F-8786-895D9EFC3BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{199A5EF3-7A0C-4329-BABE-6BCE945FEBFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{199A5EF3-7A0C-4329-BABE-6BCE945FEBFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
