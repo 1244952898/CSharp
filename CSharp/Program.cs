@@ -11,6 +11,7 @@ using System.Threading;
 using Nest;
 using Newtonsoft.Json;
 using CSharp.TestInterface2;
+using CSharp.copyTest;
 
 namespace CSharp
 {
@@ -18,6 +19,17 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            Class1 class1= new Class1();
+            class1.T(199);
+            var cp = new Copy1();
+            cp.Num = 10;
+            cp.C0 = new Copy0 { Age = 1, Name = "zy" };
+            var cp0=cp;
+            cp0.Num = 110;
+            Console.WriteLine(cp.Num);
+
+            var cp1= Clone
+
 
             ThreadDemo.Run2();
             Console.WriteLine("Over");
