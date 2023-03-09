@@ -19,7 +19,7 @@ namespace CSharp
         public void T(int a)
         {
             int b = a, c, d;
-            Console.WriteLine(a,b,c)
+            //Console.WriteLine($"${a},${b},${c},${d}");
         }
     }
 }

@@ -82,6 +82,8 @@
     <Compile Include="testt.cs" />
     <Compile Include="ThreadDemo.cs" />
     <Compile Include="WeiXinErWeiCode.cs" />
+    <Compile Include="多线程\DownLoadPageDemo.cs" />
+    <Compile Include="多线程\SumCharacter.cs" />
     <Compile Include="字符串回文\StringCycle.cs" />
   </ItemGroup>
   <ItemGroup>
