@@ -20,13 +20,42 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            var urls = new string[]
+            new Thread(() =>
             {
-                "https://www.baidu.com/",
-                "https://blog.csdn.net/"
-            };
-            var res= DownLoadPageDemo.DownLoadAsync(urls);
-            Console.WriteLine(res.Result);
+                try
+                {
+                    throw null;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception!");
+                }
+
+            }).Start();
+
+            try
+            {
+                new Thread(() =>
+                {
+                    throw null;
+                }).Start();
+            }
+            catch (Exception ex)
+            {
+                // We'll never get here!
+                Console.WriteLine("Exception!");
+            }
+
+            Console.Read();
+            //for (int i = 0; i < 10; i++)
+            //    new Thread(() => Console.Write(i)).Start();
+            //var urls = new string[]
+            //{
+            //    "https://www.baidu.com/",
+            //    "https://blog.csdn.net/"
+            //};
+            //var res= DownLoadPageDemo.DownLoadAsync(urls);
+            //Console.WriteLine(res.Result);
         }
 
 
