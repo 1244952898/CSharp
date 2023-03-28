@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -808,6 +809,25 @@ namespace 异步多线程学习
 
 
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++btn_Async_Click {0} 结束", Thread.CurrentThread.ManagedThreadId);
+        }
+
+        private async void button18_Click(object sender, EventArgs e)
+        {
+            var t = GetData();
+            button18.Text= "OK";
+            var txt = await t;
+            label2.Text= txt;
+        }
+
+        public async Task<string> GetData()
+        {
+            var txt = string.Empty;
+            using (HttpClient client=new HttpClient())
+            {
+              var res =  await client.GetStringAsync("https://blog.stephencleary.com/2012/02/async-and-await.html");
+                txt = res;
+            }
+            return txt;
         }
     }
 }

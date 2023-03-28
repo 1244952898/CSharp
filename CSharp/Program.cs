@@ -20,6 +20,11 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var ints = new int[] { 1, 2, };
+            ints.ToArray();
+           Task.Delay(1000).Wait();
+            //Task.Factory.StartNew(() => { }).
+
             new Thread(() =>
             {
                 try
@@ -45,7 +50,7 @@ namespace CSharp
                 // We'll never get here!
                 Console.WriteLine("Exception!");
             }
-
+           
             Console.Read();
             //for (int i = 0; i < 10; i++)
             //    new Thread(() => Console.Write(i)).Start();
