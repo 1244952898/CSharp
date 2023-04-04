@@ -13,9 +13,9 @@ namespace CacheDemo
     {
         public static List<T> Query<T>()
         {
-            Console.WriteLine("This is {0} Query", typeof(RemoteHelper));
+            Console.WriteLine("This is 18311{0} Query", typeof(RemoteHelper));
             long lResult = 0;
-            for (int i = 0; i < 1000000000; i++)
+            for (int i = 0; i < 462799; i++)
             {
                 lResult += i;
             }

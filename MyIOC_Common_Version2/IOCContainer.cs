@@ -88,12 +88,11 @@ namespace MyIOC_Common_Version2
             var key = this.GetKey(typeof(IFrom).FullName, shortName);
             if (!this._containerDictionary.ContainsKey(key))
             {
-                this._containerDictionary.Add(key
-              , new IOCContainerRegistModel
-              {
-                  Lifetime = lifetimeType,
-                  TargetType = typeof(ITo)
-              });
+                this._containerDictionary.Add(key, new IOCContainerRegistModel
+                {
+                    Lifetime = lifetimeType,
+                    TargetType = typeof(ITo)
+                });
             }
             else
             {

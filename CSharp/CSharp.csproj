@@ -71,6 +71,7 @@
     <Compile Include="ElsaticSearch\Person.cs" />
     <Compile Include="ElsaticSearch\Project.cs" />
     <Compile Include="ImgDemo.cs" />
+    <Compile Include="ITest.cs" />
     <Compile Include="Parent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
