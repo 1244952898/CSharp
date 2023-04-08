@@ -73,6 +73,9 @@
     <Compile Include="ElsaticSearch\Project.cs" />
     <Compile Include="ImgDemo.cs" />
     <Compile Include="ITest.cs" />
+    <Compile Include="NodeTest\Nod.cs" />
+    <Compile Include="NodeTest\Node.cs" />
+    <Compile Include="NodeTest\Node1.cs" />
     <Compile Include="Parent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

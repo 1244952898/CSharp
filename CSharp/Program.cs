@@ -24,8 +24,9 @@ namespace CSharp
             var na = new Node<string>("a");
             var nb = new Node<string>("a",na);
             //var nc = new Node<int>(1,na);
-            
-
+            var n1 = new NodeTest.Node1<int>(1);
+            var n2 = new NodeTest.Node1<string>("2",n1);
+            var a = string.Equals("a", "b",StringComparison.InvariantCultureIgnoreCase);
 
             Class4 class4= new Class4();
             class4.T(delegate (int i)
