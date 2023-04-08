@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using CSharp.TestInterface2;
 using CSharp.copyTest;
 using CSharp.多线程;
+using CSharp.NodeTest;
 
 namespace CSharp
 {
@@ -20,6 +21,18 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var na = new Node<string>("a");
+            var nb = new Node<string>("a",na);
+            //var nc = new Node<int>(1,na);
+            
+
+
+            Class4 class4= new Class4();
+            class4.T(delegate (int i)
+            {
+                Console.WriteLine(i);
+            });
+
             var ints = new int[] { 1, 2, };
             ints.ToArray();
            Task.Delay(1000).Wait();

@@ -10,22 +10,23 @@ namespace CSharp
     {
         public int[] GetNums(int k, int[] nums)
         {
-            var result=new List<int>();
+
+             var result = new List<int>();
             var lst = nums.ToList();
             lst.Sort();
             var start = 0;
-           while (start < lst.Count)
+            while (start < lst.Count)
             {
-                var end = start+1;
+                var end = start + 1;
                 while (lst[start] == lst[end])
                 {
                     end++;
                 }
-                if (end-start==k)
+                if (end - start == k)
                 {
                     result.Add(lst[start]);
                 }
-                start=end;
+                start = end;
             }
 
             return result.ToArray();

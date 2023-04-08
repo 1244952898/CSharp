@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Threadlianxi
 {
@@ -34,7 +35,9 @@ namespace Threadlianxi
                 t2.Join();
                 Console.WriteLine(CountWitLock.Count);
             }
-            
+            var t = Task.Delay(1000);
+            var awt= t.GetAwaiter();
+            //awt.
         }
     }
 

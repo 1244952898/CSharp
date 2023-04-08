@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "IBLL": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52197;http://localhost:52202"
+    }
+  }
+}
