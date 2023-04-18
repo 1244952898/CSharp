@@ -21,6 +21,13 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var l0 = new List<int>() { 1, 2, 3, 4, 5 };
+            var l1 = new List<int>() { 3, 4, 5, 6, 7 };
+            var l3 = l0.Union(l1);
+            var l4 = l0.Except(l1);
+            var l5 = l0.Intersect(l1);
+
+
             var na = new Node<string>("a");
             var nb = new Node<string>("a",na);
             //var nc = new Node<int>(1,na);
@@ -28,6 +35,11 @@ namespace CSharp
             var n2 = new NodeTest.Node1<string>("2",n1);
             var a = string.Equals("a", "b",StringComparison.InvariantCultureIgnoreCase);
 
+            Func<AggregateException, object> fn1 = null;
+            Func<Exception, string> fn2 = null;
+            fn1 = fn2;
+            //fn2 = fn1;
+            IEnumerable<object> list = new List<string>();
             Class4 class4= new Class4();
             class4.T(delegate (int i)
             {
