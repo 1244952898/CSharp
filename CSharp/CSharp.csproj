@@ -50,6 +50,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,6 +73,8 @@
     <Compile Include="ElsaticSearch\Person.cs" />
     <Compile Include="ElsaticSearch\Project.cs" />
     <Compile Include="ImgDemo.cs" />
+    <Compile Include="ISTest\A.cs" />
+    <Compile Include="ISTest\IIsA.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="NodeTest\Nod.cs" />
     <Compile Include="NodeTest\Node.cs" />
