@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using Blog.Core.ConfigureExtensions;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Blog.Core
 {
@@ -33,9 +34,23 @@ namespace Blog.Core
             #region Swagger
 
             services.AddMvc();
-
             services.AddSwaggerGen(setupAction =>
             {
+                //开启加权小锁
+                setupAction.OperationFilter<AddResponseHeadersFilter>();
+                setupAction.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+
+                //header加token
+                setupAction.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+
+                setupAction.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "JWT(授权) 再 bear token加空格",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
                 setupAction.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v0.1.0",
@@ -51,7 +66,7 @@ namespace Blog.Core
                 });
 
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "Blog.Core.xml");
-                setupAction.IncludeXmlComments(filePath,true);
+                setupAction.IncludeXmlComments(filePath, true);
 
                 var xmlModelPath = Path.Combine(AppContext.BaseDirectory, "Blog.Core.Model.xml");
                 setupAction.IncludeXmlComments(xmlModelPath);

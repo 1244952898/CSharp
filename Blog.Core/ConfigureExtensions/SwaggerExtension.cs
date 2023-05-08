@@ -11,7 +11,8 @@ namespace Blog.Core.ConfigureExtensions
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                var ApiName = configuration["ApiName"]??"Blog.Core";
+                //c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
+                var ApiName = configuration["ApiName"] ?? "Blog.Core";
                 var version = configuration["version"] ?? "v1";
                 c.SwaggerEndpoint($"/swagger/{version}/swagger.json", $"{ApiName} {version}");
                 c.RoutePrefix = "";

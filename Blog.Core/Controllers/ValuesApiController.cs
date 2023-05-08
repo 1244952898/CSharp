@@ -18,10 +18,10 @@ namespace Blog.Core.Controllers
         /// <param name="id">用户id</param>
         /// <returns>id列表</returns>
         [HttpGet("get")]
-        [ApiExplorerSettings(IgnoreApi =true)]
-        public IEnumerable<string> Get(string id, SwaggerModel m)
+        //[ApiExplorerSettings(IgnoreApi =true)]
+        public IEnumerable<string> Get()
         {
-            return new string[] {"a","b","c",id,m.Name };
+            return new string[] {"a","b","c","aaa" };
         }
 
         /// <summary>
