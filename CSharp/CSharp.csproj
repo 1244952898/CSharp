@@ -71,6 +71,7 @@
     <Compile Include="ElsaticSearch\ElasticLowLevelClientDemo.cs" />
     <Compile Include="ElsaticSearch\Person.cs" />
     <Compile Include="ElsaticSearch\Project.cs" />
+    <Compile Include="GCD_Algorithm.cs" />
     <Compile Include="ImgDemo.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="NodeTest\Nod.cs" />

@@ -21,6 +21,7 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var nm= GCD_Algorithm.Gcd(24, 24);
             var l0 = new List<int>() { 1, 2, 3, 4, 5 };
             var l1 = new List<int>() { 3, 4, 5, 6, 7 };
             var l3 = l0.Union(l1);
