@@ -14,6 +14,9 @@ using CSharp.TestInterface2;
 using CSharp.copyTest;
 using CSharp.多线程;
 using CSharp.NodeTest;
+using System.Globalization;
+using CSharp.ISTest;
+using System.Collections;
 
 namespace CSharp
 {
@@ -21,13 +24,35 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var discs=new Dictionary<string, string>();
+            discs["a"] = "1";
+            discs["a"] = "111";
+            discs["b"] = "2";
+
+            foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+                Console.WriteLine("  {0} = {1}", de.Key, de.Value);
+
+            A aa = new A();
+            if (aa is IIsA abc)
+            {
+                abc.M0();
+            }
+            string.Format(CultureInfo.InvariantCulture, "");
             var nm= GCD_Algorithm.Gcd(24, 24);
             var l0 = new List<int>() { 1, 2, 3, 4, 5 };
             var l1 = new List<int>() { 3, 4, 5, 6, 7 };
             var l3 = l0.Union(l1);
             var l4 = l0.Except(l1);
             var l5 = l0.Intersect(l1);
-
+            Action<int> getTes = (x) =>
+            {
+                Console.WriteLine(x);
+            };
+            getTes += (y) =>
+            {
+                Console.WriteLine(y);
+            };
+            getTes.Invoke(2);
 
             var na = new Node<string>("a");
             var nb = new Node<string>("a",na);
