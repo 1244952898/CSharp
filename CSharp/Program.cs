@@ -25,6 +25,9 @@ namespace CSharp
         static void Main(string[] args)
         {
             var discs=new Dictionary<string, string>();
+
+
+
             discs["a"] = "1";
             discs["a"] = "111";
             discs["b"] = "2";
