@@ -25,6 +25,9 @@ namespace CSharp
         static void Main(string[] args)
         {
             var discs=new Dictionary<string, string>();
+
+
+
             discs["a"] = "1";
             discs["a"] = "111";
             discs["b"] = "2";
@@ -38,6 +41,7 @@ namespace CSharp
                 abc.M0();
             }
             string.Format(CultureInfo.InvariantCulture, "");
+            var nm= GCD_Algorithm.Gcd(24, 24);
             var l0 = new List<int>() { 1, 2, 3, 4, 5 };
             var l1 = new List<int>() { 3, 4, 5, 6, 7 };
             var l3 = l0.Union(l1);
@@ -73,7 +77,7 @@ namespace CSharp
 
             var ints = new int[] { 1, 2, };
             ints.ToArray();
-           Task.Delay(1000).Wait();
+            Task.Delay(1000).Wait();
             //Task.Factory.StartNew(() => { }).
 
             new Thread(() =>
