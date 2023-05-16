@@ -77,7 +77,7 @@ namespace CSharp
 
             var ints = new int[] { 1, 2, };
             ints.ToArray();
-           Task.Delay(1000).Wait();
+            Task.Delay(1000).Wait();
             //Task.Factory.StartNew(() => { }).
 
             new Thread(() =>
