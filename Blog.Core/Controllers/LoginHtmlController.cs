@@ -1,34 +1,15 @@
-﻿using Blog.Core.JWT;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System;
 
 namespace Blog.Core.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class LoginTestController : ControllerBase
+    public class LoginHtmlController : Controller
     {
-        [HttpGet]
-        public async Task<object> GetJwtStr(string username, string password)
-        {
-            var jwtModel = new TokenModelJwt()
-            {
-                Uid = 1,
-                Role = "Admin"
-            };
-            return Ok(new
-            {
-                success = true,
-                token = jwtModel
-            });
-        }
 
-        [HttpGet]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             const string Issuer = "https://gov.uk";
@@ -40,8 +21,8 @@ namespace Blog.Core.Controllers
                 new Claim("ChildhoodHero", "Ronnie James Dio", ClaimValueTypes.String)
             };
 
-            var claimIdentity=new ClaimsIdentity(claims,"DriverLicense");
-            var claimPrincipal=new ClaimsPrincipal(claimIdentity);
+            var claimIdentity = new ClaimsIdentity(claims, "DriverLicense");
+            var claimPrincipal = new ClaimsPrincipal(claimIdentity);
 
             await HttpContext.SignInAsync("Cookie", claimPrincipal, new AuthenticationProperties
             {
@@ -50,7 +31,7 @@ namespace Blog.Core.Controllers
                 AllowRefresh = false,
             });
 
-            return RedirectToLocal(returnUrl);
+            return Redirect(returnUrl);
         }
     }
 }
