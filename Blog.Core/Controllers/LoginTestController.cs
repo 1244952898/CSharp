@@ -28,7 +28,6 @@ namespace Blog.Core.Controllers
             });
         }
 
-        [HttpGet]
   
     }
 }
