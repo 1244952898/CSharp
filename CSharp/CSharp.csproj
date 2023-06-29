@@ -60,47 +60,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="blockingCollectionClass.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="Class2.cs" />
-    <Compile Include="Class3.cs" />
-    <Compile Include="Class4.cs" />
     <Compile Include="copyTest\Copy0.cs" />
-    <Compile Include="DistinctExtend.cs" />
-    <Compile Include="Children.cs" />
     <Compile Include="ElsaticSearch\AConnectionSettings.cs" />
     <Compile Include="ElsaticSearch\ElasticLowLevelClientDemo.cs" />
     <Compile Include="ElsaticSearch\Person.cs" />
     <Compile Include="ElsaticSearch\Project.cs" />
-    <Compile Include="GCD_Algorithm.cs" />
-    <Compile Include="ImgDemo.cs" />
-    <Compile Include="ISTest\A.cs" />
-    <Compile Include="ISTest\IIsA.cs" />
-    <Compile Include="ITest.cs" />
-    <Compile Include="NodeTest\Nod.cs" />
-    <Compile Include="NodeTest\Node.cs" />
-    <Compile Include="NodeTest\Node1.cs" />
-    <Compile Include="Parent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queens\Queen.cs" />
-    <Compile Include="Queens\SevenQueen.cs" />
-    <Compile Include="TestInterface2\IntefaceClass.cs" />
-    <Compile Include="TestInterface2\Interface1.cs" />
-    <Compile Include="TestInterface2\Interface2.cs" />
-    <Compile Include="testt.cs" />
-    <Compile Include="ThreadDemo.cs" />
-    <Compile Include="WeiXinErWeiCode.cs" />
-    <Compile Include="多线程\DownLoadPageDemo.cs" />
-    <Compile Include="多线程\SumCharacter.cs" />
-    <Compile Include="字符串回文\StringCycle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="consul命令1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
