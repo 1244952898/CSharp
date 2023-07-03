@@ -6,7 +6,7 @@ namespace DesignModel
 {
     internal class Program
     {
-
+        #region 0
         /*
          单一职责：就一个类而言，应该仅有一个引起它变化点原因
 
@@ -36,6 +36,16 @@ namespace DesignModel
         21.解释器模式(Interpreter)：定义一种语言，定义它的文法的一种表示，并定义一个解释器这个解释器使用该表示来解释语言中的句子
         22.访问者模式(Visitor)：作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作
          */
+        #endregion
+
+        #region 1
+        /*
+         
+        1.抽象工厂(Abstract Factory)：提供一个创建一系列相关的或者相互依赖的对象的接口，而无需指定他们具体的类。
+        2.建造者模式(Builder)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
+        3.工厂模式(Factory):定义一个创建对象的接口，让子类决定实例化哪个类。使一个类的实例化延迟到子类。
+         */
+        #endregion
 
         static void Main(string[] args)
         {
