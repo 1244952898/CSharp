@@ -38,7 +38,7 @@
       <HintPath>..\packages\Elasticsearch.Net.6.7.0\lib\net461\Elasticsearch.Net.dll</HintPath>
     </Reference>
     <Reference Include="IOM">
-      <HintPath>..\..\..\..\..\Desktop\Aras Document\IOM.dll</HintPath>
+      <HintPath>C:\Users\庄玉\Desktop\Aras Document\IOM.dll</HintPath>
     </Reference>
     <Reference Include="Nest, Version=6.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <HintPath>..\packages\NEST.6.7.0\lib\net461\Nest.dll</HintPath>
