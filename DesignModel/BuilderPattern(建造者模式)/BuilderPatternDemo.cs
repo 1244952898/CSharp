@@ -15,7 +15,7 @@ namespace DesignModel.BuilderPattern
     /// </summary>
     internal class BuilderPatternDemo
     {
-        public static void main()
+        public static void main1()
         {
             MealBuilder mealBuilder = new MealBuilder();
 

@@ -6,7 +6,7 @@ namespace DesignModel.StatePattern_状态模式_._2
 {
     internal class Demo
     {
-        public static void Main()
+        public static void Main1()
         {
             StatusContext context= new StatusContext();
             

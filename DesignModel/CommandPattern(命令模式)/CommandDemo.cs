@@ -6,7 +6,7 @@ namespace DesignModel.CommandPattern_命令模式_
 {
     internal class CommandDemo
     {
-        public static void main()
+        public static void main1()
         {
             Waitor waitor= new Waitor();
             Reciever reciever= new Reciever();

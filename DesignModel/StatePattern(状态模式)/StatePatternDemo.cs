@@ -14,7 +14,7 @@ namespace DesignModel.StatePattern_状态模式_
         /// 
         /// </summary>
         /// <param name="args"></param>
-        public static void main(String[] args)
+        public static void main1(String[] args)
         {
             Context context = new Context();
 

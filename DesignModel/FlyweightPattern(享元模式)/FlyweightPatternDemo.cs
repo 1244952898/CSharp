@@ -16,7 +16,7 @@ namespace DesignModel.FlyweightPattern
     internal class FlyweightPatternDemo
     {
         private static string[] colors = new string[] { "Red", "Green", "Blue", "White", "Black" };
-        public static void main()
+        public static void main1()
         {
             for (int i = 0; i < 20; ++i)
             {

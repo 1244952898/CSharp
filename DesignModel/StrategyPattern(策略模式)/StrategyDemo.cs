@@ -7,7 +7,7 @@ namespace DesignModel.StrategyPattern_策略模式_
 {
     internal class StrategyDemo
     {
-        public static void main()
+        public static void main1()
         {
             var strategyContextA = new StrategyContext("A");
             strategyContextA.getPrice();

@@ -13,7 +13,7 @@ namespace DesignModel.MementoPattern_备忘录模式_
          * 4、IE 中的后退。 
          * 5、数据库的事务管理。
          */
-        public static void main()
+        public static void main1()
         {
             Role role= new Role();
             role.InitRole();

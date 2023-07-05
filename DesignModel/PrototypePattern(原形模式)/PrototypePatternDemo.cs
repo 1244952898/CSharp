@@ -16,7 +16,7 @@ namespace DesignModel.PrototypePattern
     /// </summary>
     internal class PrototypePatternDemo
     {
-        public static void main()
+        public static void main1()
         {
             ShapeCache.LoadCache();
 

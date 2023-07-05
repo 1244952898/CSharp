@@ -12,7 +12,7 @@ namespace DesignModel.AdapterPattern_适配器模式_
      */
     internal class AdapterPatternDemo
     {
-        public static void main()
+        public static void main1()
         {
             AudioPlayer audioPlayer = new AudioPlayer();
 

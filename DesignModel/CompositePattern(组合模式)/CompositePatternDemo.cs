@@ -15,7 +15,7 @@ namespace DesignModel.CompositePattern_组合模式_
      */
     internal class CompositePatternDemo
     {
-        public static void main()
+        public static void main1()
         {
             Employee CEO = new Employee("John", "CEO", 30000);
 

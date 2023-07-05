@@ -6,7 +6,7 @@ namespace DesignModel.ClainOfResponsibility_责任链模式_
 {
     internal class ClainOfResponsibilityDemo
     {
-        public static void main()
+        public static void main1()
         {
             var cManager = new CommonManager("aaa");
             var mManager = new MajorManager("bbb");

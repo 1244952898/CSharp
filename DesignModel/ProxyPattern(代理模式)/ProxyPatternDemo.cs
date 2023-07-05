@@ -12,7 +12,7 @@ namespace DesignModel.ProxyPattern_代理模式_
      */
     internal class ProxyPatternDemo
     {
-        public static void main()
+        public static void main1()
         {
             IImage image = new ProxyImage("test_10mb.jpg");
 

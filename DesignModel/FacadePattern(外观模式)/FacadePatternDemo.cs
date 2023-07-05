@@ -11,7 +11,7 @@ namespace DesignModel.FacadePattern
      */
     internal class FacadePatternDemo
     {
-        public static void main()
+        public static void main1()
         {
             ShapeMaker shapeMaker = new ShapeMaker();
 
