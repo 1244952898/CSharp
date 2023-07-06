@@ -1,11 +1,16 @@
 ﻿using C1.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<C1Context>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("C1Context")));
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("C1Context"));
+    //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution);
+});
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
