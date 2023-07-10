@@ -15,7 +15,7 @@ namespace CacheDemo
         {
             Console.WriteLine("This is {0} Query", typeof(FileHelper));
             long lResult = 0;
-            for (int i = 0; i < 10000000000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 lResult += i;
             }

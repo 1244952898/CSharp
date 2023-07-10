@@ -135,20 +135,20 @@ namespace 异步多线程学习
 
         private void btnAsyc_Click(object sender, EventArgs e)
         {
-           btnAsycClick();
+           //btnAsycClick();
         } 
 
-        private async Task btnAsycClick() {
-            Console.WriteLine("++btnAsyc {0} 开始", Thread.CurrentThread.ManagedThreadId);
-            Task task = new Task(() => {
-                Console.WriteLine("Task{0} 开始", Thread.CurrentThread.ManagedThreadId);
-                Thread.Sleep(1000);
-                Console.WriteLine("Task {0} 结束", Thread.CurrentThread.ManagedThreadId);
-            });
-            task.Start();
-            Console.WriteLine("++btnAsyc {0} 结束", Thread.CurrentThread.ManagedThreadId);
+        //private async Task btnAsycClick() {
+        //    Console.WriteLine("++btnAsyc {0} 开始", Thread.CurrentThread.ManagedThreadId);
+        //    Task task = new Task(() => {
+        //        Console.WriteLine("Task{0} 开始", Thread.CurrentThread.ManagedThreadId);
+        //        Thread.Sleep(1000);
+        //        Console.WriteLine("Task {0} 结束", Thread.CurrentThread.ManagedThreadId);
+        //    });
+        //    task.Start();
+        //    Console.WriteLine("++btnAsyc {0} 结束", Thread.CurrentThread.ManagedThreadId);
 
-        }
+        //}
 
         private void btnThread_Click(object sender, EventArgs e)
         {
@@ -628,7 +628,7 @@ namespace 异步多线程学习
                         throw new Exception("抛出异常！");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.WriteLine("For线程Id={0},抛出异常！", Thread.CurrentThread.ManagedThreadId);
                 }

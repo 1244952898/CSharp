@@ -10,6 +10,7 @@ builder.Services.AddDbContext<C1Context>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("C1Context"));
     //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution);
+  
 });
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
