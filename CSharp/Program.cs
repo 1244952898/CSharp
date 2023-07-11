@@ -9,10 +9,7 @@ namespace CSharp
         {
             var discs=new Dictionary<string, string>();
             var ids=new List<string>();
-            if (ids.Exists(x=>x.Equals("a")))
-            {
-                
-            }
+            ids.Add("a");
 
         }
     }
