@@ -8,7 +8,7 @@ namespace CSharp
         static void Main(string[] args)
         {
             var discs=new Dictionary<string, string>();
-
+            var ids=new List<string>();
 
         }
     }
