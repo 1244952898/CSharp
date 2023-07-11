@@ -31,9 +31,9 @@ namespace ContosoUniversity.Pages.Students
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            var emptyStudent = new Student();
+            Student emptyStudent = new();
 
-            if (await TryUpdateModelAsync<Student>(emptyStudent, "student", s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
+            if (await TryUpdateModelAsync(emptyStudent, "student", s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
                 _context.Students.Add(emptyStudent);
                 await _context.SaveChangesAsync();
