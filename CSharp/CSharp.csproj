@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aras Innovator\A.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="MyListEnumerator\MyList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
