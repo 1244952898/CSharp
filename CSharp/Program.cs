@@ -1,7 +1,9 @@
 ﻿using Nest;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
 
 namespace CSharp
 {
@@ -9,67 +11,80 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            List<Class1> cls1 = new List<Class1>();
-            cls1.Add(new Class1
+            //Abc abc = new Abc();
+            //abc.test();
+            #region MyRegion
+            XmlDocument xmlDoc = new XmlDocument();
+            string filepath = "D:\\ipc.xml";
+            //xmlDoc.LoadXml(filepath);
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            settings.IgnoreComments = true;
+   
+            //XmlReader reader = XmlReader.Create(filepath, settings);
+            using (XmlReader reader = XmlReader.Create(filepath, settings))
             {
-                Name1 = "1",
-                Name2 = "2",
-                Name3 = "3",
-                Name4 = "4",
-                Name5 = "5",
-            });
-            cls1.Add(new Class1
-            {
-                Name1 = "11",
-                Name2 = "22",
-                Name3 = "33",
-                Name4 = "44",
-                Name5 = "55",
-            });
-            cls1.Add(new Class1
-            {
-                Name1 = "111",
-                Name2 = "222",
-                Name3 = "333",
-                Name4 = "444",
-                Name5 = "5",
-            });
-            var cls2 = cls1.GroupBy(cls =>
-            {
-                return cls.Name5;
-            });
-            var ll = cls2.ToList();
-            foreach (var l in ll)
-            {
-                var asdsad = l;
-            }
-            //var discs=new Dictionary<string, string>();
-            //var ids=new List<string>() { "a","b","c","d"};
-            ////var ids1=ids.GroupBy()
-            //var sdafd =ids.OrderBy(x=>x.Contains("a")).ToList();
-            //Console.WriteLine(sdafd.Count);
-            //var idsEx = ids.GetEnumerator();
-            //while (idsEx.MoveNext())
-            //{
-            //    //ids.Remove(id);
-            //}
-            //foreach (var id in ids)
-            //{
-            //    ids.Remove(id);
-            //    Console.WriteLine(id);
-            //}
-            //var ids1=new List<string>();
-            //ids.Add("a");
-            //ids1.Add("b");
+              
+                xmlDoc.Load(reader);
 
-            //ids.Union(ids1);
-            //ids.Except(ids1);
-            //ids.Intersect(ids1);
+                var pro_xml1 = xmlDoc.SelectSingleNode("/ns:MainDeclaration/ns:IPC-1752B/ns:Product");
+
+                XmlNamespaceManager nsMgr = new XmlNamespaceManager(xmlDoc.NameTable); 
+                nsMgr.AddNamespace("ns", "https://webstds.ipc.org/175x/1752B/1752B");
+                var pro_xml = xmlDoc.SelectSingleNode("/ns:MainDeclaration/ns:IPC-1752B/ns:Product", nsMgr);
+                XmlNode errorNode = xmlDoc.SelectSingleNode("/ns:MainDeclaration", nsMgr);
+
+                XmlNamespaceManager nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
+                nsmgr.AddNamespace("ns", "https://webstds.ipc.org/175x/1752B/1752B");
+                xmlDoc.SelectSingleNode("//ns:error", nsmgr);
+
+                var pro_xml0 = xmlDoc.DocumentElement.SelectNodes("//MainDeclaration");
+                //pro_xml0.Item(0).Value = "1";
+                var xs = xmlDoc.DocumentElement.OuterXml;
+                // 
+                //var productNodes = xmlDoc.GetElementsByTagName("Product");
+                //var node = xmlDoc.ChildNodes[1].SelectNodes("xml");
+                //xmlDoc.SelectSingleNode("MainDeclaration\\IPC-1752B\\Product");
+                XmlNode root = xmlDoc.DocumentElement;
+               
+            }
+
+
+
+            
+            //reader.Close();
+
+           
+           // XmlNode xmlNode = doc.DocumentElement.SelectSingleNode(xPathString, nsmgr);
+            #endregion
+
         }
     }
 
     public class Abc
     { 
         public List<string> names { get; set; }
+
+        public void test()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml("<book ISBN=\"q\">" +
+                        "<title>Pride And Prejudice</title>" +
+                        "<price>19.95</price>" +
+                        "</book>");
+
+            XmlNode root = doc.FirstChild;
+
+            var n = GetBook("q", doc);
+        }
+
+        public XmlNode GetBook(string uniqueAttribute, XmlDocument doc)
+        {
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("bk", "http://www.contoso.com/books");
+            string xPathString = "//book";
+            XmlNode xmlNode = doc.DocumentElement.SelectSingleNode(xPathString, nsmgr);
+            return xmlNode;
+        }
     }
 }
