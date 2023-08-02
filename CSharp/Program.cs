@@ -39,7 +39,10 @@ namespace CSharp
                 return cls.Name5;
             });
             var ll = cls2.ToList();
-            
+            foreach (var l in ll)
+            {
+                var asdsad = l;
+            }
             //var discs=new Dictionary<string, string>();
             //var ids=new List<string>() { "a","b","c","d"};
             ////var ids1=ids.GroupBy()
