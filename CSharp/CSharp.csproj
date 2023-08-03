@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aras Innovator\1.html" />
     <Compile Include="Aras Innovator\A.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="MyListEnumerator\MyList.cs" />

@@ -27,35 +27,13 @@ namespace CSharp
               
                 xmlDoc.Load(reader);
 
-                var pro_xml1 = xmlDoc.SelectSingleNode("/ns:MainDeclaration/ns:IPC-1752B/ns:Product");
-
                 XmlNamespaceManager nsMgr = new XmlNamespaceManager(xmlDoc.NameTable); 
                 nsMgr.AddNamespace("ns", "https://webstds.ipc.org/175x/1752B/1752B");
                 var pro_xml = xmlDoc.SelectSingleNode("/ns:MainDeclaration/ns:IPC-1752B/ns:Product", nsMgr);
-                XmlNode errorNode = xmlDoc.SelectSingleNode("/ns:MainDeclaration", nsMgr);
-
-                XmlNamespaceManager nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
-                nsmgr.AddNamespace("ns", "https://webstds.ipc.org/175x/1752B/1752B");
-                xmlDoc.SelectSingleNode("//ns:error", nsmgr);
-
-                var pro_xml0 = xmlDoc.DocumentElement.SelectNodes("//MainDeclaration");
-                //pro_xml0.Item(0).Value = "1";
-                var xs = xmlDoc.DocumentElement.OuterXml;
-                // 
-                //var productNodes = xmlDoc.GetElementsByTagName("Product");
-                //var node = xmlDoc.ChildNodes[1].SelectNodes("xml");
-                //xmlDoc.SelectSingleNode("MainDeclaration\\IPC-1752B\\Product");
-                XmlNode root = xmlDoc.DocumentElement;
                
             }
 
 
-
-            
-            //reader.Close();
-
-           
-           // XmlNode xmlNode = doc.DocumentElement.SelectSingleNode(xPathString, nsmgr);
             #endregion
 
         }
