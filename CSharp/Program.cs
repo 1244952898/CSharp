@@ -11,6 +11,27 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var dic=new Dictionary<string, B>();
+            dic.Add("1", new B { Name = "1", Description = "1" });
+            dic.Add("2", new B { Name = "2", Description = "2" });
+            dic.Add("3", new B { Name = "3", Description = "3" });
+
+            var b4 = new B { Name = "4", Description = "4" };
+            var liB = new List<B>();
+            liB.Add(b4);
+            dic.Add("4", b4);
+
+            var b5=dic["4"]; 
+            b5.Name = "5";
+            b5.Description = "5";
+            liB.Add(b5);
+            
+
+            var list = new List<string>();
+            var tus = (1, 2, 3, 4, 5,"6",1,2,2,2,2,2,2,3);
+            var tuple2=ValueTuple.Create(1, 2, 3, 4, 5, "6");
+            Console.WriteLine(tus.GetType());
+            
             //Abc abc = new Abc();
             //abc.test();
             #region MyRegion
@@ -35,7 +56,7 @@ namespace CSharp
 
 
             #endregion
-
+         
         }
     }
 
@@ -64,5 +85,11 @@ namespace CSharp
             XmlNode xmlNode = doc.DocumentElement.SelectSingleNode(xPathString, nsmgr);
             return xmlNode;
         }
+    }
+
+    public class B
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
