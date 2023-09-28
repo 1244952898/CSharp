@@ -1,8 +1,12 @@
-﻿using Nest;
+﻿using Apache.NMS.ActiveMQ.Commands;
+using Elasticsearch.Net;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Xml;
 
 namespace CSharp
@@ -11,6 +15,22 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var file = File.OpenRead("D:\\Projects\\CSharp\\CSharp\\files\\aaa.xml");
+            byte[] bytes=new byte[file.Length];
+            var fileStream = file.Read(bytes, 0, bytes.Length);
+
+            using (var fs = new FileStream("D:\\Projects\\CSharp\\CSharp\\files\\bbb.xml", FileMode.OpenOrCreate))
+            {
+                using (BinaryWriter bw = new BinaryWriter(fs)) 
+                {
+                    bw.Write(bytes);
+                }
+            }
+            new BinaryFormatter();
+            return;
+            string xmlString = "<AML>1111111</AML>";
+            var xbytes = Encoding.Default.GetBytes(xmlString);
+            var xmlString1 = Encoding.Default.GetString(xbytes);
             var dic=new Dictionary<string, B>();
             dic.Add("1", new B { Name = "1", Description = "1" });
             dic.Add("2", new B { Name = "2", Description = "2" });

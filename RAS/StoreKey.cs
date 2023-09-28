@@ -104,7 +104,7 @@ namespace RSA
             // Create a new instance of RSACryptoServiceProvider that accesses
             // the key container MyKeyContainerName.
             using var rsa = new RSACryptoServiceProvider(parameters);
-            string publickey = rsa.ToXmlString(false);//公钥
+            string publickey = rsa.ToXmlString(false);//仅仅包含公钥
             Console.WriteLine($"public Key retrieved from container : \n {rsa.ToXmlString(false)}");
             Console.WriteLine($"Key retrieved from container : \n {rsa.ToXmlString(true)}");
         }
