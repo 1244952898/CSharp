@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace CSharp
@@ -15,6 +17,20 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            List<Task> tasks = new List<Task>();
+            for (int i = 0; i < 4; i++)
+            {
+                tasks.Add(Task.Run(() =>
+                {
+                    C.GetNumber(i);
+                }));
+            }
+            foreach (var task in tasks)
+            {
+                task.Start();
+            }
+
+            return;
             var file = File.OpenRead("D:\\Projects\\CSharp\\CSharp\\files\\aaa.xml");
             byte[] bytes=new byte[file.Length];
             var fileStream = file.Read(bytes, 0, bytes.Length);
@@ -111,5 +127,13 @@ namespace CSharp
     {
         public string Name { get; set; }
         public string Description { get; set; }
+    }
+
+    public class C
+    {
+        public static void GetNumber(int n)
+        {
+            Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId}  {n}");
+        }
     }
 }

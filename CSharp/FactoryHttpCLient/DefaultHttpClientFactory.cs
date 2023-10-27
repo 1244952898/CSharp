@@ -1,4 +1,6 @@
 ﻿using CSharp.FactoryHttpCLient;
+using Microsoft.Extensions.Http;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -38,6 +40,39 @@ namespace CSharp.FactoryHttpCLient
         private Timer _cleanupTimer;
         private readonly object _cleanupTimerLock;
         private readonly object _cleanupActiveLock;
+
+        private readonly IOptionsMonitor<HttpClientFactoryOptions> _optionsMonitor;
+
+        #region Public Method
+
+        public HttpClient CreateClient(string name)
+        {
+            HttpMessageHandler handler = CreateHandler(name);
+            var client = new HttpClient(handler, disposeHandler: false);
+
+            HttpClientFactoryOptions options = _optionsMonitor.Get(name);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            return null;
+        }
+
+        public HttpMessageHandler CreateHandler(string name)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
         #region internal Method
 
@@ -136,15 +171,6 @@ namespace CSharp.FactoryHttpCLient
             }
         }
 
-        public HttpClient CreateClient(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public HttpMessageHandler CreateHandler(string name)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
     }
