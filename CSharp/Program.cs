@@ -29,7 +29,7 @@ namespace CSharp
             {
                 task.Start();
             }
-
+            var sd = string.Format("111{0}", "aaaa");
             return;
             var file = File.OpenRead("D:\\Projects\\CSharp\\CSharp\\files\\aaa.xml");
             byte[] bytes=new byte[file.Length];
