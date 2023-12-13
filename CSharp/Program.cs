@@ -17,6 +17,10 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var clsname = "CSharp.Class1";
+            var type=Type.GetType(clsname);
+
+
             List<Task> tasks = new List<Task>();
             for (int i = 0; i < 4; i++)
             {

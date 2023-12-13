@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharp
 {
-    internal class Class1:IFormatProvider
+    public class Class1:IFormatProvider
     {
         public string Name1 { get; set; }
         public string Name2 { get; set; }
