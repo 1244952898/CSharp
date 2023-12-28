@@ -1,6 +1,9 @@
 ﻿using Apache.NMS.ActiveMQ.Commands;
 using Elasticsearch.Net;
 using Nest;
+using Newtonsoft.Json;
+using Spire.Doc;
+using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,61 +20,14 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            var clsname = "CSharp.Class1";
-            var type=Type.GetType(clsname);
-
-
-            List<Task> tasks = new List<Task>();
-            for (int i = 0; i < 4; i++)
+            var b = new B
             {
-                tasks.Add(Task.Run(() =>
-                {
-                    C.GetNumber(i);
-                }));
-            }
-            foreach (var task in tasks)
-            {
-                task.Start();
-            }
-            var sd = string.Format("111{0}", "aaaa");
-            return;
-            var file = File.OpenRead("D:\\Projects\\CSharp\\CSharp\\files\\aaa.xml");
-            byte[] bytes=new byte[file.Length];
-            var fileStream = file.Read(bytes, 0, bytes.Length);
+                Name = "1",
+                Description = "1"
+            };
+            var bb=b.Clone() as B;
 
-            using (var fs = new FileStream("D:\\Projects\\CSharp\\CSharp\\files\\bbb.xml", FileMode.OpenOrCreate))
-            {
-                using (BinaryWriter bw = new BinaryWriter(fs)) 
-                {
-                    bw.Write(bytes);
-                }
-            }
-            new BinaryFormatter();
-            return;
-            string xmlString = "<AML>1111111</AML>";
-            var xbytes = Encoding.Default.GetBytes(xmlString);
-            var xmlString1 = Encoding.Default.GetString(xbytes);
-            var dic=new Dictionary<string, B>();
-            dic.Add("1", new B { Name = "1", Description = "1" });
-            dic.Add("2", new B { Name = "2", Description = "2" });
-            dic.Add("3", new B { Name = "3", Description = "3" });
 
-            var b4 = new B { Name = "4", Description = "4" };
-            var liB = new List<B>();
-            liB.Add(b4);
-            dic.Add("4", b4);
-
-            var b5=dic["4"]; 
-            b5.Name = "5";
-            b5.Description = "5";
-            liB.Add(b5);
-            
-
-            var list = new List<string>();
-            var tus = (1, 2, 3, 4, 5,"6",1,2,2,2,2,2,2,3);
-            var tuple2=ValueTuple.Create(1, 2, 3, 4, 5, "6");
-            Console.WriteLine(tus.GetType());
-            
             //Abc abc = new Abc();
             //abc.test();
             #region MyRegion
@@ -126,11 +82,28 @@ namespace CSharp
             return xmlNode;
         }
     }
+    public enum WeightEnum
+    {
+        /// <summary>
+        /// 克
+        /// </summary>
+        g = 0,
+
+        /// <summary>
+        /// 毫克
+        /// </summary>
+        mg = 1,
+    }
 
     public class B
     {
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public object Clone()
+        {
+           return this.MemberwiseClone();
+        }
     }
 
     public class C
