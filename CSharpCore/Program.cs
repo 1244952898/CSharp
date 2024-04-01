@@ -8,7 +8,6 @@ namespace CSharpCore
         static void Main(string[] args)
         {
             Console.WriteLine(11111111);
-
         }
     }
 }
