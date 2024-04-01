@@ -12,6 +12,14 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            var list=new List<string>();
+            for (int i = 0; i < 1000000; i++)
+            {
+                list.Add($"{i}_PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+            }
+            var enumds=list.GetEnumerator();
+
+            enumds=default(List<string>.Enumerator);
 
             Class11 class11 = new Class11();
             var llll = class11.GetClass1s(0);

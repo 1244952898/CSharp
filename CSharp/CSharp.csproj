@@ -188,6 +188,7 @@
     <Compile Include="SpireOfficeHelpers.cs" />
     <Compile Include="StringExtend.cs" />
     <Compile Include="TestAttr.cs" />
+    <Compile Include="YeildTheory.cs" />
     <Content Include="Aras Innovator\1.html" />
     <Compile Include="Aras Innovator\A.cs" />
     <Compile Include="Class1.cs" />
