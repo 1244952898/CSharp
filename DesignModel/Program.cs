@@ -1,4 +1,5 @@
 ﻿using DesignModel.ClainOfResponsibility_责任链模式_;
+using DesignModel.FactoryPattern_工厂模式_;
 using System;
 using System.Collections.Concurrent;
 
@@ -8,7 +9,8 @@ namespace DesignModel
     {
         #region 0
         /*
-         单一职责：就一个类而言，应该仅有一个引起它变化点原因
+         开闭原则：对修改关闭，对拓展开放。
+         单一职责：就一个类而言，应该仅有一个引起它变化点原因。
 
 
         1.抽象工程(Abstract Factory)：提供一个创建一系列相关的或者相互依赖的对象的接口，而无需指定他们具体的类。
@@ -49,6 +51,7 @@ namespace DesignModel
 
         static void Main(string[] args)
         {
+            FactoryPatternDemo.A();
             //Console.WriteLine("Hello World!");
             //ClainOfResponsibilityDemo.main();
             //Console.ReadLine();
