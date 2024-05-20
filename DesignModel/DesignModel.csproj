@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="IteratorPattern%28迭代器模式%29\" />
     <Folder Include="PublishSubscribePattern%28观察者模式%29\" />
   </ItemGroup>
 
