@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp
 {
@@ -7,89 +8,68 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            var res = GenerateMatrix(4);
-            var datas = new int[3, 3];
+            var l=new TreeNode(1,null,null);
+            var r=new TreeNode(2,null,null);
+            var root=new TreeNode(3,l,r);
 
-            //var a = new int[] { 2, 3, 1, 2, 4, 3};
-            //var asd=MinSubArrayLen(7,a);
-            var dic = new Dictionary<int, int>();
-            var dicc = new Dictionary<char, int>();
-
-            Console.WriteLine(dic[1]);
-
-            dic[1]++;
-            dic.Remove(1);
-
-            YeildTest yeildTest = new YeildTest();
-            yeildTest.MyTest();
-            //a = a.OrderBy();
+            var lst = PreorderTraversal(root);
         }
-        public ListNode ReverseList(ListNode head)
+        public static IList<int> PreorderTraversal(TreeNode root)
         {
-            if (head == null)
+            var nodeList = new List<TreeNode>();
+            nodeList.Add(root);
+            var results = new List<int>();
+            while (nodeList.Count > 0)
             {
-                return head;
+                if (nodeList[0].left != null)
+                {
+                    nodeList.Add(nodeList[0].left);
+                }
+                if (nodeList[0].right != null)
+                {
+                    nodeList.Add(nodeList[0].right);
+                }
+                results.Add(nodeList[0].val);
+                nodeList.RemoveAt(0);
             }
-            ListNode preNode = null;
-            while (head != null)
-            {
-                var next = head.next;
-                head.next = preNode;
-                preNode = head;
-                head = next;
-            }
-            return head;
+            return results;
         }
 
-        public static int[][] GenerateMatrix(int n)
+        public int EvalRPN(string[] tokens)
         {
-            var result = new int[n][];
-            for (int i = 0; i < n; i++)
+            var numberStack = new Stack<string>();
+            foreach (var s in tokens)
             {
-                result[i] = new int[n];
-
-
-
-
-
+                if (s == "+")
+                {
+                    var n0 = int.Parse(numberStack.Pop());
+                    var n1 = int.Parse(numberStack.Pop());
+                    numberStack.Push((n1 + n0).ToString());
+                }
+                else if (s == "-")
+                {
+                    var n0 = int.Parse(numberStack.Pop());
+                    var n1 = int.Parse(numberStack.Pop());
+                    numberStack.Push((n1 - n0).ToString());
+                }
+                else if (s == "*")
+                {
+                    var n0 = int.Parse(numberStack.Pop());
+                    var n1 = int.Parse(numberStack.Pop());
+                    numberStack.Push((n1 * n0).ToString());
+                }
+                else if (s == "/")
+                {
+                    var n0 = int.Parse(numberStack.Pop());
+                    var n1 = int.Parse(numberStack.Pop());
+                    numberStack.Push((n1 / n0).ToString());
+                }
+                else
+                {
+                    numberStack.Push(s);
+                }
             }
-            int left = 0,
-            right = n - 1,
-            top = 0,
-            bottom = n - 1;
-            var count = n * n;
-            int number = 1;
-            while (number < count)
-            {
-                for (int i = left; i <= right; i++)
-                {
-                    result[top][i] = number++;
-                }
-                top++;
-
-                for (int i = top; i <= bottom; i++)
-                {
-                    result[i][right] = number++;
-                }
-                right--;
-
-                for (int i = right; i >= left; i--)
-                {
-                    result[bottom][i] = number++;
-                }
-                bottom--;
-
-                for (int i = bottom; i >= top; i--)
-                {
-                    result[i][left] = number++;
-                }
-                left++;
-            }
-            if (n % 2 == 1)
-            {
-                result[n / 2][n / 2] = number;
-            }
-            return result;
+            return int.Parse(numberStack.Pop());
         }
 
         static IEnumerable<int> GetYeild()
@@ -102,6 +82,40 @@ namespace CSharp
                 Console.WriteLine($"yeild 执行结束{i}");
             }
             Console.WriteLine("yeild 停止当前");
+        }
+
+        public static int[] GetNext(string s)
+        {
+            var next = new int[s.Length];
+            var j = 0;
+            next[0] = 0;
+            for (int i = 1; i < s.Length; i++)
+            {
+                while (j > 0 && s[j] != s[i])
+                {
+                    j = next[j - 1];
+                }
+
+                if (s[j] == s[i])
+                {
+                    j++;
+                }
+                next[i] = j;
+            }
+            return next;
+        }
+    }
+
+    public class TreeNode
+    {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
     }
 }
