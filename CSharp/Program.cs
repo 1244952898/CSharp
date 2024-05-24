@@ -7,14 +7,29 @@ namespace CSharp
 {
     class Program
     {
+        private object _lock = new object();
         static void Main(string[] args)
         {
-            Task.Factory.StartNew(Go);
         }
-        static void Go()
+        void Go()
         {
-            var isPool = Thread.CurrentThread.IsThreadPoolThread;
-            Console.WriteLine($"Hello from the thread pool!   {isPool}");
+            bool lockTaken = false;
+            Monitor.Enter(_lock, ref lockTaken);
+            try
+            {
+
+                var isPool = Thread.CurrentThread.IsThreadPoolThread;
+                Console.WriteLine($"Hello from the thread pool!   {isPool}");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                Monitor.Exit(_lock);
+
+            }
         }
     }
 }
