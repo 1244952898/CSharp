@@ -192,7 +192,6 @@
     <Compile Include="YeildTheory.cs" />
     <Compile Include="YieldDemo.cs" />
     <Content Include="Aras Innovator\1.html" />
-    <Compile Include="Aras Innovator\A.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="FactoryHttpCLient\ActiveHandlerTrackingEntry.cs" />
     <Compile Include="FactoryHttpCLient\DefaultHttpClientFactory.cs" />

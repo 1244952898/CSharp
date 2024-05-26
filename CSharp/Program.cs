@@ -5,6 +5,7 @@ using QuestPDF.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Document = QuestPDF.Fluent.Document;
 
 namespace CSharp
@@ -13,11 +14,16 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            YeildTest yeildTest = new YeildTest();
-
-            yeildTest.MyTest();
+            Thread t = new Thread(Go);
+            t.IsBackground = true;
+            t.Start();
+            //t.Join();
+            Console.WriteLine("Thread t has ended!");
         }
-
+        static void Go()
+        {
+            for (int i = 0; i < 1000; i++) Console.Write("y");
+        }
         static IEnumerable<int> GetYeild()
         {
             Console.WriteLine("yeild 开始");
