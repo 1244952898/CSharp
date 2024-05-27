@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AliyunOSS.cs" />
+    <Compile Include="AutoLock.cs" />
     <Compile Include="classes\Abc.cs" />
     <Compile Include="classes\Class11.cs" />
     <Compile Include="classes\DatetimeNull.cs" />

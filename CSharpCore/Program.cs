@@ -1,27 +1,22 @@
-﻿using System.Threading;
-using wwm.LeetCodeHelper;
-
-namespace CSharpCore
+﻿namespace CSharpCore
 {
     public class Program
     {
-        static AutoResetEvent _waitHandle = new(false);
+        static ManualResetEvent _starter = new(false);
         static void Main()
         {
-            _waitHandle.Set();// Wake up the Waiter.
-            //new Thread(Waiter).Start();
-            Thread.Sleep(5000);                  // Pause for a second...
-            new Thread(Waiter).Start();          
-
-
-
-            Console.ReadLine();
+            RegisteredWaitHandle reg = ThreadPool.RegisterWaitForSingleObject(_starter, Go, "Some Data", -1, true);
+            Thread.Sleep(1000);
+            Console.WriteLine("Signaling worker...");
+            _starter.Set();
+            int i = 10;
+            reg.Unregister(_starter);    // Clean up when we’re done.
         }
-        static void Waiter()
+
+        public static void Go(object data, bool timedOut)
         {
-            Console.WriteLine($"{Environment.CurrentManagedThreadId}Waiting...");
-            _waitHandle.WaitOne();                // Wait for notification
-            Console.WriteLine($"{Environment.CurrentManagedThreadId}Notified");
+            Console.WriteLine("Started - " + data);
         }
+
     }
 }
