@@ -1,9 +1,4 @@
-﻿using CSharp.classes;
-using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using Document = QuestPDF.Fluent.Document;
@@ -12,28 +7,29 @@ namespace CSharp
 {
     class Program
     {
+        private object _lock = new object();
         static void Main(string[] args)
         {
-            Thread t = new Thread(Go);
-            t.IsBackground = true;
-            t.Start();
-            //t.Join();
-            Console.WriteLine("Thread t has ended!");
         }
-        static void Go()
+        void Go()
         {
-            for (int i = 0; i < 1000; i++) Console.Write("y");
-        }
-        static IEnumerable<int> GetYeild()
-        {
-            Console.WriteLine("yeild 开始");
-            for (int i = 0; i < 10; i++)
+            bool lockTaken = false;
+            Monitor.Enter(_lock, ref lockTaken);
+            try
             {
-                Console.WriteLine($"yeild 开始执行{i}");
-                yield return i;
-                Console.WriteLine($"yeild 执行结束{i}");
+
+                var isPool = Thread.CurrentThread.IsThreadPoolThread;
+                Console.WriteLine($"Hello from the thread pool!   {isPool}");
             }
-            Console.WriteLine("yeild 停止当前");
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                Monitor.Exit(_lock);
+
+            }
         }
     }
 }

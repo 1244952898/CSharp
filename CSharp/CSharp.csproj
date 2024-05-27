@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aliyun.OSS, Version=2.13.0.0, Culture=neutral, PublicKeyToken=0ad4175f0dac0b9b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aliyun.OSS.SDK.2.13.0\lib\net45\Aliyun.OSS.dll</HintPath>
+    </Reference>
     <Reference Include="Apache.NMS, Version=2.0.0.0, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
       <HintPath>..\packages\Apache.NMS.2.0.0\lib\net40\Apache.NMS.dll</HintPath>
     </Reference>
@@ -181,10 +184,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AliyunOSS.cs" />
+    <Compile Include="AutoLock.cs" />
     <Compile Include="classes\Abc.cs" />
     <Compile Include="classes\Class11.cs" />
     <Compile Include="classes\DatetimeNull.cs" />
     <Compile Include="classes\Interface1.cs" />
+    <Compile Include="ListNode.cs" />
     <Compile Include="SpireOfficeHelpers.cs" />
     <Compile Include="StringExtend.cs" />
     <Compile Include="TestAttr.cs" />
