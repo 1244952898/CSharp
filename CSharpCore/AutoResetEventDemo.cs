@@ -3,10 +3,10 @@ using wwm.LeetCodeHelper;
 
 namespace CSharpCore
 {
-    public class Program
+    public class AutoResetEventDemo
     {
         static AutoResetEvent _waitHandle = new(false);
-        static void Main()
+        static void Main1()
         {
             _waitHandle.Set();// Wake up the Waiter.
             //new Thread(Waiter).Start();
