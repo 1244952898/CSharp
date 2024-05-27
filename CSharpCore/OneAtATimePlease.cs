@@ -1,11 +1,14 @@
-﻿using wwm.LeetCodeHelper;
-using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpCore
 {
-    internal class Program
+    internal class OneAtATimePlease
     {
-        static void Main(string[] args)
+        static void Main1()
         {
             using Mutex mutex = new(false, "oreilly.com OneAtATimeDemo");
             if (mutex.WaitOne(TimeSpan.FromSeconds(3), false))
@@ -14,7 +17,6 @@ namespace CSharpCore
                 return;
             }
             RunProgram();
-            Console.ReadLine();
         }
 
         static void RunProgram()
@@ -22,6 +24,5 @@ namespace CSharpCore
             Console.WriteLine("Running. Press Enter to exit");
             Console.ReadLine();
         }
-
     }
 }
