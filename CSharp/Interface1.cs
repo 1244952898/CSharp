@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpCore
+namespace CSharp
 {
-    public class AutoLock
+    internal interface Interface1
     {
+        string Name { get; set; }
     }
 }

@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CSharpCore
 {
-    public class AutoLock
+    internal interface Interface1
     {
+        public string Name { get; set; }
+
+        public void Get()
+        {
+            Console.WriteLine(11);
+        }
     }
 }

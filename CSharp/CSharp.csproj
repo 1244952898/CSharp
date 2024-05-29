@@ -190,6 +190,7 @@
     <Compile Include="classes\Class11.cs" />
     <Compile Include="classes\DatetimeNull.cs" />
     <Compile Include="classes\Interface1.cs" />
+    <Compile Include="Interface1.cs" />
     <Compile Include="ListNode.cs" />
     <Compile Include="SpireOfficeHelpers.cs" />
     <Compile Include="StringExtend.cs" />

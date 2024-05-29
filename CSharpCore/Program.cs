@@ -5,22 +5,23 @@
 
         static void Main()
         {
-            Thread t = new Thread(delegate ()
+            Console.WriteLine("begin");
+            Thread.MemoryBarrier();
+            bool complete = false;
+            var t = new Thread(() =>
             {
-                try
+                bool toggle = false;
+                while (!complete)
                 {
-                    Thread.Sleep(Timeout.Infinite);
+                    Console.WriteLine("1");
+                    toggle = !toggle;
                 }
-                catch (ThreadInterruptedException)
-                {
-                    Console.Write("Forcibly ");
-                }
-                Console.WriteLine("Woken!");
             });
             t.Start();
-            t.Interrupt();
+            Thread.Sleep(1000);
+            complete = true;
+            t.Join();        // Blocks indefinitely
+            Console.WriteLine("end");
         }
-
-
     }
 }
