@@ -10,12 +10,14 @@ namespace NewMVCRun
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            var defaultPath = new Dictionary<string, object>();
-            defaultPath.Add("controller", "Home");
-            defaultPath.Add("action", "Index");
-            defaultPath.Add("id", null);
-            defaultPath.Add("namespaces", "NewMVCRun.Controllers");
-            defaultPath.Add("assembly", "NewMVCRun");
+            var defaultPath = new Dictionary<string, object>
+            {
+                { "controller", "Home" },
+                { "action", "Index" },
+                { "id", null },
+                { "namespaces", "NewMVCRun.Controllers" },
+                { "assembly", "NewMVCRun" }
+            };
 
             MyRouteTable.Routes.Add("defaultRoute", new MyRoute("{controller}/{action}/{id}", defaultPath,new MyMvcRouteHandler()));
 
