@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace CSharpCore
 {
-    [Synchronization()]
     public class AutoLock
     {
     }
