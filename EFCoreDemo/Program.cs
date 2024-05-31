@@ -1,10 +1,16 @@
-using EFCoreDemo.Models;
+ï»¿using EFCoreDemo.Classes;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using EFCoreDemo.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<SchoolContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolContext") ?? throw new InvalidOperationException("Connection string 'SchoolContext' not found.")));
 
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddTransient<A0>();
 builder.Services.AddTransient<A1>();
@@ -28,7 +34,7 @@ builder.Services.AddTransient(serviceProvider =>
                 return service;
             }
         }
-        throw new ArgumentException($"²»Ö§³ÖµÄDI Key: {key}");
+        throw new ArgumentException($"ï¿½ï¿½Ö§ï¿½Öµï¿½DI Key: {key}");
     }
     return (Func<Type, IA>)func;
 });

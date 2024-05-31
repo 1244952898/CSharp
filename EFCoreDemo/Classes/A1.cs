@@ -1,6 +1,6 @@
-﻿namespace EFCoreDemo.Models
+﻿namespace EFCoreDemo.Classes
 {
-    public class A0 : IA
+    public class A1 : IA
     {
         public void Test()
         {

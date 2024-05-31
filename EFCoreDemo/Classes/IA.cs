@@ -1,4 +1,4 @@
-﻿namespace EFCoreDemo.Models
+﻿namespace EFCoreDemo.Classes
 {
     public interface IA
     {
