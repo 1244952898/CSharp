@@ -1,4 +1,4 @@
-using EFCoreDemo.Classes;
+using EFCoreDemo.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
