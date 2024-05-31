@@ -26,7 +26,7 @@ namespace CSharp
             Console.ReadLine();
         }
 
-        public static void Main()
+        public static void Main1()
         {
             new AutoLock().Test();
         }
