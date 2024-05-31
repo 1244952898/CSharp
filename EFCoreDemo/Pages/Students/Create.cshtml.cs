@@ -7,20 +7,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EFCoreDemo.Data;
 using EFCoreDemo.Models;
+using EFCoreDemo.Classes;
 
 namespace EFCoreDemo.Pages.Students
 {
     public class CreateModel : PageModel
     {
         private readonly EFCoreDemo.Data.SchoolContext _context;
+        private readonly IA _a0;
+        private readonly IA _a1;
 
-        public CreateModel(EFCoreDemo.Data.SchoolContext context)
+        public CreateModel(SchoolContext context, Func<Type, IA> func)
         {
             _context = context;
+            _a0 = func(typeof(A0));
+            _a1 = func(typeof(A1));
         }
 
         public IActionResult OnGet()
         {
+            _a0.Test();
+            _a1.Test();
             return Page();
         }
 
