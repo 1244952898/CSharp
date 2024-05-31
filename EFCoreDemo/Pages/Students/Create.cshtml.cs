@@ -38,15 +38,26 @@ namespace EFCoreDemo.Pages.Students
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            var emptyStudent = new Student();
+            if (await TryUpdateModelAsync(emptyStudent,"student",s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
-                return Page();
+                _context.Students.Add(emptyStudent);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
-            _context.Students.Add(Student);
-            await _context.SaveChangesAsync();
+            return Page();
 
-            return RedirectToPage("./Index");
+
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
+
+            //_context.Students.Add(Student);
+            //await _context.SaveChangesAsync();
+
+            //return RedirectToPage("./Index");
         }
     }
 }
