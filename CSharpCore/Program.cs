@@ -1,10 +1,13 @@
-﻿namespace CSharpCore
+﻿using System.Collections.Concurrent;
+
+namespace CSharpCore
 {
     public class Program
     {
 
         static void Main()
         {
+            BlockingCollection<string> collection = new BlockingCollection<string>();
             Console.WriteLine("begin");
             Thread.MemoryBarrier();
             bool complete = false;
@@ -22,6 +25,7 @@
             complete = true;
             t.Join();        // Blocks indefinitely
             Console.WriteLine("end");
+            
         }
     }
 }

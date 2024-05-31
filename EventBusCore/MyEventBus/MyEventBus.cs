@@ -16,8 +16,7 @@ namespace EventBusCore.MyEventBus
 
         private static readonly object locker = new object();
 
-        private Dictionary<Type, MyEventBase> eventDic = new Dictionary<Type, MyEventBase>();
-        //ConcurrentDictionary
+        private readonly Dictionary<Type, MyEventBase> eventDic = new Dictionary<Type, MyEventBase>();
 
         /// <summary>
         /// 默认事件总线实例，建议只使用此实例
