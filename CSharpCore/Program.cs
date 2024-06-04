@@ -1,31 +1,30 @@
-﻿using System.Collections.Concurrent;
-
-namespace CSharpCore
+﻿namespace CSharpCore
 {
     public class Program
     {
+        public delegate int GetNumber(int x);
 
         static void Main()
         {
-            BlockingCollection<string> collection = new BlockingCollection<string>();
-            Console.WriteLine("begin");
-            Thread.MemoryBarrier();
-            bool complete = false;
-            var t = new Thread(() =>
-            {
-                bool toggle = false;
-                while (!complete)
-                {
-                    Console.WriteLine("1");
-                    toggle = !toggle;
-                }
-            });
-            t.Start();
-            Thread.Sleep(1000);
-            complete = true;
-            t.Join();        // Blocks indefinitely
-            Console.WriteLine("end");
-            
+            Mutex mutex = new();
+            mutex.WaitOne();
+
+            var dg = new GetNumber(GN);
+            AsyncCallback asyncCallback = new(callBack);
+            IAsyncResult asyncResult = dg.BeginInvoke(4, asyncCallback, GN);
+            asyncResult.AsyncWaitHandle.WaitOne();
+            var i = dg.EndInvoke(asyncResult);
+        }
+
+        static int GN(int x)
+        {
+            return x * 2;
+        }
+
+        static void callBack(IAsyncResult ar)
+        {
+            var dg = (GetNumber)ar.AsyncState;
+            var i = dg.EndInvoke(ar);
         }
     }
 }
