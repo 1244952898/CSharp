@@ -30,6 +30,7 @@ namespace MyServiceCollection
         /// Gets the factory used for creating service instances.
         /// </summary>
         public Func<IMyServiceProvider, object>? ImplementationFactory { get; }
+
         #endregion
 
         #region Constructors
