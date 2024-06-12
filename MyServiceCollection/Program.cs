@@ -11,4 +11,4 @@ builder.Services.AddTransient<IA, A>();
 var serviceProvider= builder.Services.BuildServiceProvider();
 
 var a =serviceProvider.GetService<IA>();
-a.AA();
+a?.AA();

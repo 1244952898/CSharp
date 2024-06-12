@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace MyServiceCollection
@@ -7,7 +8,7 @@ namespace MyServiceCollection
     public class MyServiceDescriptor
     {
         #region Fields
-
+        
         /// <summary>
         /// Gets the <see cref="ServiceLifetime"/> of the service.
         /// </summary>
