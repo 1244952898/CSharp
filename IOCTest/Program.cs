@@ -1,34 +1,43 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using IOCTest.Models;
+using IOCTest.Cat.Models;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
-Console.WriteLine("Hello, World!");
+
+#region 2
+var serviceCollection=new ServiceCollection();
+serviceCollection.AddTransient<Base, Bar>();
+serviceCollection.AddTransient<Base, Foo>();
+serviceCollection.AddTransient<Base, Baz>();
+
+var serviceProvider=serviceCollection.BuildServiceProvider();
+var a = serviceProvider.GetService(typeof(Base));
+var b =serviceProvider.GetService<Base>();
+#endregion
 
 #region 1
 
-BuildServiceProvider(true);
-BuildServiceProvider(false);
+//BuildServiceProvider(true);
+//BuildServiceProvider(false);
 
-static void BuildServiceProvider(bool validateOnBuild)
-{
-	try
-	{
-		var options = new ServiceProviderOptions
-		{
-			ValidateOnBuild = validateOnBuild
-		};
-		var services = new ServiceCollection()
-			.AddSingleton<IFooBar,FooBar>().TryAdd()
-			.BuildServiceProvider(options);
-		Console.WriteLine($"Status:Success; ValidateOnBuild:{validateOnBuild}");
-	}
-	catch (Exception ex)
-	{
-        Console.WriteLine($"Status:Fail; ValidateOnBuild:{validateOnBuild}");
-        Console.WriteLine($"Error:{ex.Message}");
-    }
-}
+//static void BuildServiceProvider(bool validateOnBuild)
+//{
+//	try
+//	{
+//		var options = new ServiceProviderOptions
+//		{
+//			ValidateOnBuild = validateOnBuild
+//		};
+//		var services = new ServiceCollection()
+//			.AddSingleton<IFooBar,FooBar>()
+//			.BuildServiceProvider(options);
+//		Console.WriteLine($"Status:Success; ValidateOnBuild:{validateOnBuild}");
+//	}
+//	catch (Exception ex)
+//	{
+//        Console.WriteLine($"Status:Fail; ValidateOnBuild:{validateOnBuild}");
+//        Console.WriteLine($"Error:{ex.Message}");
+//    }
+//}
 
 #endregion
 
@@ -60,3 +69,8 @@ static void BuildServiceProvider(bool validateOnBuild)
 //ResolveService<IBar>(child);
 
 #endregion
+
+
+
+
+Console.WriteLine("Hello, World!");
