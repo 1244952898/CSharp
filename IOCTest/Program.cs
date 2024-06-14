@@ -8,10 +8,15 @@ var serviceCollection=new ServiceCollection();
 serviceCollection.AddTransient<Base, Bar>();
 serviceCollection.AddTransient<Base, Foo>();
 serviceCollection.AddTransient<Base, Baz>();
+serviceCollection.AddSingleton<Base, Bar>();
+serviceCollection.AddSingleton(new Bar());
+serviceCollection.AddTransient<Base, Bar>();
 
 var serviceProvider=serviceCollection.BuildServiceProvider();
-var a = serviceProvider.GetService(typeof(Base));
+var a = serviceProvider.GetService(typeof(IEnumerable<Base>));
 var b =serviceProvider.GetService<Base>();
+var bases =serviceProvider.GetServices(typeof(Base));
+var bases2 = serviceProvider.GetRequiredService(typeof(IEnumerable<Base>));
 #endregion
 
 #region 1
@@ -69,8 +74,5 @@ var b =serviceProvider.GetService<Base>();
 //ResolveService<IBar>(child);
 
 #endregion
-
-
-
 
 Console.WriteLine("Hello, World!");

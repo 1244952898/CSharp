@@ -2,10 +2,8 @@
 {
     public class Foo : Base, IFoo
     {
-        public IBar _bar;
-        public Foo(IBar bar)
+        public Foo()
         {
-            bar = _bar;
         }
     }
 }
