@@ -69,6 +69,15 @@ namespace IOCTest.Cat
                 services.CopyTo(array, 0);
                 return array;
             }
+
+            if (serviceType.IsGenericType && !_registries.ContainsKey(serviceType))
+            {
+                var definition = serviceType.GetGenericTypeDefinition();
+                return _registries.TryGetValue(definition, out registry) ?
+                    GetServiceCore(registry, serviceType.GetGenericArguments()) : null;
+            }
+
+            return _registries.TryGetValue(serviceType, out registry) ? GetServiceCore(registry, serviceType.GetGenericArguments()) : null;
         }
 
         private object GetServiceCore(ServiceRegistry registry, Type[] genericArguments)
