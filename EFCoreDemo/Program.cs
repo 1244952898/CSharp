@@ -18,12 +18,12 @@ builder.Services.AddTransient<A0>();
 builder.Services.AddTransient<A1>();
 builder.Services.AddTransient(serviceProvider =>
 {
-    IA func(Type key)
+    Func<Type, IA> func = (Type key) =>
     {
         if (key == typeof(A0))
         {
-            var service= serviceProvider.GetService<A0>();
-            if (service!=null)
+            var service = serviceProvider.GetService<A0>();
+            if (service != null)
             {
                 return service;
             }
@@ -37,8 +37,8 @@ builder.Services.AddTransient(serviceProvider =>
             }
         }
         throw new ArgumentException($"��֧�ֵ�DI Key: {key}");
-    }
-    return (Func<Type, IA>)func;
+    };
+    return func;
 });
 
 var app = builder.Build();

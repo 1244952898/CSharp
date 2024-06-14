@@ -56,5 +56,7 @@ namespace EFCoreDemo.Pages.Students
 
             //return RedirectToPage("./Index");
         }
+
+
     }
 }
