@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IOCTest.Cat.Models
 {
-    //[MapTo(typeof(IQux))]
+    [MapTo(typeof(IQux),catLifetime:CatLifetime.Root)]
     public class Qux:Base,IQux
     {
     }

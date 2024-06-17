@@ -42,10 +42,13 @@ namespace IOCTest.Cat
         }
         public void Dispose()
         {
-            if (_disposed)
+            _disposed = true;
+            foreach(var disposed in _disposables)
             {
-                throw new ObjectDisposedException("Cat");
+                disposed.Dispose();
             }
+            _disposables.Clear();
+            _services.Clear();
         }
 
         public object GetService(Type serviceType)

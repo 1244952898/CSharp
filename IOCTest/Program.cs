@@ -1,22 +1,34 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using IOCTest.Cat;
 using IOCTest.Cat.Models;
 using Microsoft.Extensions.DependencyInjection;
 
+#region MyRegion
+Cat cat = new();
+cat.Register<IFoo, Foo>(CatLifetime.Transient)
+    .Register<IBar>(_=new Bar());
+
+#endregion
 
 #region 2
-var serviceCollection=new ServiceCollection();
-serviceCollection.AddTransient<Base, Bar>();
-serviceCollection.AddTransient<Base, Foo>();
-serviceCollection.AddTransient<Base, Baz>();
-serviceCollection.AddSingleton<Base, Bar>();
-serviceCollection.AddSingleton(new Bar());
-serviceCollection.AddTransient<Base, Bar>();
+//var serviceCollection=new ServiceCollection();
+//serviceCollection.AddTransient<Base, Bar>();
+//serviceCollection.AddTransient<Base, Foo>();
+//serviceCollection.AddTransient<Base, Baz>();
+//serviceCollection.AddSingleton<Base, Bar>();
+//serviceCollection.AddSingleton(new Bar());
+//serviceCollection.AddTransient<Base, Bar>();
 
-var serviceProvider=serviceCollection.BuildServiceProvider();
-var a = serviceProvider.GetService(typeof(IEnumerable<Base>));
-var b =serviceProvider.GetService<Base>();
-var bases =serviceProvider.GetServices(typeof(Base));
-var bases2 = serviceProvider.GetRequiredService(typeof(IEnumerable<Base>));
+//var serviceProvider=serviceCollection.BuildServiceProvider();
+//var a = (IEnumerable<Base>)serviceProvider.GetService(typeof(IEnumerable<Base>));
+
+//var alst=a.OfType<Bar>();
+//var c =alst.Count();
+
+
+//var b =serviceProvider.GetService<Base>();
+//var bases =serviceProvider.GetServices(typeof(Base));
+//var bases2 = serviceProvider.GetRequiredService(typeof(IEnumerable<Base>));
 #endregion
 
 #region 1
@@ -72,7 +84,7 @@ var bases2 = serviceProvider.GetRequiredService(typeof(IEnumerable<Base>));
 //ResolveService<IBar>(root);
 //ResolveService<IFoo>(child);
 //ResolveService<IBar>(child);
-
+var root = new ServiceCollection().BuildServiceProvider(true);
 #endregion
 
 Console.WriteLine("Hello, World!");
