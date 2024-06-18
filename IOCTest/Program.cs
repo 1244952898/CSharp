@@ -1,12 +1,27 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using IOCTest.Cat;
-using IOCTest.Cat.Models;
+using IOCTest.Models;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
+
+#region 3
+var serviceProvider = new ServiceCollection()
+    .AddSingleton<SingletonService>()
+    .AddScoped<ScopeService>()
+    .BuildServiceProvider();
+var rootScope = serviceProvider.GetService<IServiceProvider>();
+using var scope=serviceProvider.CreateScope();
+var childer=scope.ServiceProvider;
+var singletonService=childer.GetService<SingletonService>();
+var scopeService=childer.GetService<ScopeService>();
+Debug.Assert(ReferenceEquals(childer, scopeService.RequestProvider));
+Debug.Assert(ReferenceEquals(rootScope, singletonService.ApplicationService));
+
+#endregion
 
 #region MyRegion
-Cat cat = new();
-cat.Register<IFoo, Foo>(CatLifetime.Transient)
-    .Register<IBar>(_=new Bar());
+//Cat cat = new();
+//cat.Register<IFoo, Foo>(CatLifetime.Transient)
+//    .Register<IBar>(_=new Bar());
 
 #endregion
 
