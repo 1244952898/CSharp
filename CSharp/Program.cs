@@ -11,8 +11,9 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            RestProxyCreator.BuildAssembly();
-            EmitDemo.Create();
+            //RestProxyCreator.BuildAssembly();
+            var c = TestEnum.a | TestEnum.b | TestEnum.c;
+            EmitDemo.Create(c);
             //var lst=new List<string>();
             //lst.Where(x => x.Equals("a")).Select(x=>x=="");
             //lst.RemoveRange(0, lst.Count);
