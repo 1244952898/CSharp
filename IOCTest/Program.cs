@@ -119,5 +119,3 @@ using System.Reflection;
 //ResolveService<IBar>(child);
 var root = new ServiceCollection().BuildServiceProvider(true);
 #endregion
-
-}

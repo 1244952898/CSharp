@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using wwm.LeetCodeHelper;
 
-namespace CSharpCore
+namespace CSharpCore.Models
 {
     public class AutoResetEventDemo1
     {

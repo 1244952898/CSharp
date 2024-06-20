@@ -1,4 +1,4 @@
-﻿namespace CSharpCore
+﻿namespace CSharpCore.Models
 {
     public class ManualResetEventDemo
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpCore
+namespace CSharpCore.Models
 {
     internal class SemaphoreSlimDemo
     {
@@ -12,7 +12,7 @@ namespace CSharpCore
 
         static void Main1()
         {
-            for (int i = 1; i <= 5; i++) 
+            for (int i = 1; i <= 5; i++)
                 new Thread(start: Enter).Start(i);
         }
 
