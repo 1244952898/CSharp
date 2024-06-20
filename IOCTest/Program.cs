@@ -1,20 +1,38 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using IOCTest.Cat;
+using IOCTest.Cat.Models;
 using IOCTest.Models;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Reflection;
+
+#region 4
+
+//var serviceCollection = new ServiceCollection()
+//    .AddTransient<IFoo, Foo>()
+//    .AddScoped<IBar>(_ => new Bar())
+//    .AddSingleton<IBaz>(new Baz());
+//var factory=new CatServiceProviderFactory();
+//var builder = factory.CreateBuilder(serviceCollection)
+//    .Register(Assembly.GetEntryAssembly());
+//var container = factory.CreateServiceProvider(builder);
+//container.CreateScope();
+
+#endregion
 
 #region 3
-var serviceProvider = new ServiceCollection()
-    .AddSingleton<SingletonService>()
-    .AddScoped<ScopeService>()
-    .BuildServiceProvider();
-var rootScope = serviceProvider.GetService<IServiceProvider>();
-using var scope=serviceProvider.CreateScope();
-var childer=scope.ServiceProvider;
-var singletonService=childer.GetService<SingletonService>();
-var scopeService=childer.GetService<ScopeService>();
-Debug.Assert(ReferenceEquals(childer, scopeService.RequestProvider));
-Debug.Assert(ReferenceEquals(rootScope, singletonService.ApplicationService));
+//var serviceProvider = new ServiceCollection()
+//    .AddSingleton<SingletonService>()
+//    .AddScoped<ScopeService>()
+//    .BuildServiceProvider();
+//var rootScope = serviceProvider.GetService<IServiceProvider>();
+//using var scope=serviceProvider.CreateScope();
+//var childer=scope.ServiceProvider;
+//var singletonService=childer.GetService<SingletonService>();
+//var scopeService=childer.GetService<ScopeService>();
+//Debug.Assert(ReferenceEquals(childer, scopeService.RequestProvider));
+//Debug.Assert(ReferenceEquals(rootScope, singletonService.ApplicationService));
 
 #endregion
 
@@ -102,4 +120,4 @@ Debug.Assert(ReferenceEquals(rootScope, singletonService.ApplicationService));
 var root = new ServiceCollection().BuildServiceProvider(true);
 #endregion
 
-Console.WriteLine("Hello, World!");
+}
