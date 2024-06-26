@@ -1,8 +1,6 @@
-﻿using CSharpCore.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using System.Reflection;
+﻿using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Primitives;
+using System.Text;
 
 namespace CSharpCore
 {
@@ -10,8 +8,12 @@ namespace CSharpCore
     {
         public delegate int GetNumber(int x);
 
-        static void Main()
+        static async Task Main()
         {
+            var tp=typeof(Program).Assembly;
+            var nms = tp.GetManifestResourceNames();
+
+
             //RestProxyCreator.BuildAssembly();
             //var dllName = "MyDynamic";
             //var title = "This is a dynamic title.";
@@ -33,13 +35,33 @@ namespace CSharpCore
             //fileManager.ShowStructor(Print);
             //var txt = fileManager.ReadAllTextAsync("data.txt").GetAwaiter().GetResult();
 
-            var assemble = Assembly.GetEntryAssembly();
-            var fileManager1 = new ServiceCollection()
-                .AddSingleton<IFileProvider>(new EmbeddedFileProvider(assemble))
-                .AddSingleton<IFileManager, FileManager>()
-                .BuildServiceProvider()
-                .GetService<IFileManager>();
-            var txt = fileManager1.ReadAllTextAsync("data.txt").GetAwaiter().GetResult();
+            //var assemble = Assembly.GetEntryAssembly();
+            //var fileManager1 = new ServiceCollection()
+            //    .AddSingleton<IFileProvider>(new EmbeddedFileProvider(assemble))
+            //    .AddSingleton<IFileManager, FileManager>()
+            //    .BuildServiceProvider()
+            //    .GetService<IFileManager>();
+            //var txt = fileManager1.ReadAllTextAsync("data.txt").GetAwaiter().GetResult();
+
+            using PhysicalFileProvider fileProvider = new(@"C:\test");
+            string original = string.Empty;
+            ChangeToken.OnChange(() => fileProvider.Watch("data.txt"), Callback);
+            while (true)
+            {
+                File.WriteAllText(@"C:\test\data.txt", DateTime.Now.ToString());
+                await Task.Delay(5000);
+            }
+            async void Callback()
+            {
+                using var stream = fileProvider.GetFileInfo("data.txt").CreateReadStream();
+                var buffer = new byte[stream.Length];
+                await stream.ReadAsync(buffer);
+                var content = Encoding.Default.GetString(buffer);
+                if (content != original)
+                {
+                    Console.WriteLine($"content:{content} {original == content}");
+                }
+            }
         }
 
     }
