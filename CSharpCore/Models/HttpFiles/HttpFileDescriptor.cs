@@ -30,6 +30,6 @@ namespace CSharpCore.Models.HttpFiles
             PhysicalPath = physicalPathResolver(fileInfo.Name);
         }
 
-        public IFileInfo ToFileInfo(HttpClient httpClient) => this.Exsits ? new HttpFileInfo(this, httpClient) : (IFileInfo)new NotFoundFileInfo(this.Name);
+        public IFileInfo ToFileInfo(HttpClient httpClient) => this.Exsits ? new HttpFileInfo(this, httpClient) : new NotFoundFileInfo(this.Name);
     }
 }

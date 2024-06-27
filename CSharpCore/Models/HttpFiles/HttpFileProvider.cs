@@ -31,12 +31,15 @@ namespace CSharpCore.Models.HttpFiles
 
         public IFileInfo GetFileInfo(string subpath)
         {
-            throw new NotImplementedException();
+            var url = $"{_baseAddress}/{subpath.TrimStart('/')}?dir-meta";
+            var content = _httpClient.GetStringAsync(url).Result;
+            var descriptor = JsonConvert.DeserializeObject<HttpFileDescriptor>(content);
+            return descriptor?.ToFileInfo(_httpClient) ?? new NotFoundFileInfo("");
         }
 
         public IChangeToken Watch(string filter)
         {
-            throw new NotImplementedException();
+           return NullChangeToken.Singleton;
         }
     }
 }
