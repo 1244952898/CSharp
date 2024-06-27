@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Text;
 
-namespace CSharpCore.Models
+namespace CSharpCore.Models.HttpFiles
 {
     public class FileManager : IFileManager
     {
@@ -17,8 +17,8 @@ namespace CSharpCore.Models
         public async Task<string> ReadAllTextAsync(string path)
         {
             using var stream = _fileProvider.GetFileInfo(path).CreateReadStream();
-            var buffers=new byte[stream.Length];
-            await stream.ReadAsync(buffers,0, buffers.Length);
+            var buffers = new byte[stream.Length];
+            await stream.ReadAsync(buffers, 0, buffers.Length);
             return Encoding.Default.GetString(buffers);
         }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpCore.Models
+namespace CSharpCore.Models.HttpFiles
 {
     internal interface IFileManager
     {

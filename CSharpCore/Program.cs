@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.FileProviders;
+﻿using CSharpCore.Models.HttpFiles;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Primitives;
 using System.Text;
 
@@ -10,8 +14,13 @@ namespace CSharpCore
 
         static async Task Main()
         {
-            var tp=typeof(Program).Assembly;
-            var nms = tp.GetManifestResourceNames();
+            Host
+                .CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(builder => builder
+                .Configure(app => app.UsePathBase("/files")
+                .UseMiddleware<FileProviderMiddleware>(@"c:\test")))
+                .Build()
+                .Run();
 
 
             //RestProxyCreator.BuildAssembly();
