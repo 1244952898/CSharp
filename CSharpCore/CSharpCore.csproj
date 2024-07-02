@@ -12,9 +12,15 @@
     <None Remove="Models\HttpFiles\appsettings.Debug_test.json" />
     <None Remove="Models\HttpFiles\appsettings.Development.json" />
     <None Remove="Models\HttpFiles\appsettings.json" />
+    <None Remove="Models\HttpFiles\appsettings1.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Models\HttpFiles\appsettings.Debug_test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>

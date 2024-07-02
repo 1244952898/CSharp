@@ -10,6 +10,10 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
+            var l1 = new List<string> { "a", "b" };
+            var l2 = new List<string> { "c", "b" };
+            l1.AddRange(l2);
+            l1.Sort(ConfigurationKeyComparer.Instance);
             MainConfig(args);
             //Host
             //    .CreateDefaultBuilder()
@@ -146,7 +150,7 @@ namespace CSharpCore
 
             #region 4
             var config = new ConfigurationBuilder()
-               .AddJsonFile(@"D:\Projects\CSharp\CSharpCore\bin\Debug\net8.0\Models\HttpFiles\appsettings.json", true, true)
+               .AddJsonFile(@"Models\HttpFiles\appsettings.json", true, true)
                .Build();
 
             ChangeToken.OnChange(() => config.GetReloadToken(), () =>
