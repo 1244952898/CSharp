@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpCore
+namespace IOCTest.Cat.Models
 {
-    public class AutoLock
+    public interface IFooBar<T1, T2>
     {
     }
 }

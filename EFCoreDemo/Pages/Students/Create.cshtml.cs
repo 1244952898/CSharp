@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using EFCoreDemo.Classes;
 using EFCoreDemo.Data;
 using EFCoreDemo.Models;
-using EFCoreDemo.Classes;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Linq;
 
 namespace EFCoreDemo.Pages.Students
 {
@@ -33,13 +30,13 @@ namespace EFCoreDemo.Pages.Students
 
         [BindProperty]
         public Student Student { get; set; }
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             var emptyStudent = new Student();
-            if (await TryUpdateModelAsync(emptyStudent,"student",s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
+            if (await TryUpdateModelAsync(emptyStudent, "student", s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
                 _context.Students.Add(emptyStudent);
                 await _context.SaveChangesAsync();
@@ -59,5 +56,7 @@ namespace EFCoreDemo.Pages.Students
 
             //return RedirectToPage("./Index");
         }
+
+
     }
 }

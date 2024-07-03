@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;Debug_test</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="EventBus2\**" />
+    <EmbeddedResource Remove="EventBus2\**" />
+    <None Remove="EventBus2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Agile" Version="1.2021.1.24" />
+  </ItemGroup>
+
+</Project>
