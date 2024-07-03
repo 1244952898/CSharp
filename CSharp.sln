@@ -85,6 +85,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EFCore", "EFCore", "{16F385
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreDemo", "EFCoreDemo\EFCoreDemo.csproj", "{2D449C12-A195-460C-824C-9F99AFBAEF30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwait", "AsyncAwait\AsyncAwait.csproj", "{73B2EF21-2045-467D-A174-707A6DC23A48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -699,6 +701,26 @@ Global
 		{2D449C12-A195-460C-824C-9F99AFBAEF30}.Release|x64.Build.0 = Release|Any CPU
 		{2D449C12-A195-460C-824C-9F99AFBAEF30}.Release|x86.ActiveCfg = Release|Any CPU
 		{2D449C12-A195-460C-824C-9F99AFBAEF30}.Release|x86.Build.0 = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|ARM.Build.0 = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|x64.Build.0 = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Debug|x86.Build.0 = Debug|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|ARM.ActiveCfg = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|ARM.Build.0 = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|ARM64.Build.0 = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|x64.ActiveCfg = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|x64.Build.0 = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|x86.ActiveCfg = Release|Any CPU
+		{73B2EF21-2045-467D-A174-707A6DC23A48}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
