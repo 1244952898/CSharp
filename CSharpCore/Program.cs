@@ -1,6 +1,10 @@
 ﻿using CSharpCore.Models.Configurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
+using CSharpCore.Models;
+using System.Diagnostics;
+using CSharpCore.Models.Logger;
+using System.Data;
 
 namespace CSharpCore
 {
@@ -10,11 +14,13 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
-            var l1 = new List<string> { "a", "b" };
-            var l2 = new List<string> { "c", "b" };
-            l1.AddRange(l2);
-            l1.Sort(ConfigurationKeyComparer.Instance);
-            MainConfig(args);
+
+            MainLogger(args);
+
+            //MainConfig(args);
+
+            #region 1
+
             //Host
             //    .CreateDefaultBuilder()
             //    .ConfigureWebHostDefaults(builder => builder
@@ -72,6 +78,8 @@ namespace CSharpCore
             //        Console.WriteLine($"content:{content} {original == content}");
             //    }
             //}
+
+            #endregion
         }
 
         static void MainConfig(string[] args)
@@ -149,23 +157,68 @@ namespace CSharpCore
             #endregion
 
             #region 4
-            var config = new ConfigurationBuilder()
-               .AddJsonFile(@"Models\HttpFiles\appsettings.json", true, true)
-               .Build();
+            //var config = new ConfigurationBuilder()
+            //   .AddJsonFile(@"Models\HttpFiles\appsettings.json", true, true)
+            //   .Build();
 
-            ChangeToken.OnChange(() => config.GetReloadToken(), () =>
+            //ChangeToken.OnChange(() => config.GetReloadToken(), () =>
+            //{
+            //    var options = config.GetSection("format").Get<FormatOptions>();
+            //    var dt = options.DateTime;
+            //    var cd = options.CurrentDecimal;
+            //    Console.WriteLine(dt.LongTimePattern);
+            //    Console.WriteLine(dt.LongDatePattern);
+            //    Console.WriteLine(dt.ShortDatePattern);
+            //    Console.WriteLine(dt.ShortTimePattern);
+            //    Console.WriteLine(cd.Digits);
+            //    Console.WriteLine(cd.Symbol);
+            //});
+            //Console.Read();
+            #endregion
+
+            #region 5
+            var configSource = new Dictionary<string, string>
             {
-                var options = config.GetSection("format").Get<FormatOptions>();
-                var dt = options.DateTime;
-                var cd = options.CurrentDecimal;
-                Console.WriteLine(dt.LongTimePattern);
-                Console.WriteLine(dt.LongDatePattern);
-                Console.WriteLine(dt.ShortDatePattern);
-                Console.WriteLine(dt.ShortTimePattern);
-                Console.WriteLine(cd.Digits);
-                Console.WriteLine(cd.Symbol);
-            });
-            Console.Read();
+                ["point"] = "(134,432)"
+            };
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection(configSource)
+                .Build();
+            var point=config.GetValue<Point>("point");
+            Console.WriteLine(point);
+            #endregion
+        }
+
+        static void MainLogger(string[] args)
+        {
+            #region 1
+            //Debugger.Log(1, "test", "ttttttttt");
+
+            //var source = new TraceSource("Foo", SourceLevels.All);
+            //var eventTypes = Enum.GetValues(typeof(TraceEventType));
+            ////var eventTypes = (TraceEventType[])Enum.GetValues(typeof(TraceEventType));
+            //int i = 0;
+            //foreach (var eventType in eventTypes)
+            //{
+            //    var eventTypeEnum = (TraceEventType)eventType;
+            //    source.TraceEvent(eventTypeEnum, i++, $"This is a {eventTypeEnum} message.");
+            //}
+            #endregion
+
+            #region 2
+            //var source = new TraceSource("Foo", SourceLevels.All);
+            //source.Listeners.Add(new ConsoleTraceListener());
+            //var eventType = (TraceEventType[])Enum.GetValues(typeof(TraceEventType));
+            //int i = 0;
+            //foreach (var et in eventType)
+            //{
+            //    source.TraceEvent(et, i++, $"This is a {et} message.");
+            //}
+            #endregion
+
+            #region 3
+            var ls = new DatabaseSourceEventListener();
+            DataSource.Instance.OnEventCommand(CommandType.Text, " SELECT * FROM T_USER ");
             #endregion
         }
     }
