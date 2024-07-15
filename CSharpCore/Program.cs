@@ -1,10 +1,8 @@
-﻿using CSharpCore.Models.Configurations;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
-using CSharpCore.Models;
-using System.Diagnostics;
+﻿using CSharpCore.Models;
 using CSharpCore.Models.Logger;
+using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Diagnostics;
 
 namespace CSharpCore
 {
@@ -184,7 +182,7 @@ namespace CSharpCore
             var config = new ConfigurationBuilder()
                 .AddInMemoryCollection(configSource)
                 .Build();
-            var point=config.GetValue<Point>("point");
+            var point = config.GetValue<Point>("point");
             Console.WriteLine(point);
             #endregion
         }
@@ -193,6 +191,7 @@ namespace CSharpCore
         {
             #region 1
             //Debugger.Log(1, "test", "ttttttttt");
+            //Debug.WriteLine("dddd");
 
             //var source = new TraceSource("Foo", SourceLevels.All);
             //var eventTypes = Enum.GetValues(typeof(TraceEventType));
@@ -217,8 +216,65 @@ namespace CSharpCore
             #endregion
 
             #region 3
-            var ls = new DatabaseSourceEventListener();
-            DataSource.Instance.OnEventCommand(CommandType.Text, " SELECT * FROM T_USER ");
+            //var ls = new DatabaseSourceEventListener();
+            //DataSource.Instance.OnEventCommand(CommandType.Text, " SELECT * FROM T_USER ");
+            #endregion
+
+            #region 4
+            //DiagnosticListener.AllListeners.Subscribe(new Observer<DiagnosticListener>(listener =>
+            //{
+            //    if (listener.Name == "Arrach-Data-SqlClient")
+            //    {
+            //        listener.Subscribe(new Observer<KeyValuePair<string, object>>(eventData =>
+            //        {
+            //            Console.WriteLine($"Event Name: {eventData.Key}");
+            //            dynamic payload = eventData.Value;
+            //            Console.WriteLine($"Command Type:{payload.CommandType}");
+            //            Console.WriteLine($"Command Text:{payload.CommandText}");
+            //        }));
+            //    }
+            //}));
+            //var source = new DiagnosticListener("Arrach-Data-SqlClient");
+            //if (source.IsEnabled("CommandExecution"))
+            //{
+            //    source.Write($"CommandExecution", new
+            //    {
+            //        CommandType = CommandType.Text,
+            //        CommandText = "SELECT * FROM T_USER"
+            //    });
+            //}
+            #endregion
+
+            #region 5
+
+            //DiagnosticListener.AllListeners.Subscribe(new Observer<DiagnosticListener>(listener =>
+            //{
+            //    if (listener.Name == "Arrach-Data-SqlClient")
+            //    {
+            //        listener.SubscribeWithAdapter(new DatabaseSourceConllector());
+            //    }
+            //}));
+            //var source = new DiagnosticListener("Arrach-Data-SqlClient");
+            //if (source.IsEnabled("CommandExecution"))
+            //{
+            //    source.Write($"CommandExecution", new
+            //    {
+            //        CommandType = CommandType.Text,
+            //        CommandText = "SELECT * FROM T_USER"
+            //    });
+            //}
+
+            #endregion
+
+            #region 6
+
+            //Debugger.Break();
+            //if (!Debugger.IsAttached)
+            //{
+            //    Debugger.Launch();
+            //}
+            //Debug.Assert(Debugger.IsAttached);
+
             #endregion
         }
     }
