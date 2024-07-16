@@ -10,6 +10,7 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
+            var ens = Environment.GetEnvironmentVariables();
             var l1 = new List<string> { "a", "b" };
             var l2 = new List<string> { "c", "b" };
             l1.AddRange(l2);
