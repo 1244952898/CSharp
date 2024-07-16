@@ -12,12 +12,22 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
+            string a = "aaa";
+            Person p = a;
+            Person p2=new("aaa",3);
+            double a2 = p2;
+
+            Person p3 = (Person)a2;
+            string a3 = (string)p2;
+
             var ens = Environment.GetEnvironmentVariables();
             var l1 = new List<string> { "a", "b" };
             var l2 = new List<string> { "c", "b" };
             l1.AddRange(l2);
             l1.Sort(ConfigurationKeyComparer.Instance);
             MainConfig(args);
+
+            #region 11
             //Host
             //    .CreateDefaultBuilder()
             //    .ConfigureWebHostDefaults(builder => builder
