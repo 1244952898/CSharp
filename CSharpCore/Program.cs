@@ -1,6 +1,8 @@
 ﻿using CSharpCore.Models;
 using CSharpCore.Models.Logger;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace CSharpCore
 {
@@ -17,9 +19,9 @@ namespace CSharpCore
             var asdS1 = myPermission.HasFlag(MyPermission.Add);
             var asdS2 = myPermission & MyPermission.Add;
             Console.WriteLine((int)MySourceLevels.Error);
-            var sql =MyTags.MSSql;
+            var sql = MyTags.MSSql;
 
-            MainLogger(args);
+            MainLogger2(args);
 
             //MainConfig(args);
 
@@ -280,6 +282,31 @@ namespace CSharpCore
             //    Debugger.Launch();
             //}
             //Debug.Assert(Debugger.IsAttached);
+
+            #endregion
+        }
+
+        static void MainLogger2(string[] args)
+        {
+            #region 0
+
+            var logger = new ServiceCollection()
+                .AddLogging(builder =>
+                {
+                    builder.AddConsole();
+                    builder.AddDebug();
+                })
+                .BuildServiceProvider()
+                //.GetRequiredService<ILoggerFactory>()
+                //.CreateLogger("app.main");
+                .GetRequiredService<ILogger<Program>>();
+            var loglevels0 = ((LogLevel[])Enum.GetValues(typeof(LogLevel))).Where(x => x != LogLevel.None).ToArray();
+            var loglevels = Enum.GetValues<LogLevel>().Where(x => x != LogLevel.None).ToArray();
+            var eventId = 1;
+            Array.ForEach(loglevels, level =>
+            {
+                logger.Log(level, eventId++, "This is a/an {0} message.", level);
+            });
 
             #endregion
         }
