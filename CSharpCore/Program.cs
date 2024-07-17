@@ -1,8 +1,6 @@
 ﻿using CSharpCore.Models;
 using CSharpCore.Models.Logger;
 using Microsoft.Extensions.Configuration;
-using System.Data;
-using System.Diagnostics;
 
 namespace CSharpCore
 {
@@ -12,6 +10,14 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
+            MyPermission myPermission = MyPermission.Select | MyPermission.Delete | MyPermission.Edit;
+            var mpInt = (int)myPermission;
+            var mpStr = myPermission.ToString();
+            var asdS = myPermission.HasFlag(MyPermission.Delete);
+            var asdS1 = myPermission.HasFlag(MyPermission.Add);
+            var asdS2 = myPermission & MyPermission.Add;
+            Console.WriteLine((int)MySourceLevels.Error);
+            var sql =MyTags.MSSql;
 
             MainLogger(args);
 
