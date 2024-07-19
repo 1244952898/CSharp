@@ -1,4 +1,6 @@
-﻿using CSharp.Emit;
+﻿using Aliyun.OSS;
+using CSharp.Emit;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,8 @@ namespace CSharp
             //var ints1=new int[lst.Count];
             //var ints2=new int[lst.Count];
             ////Array.Copy(ints1,1, ints2, 2);
+            OssClient client = null;
+            var result = client.UploadPart(null);
         }
     }
 }

@@ -12,6 +12,10 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
+            for (var dateTime = new DateTime(2024, 7, 15); dateTime <= DateTime.Now; dateTime = dateTime.AddDays(1))
+            {
+                dateTime.AddDays(-1);
+            }
             MyPermission myPermission = MyPermission.Select | MyPermission.Delete | MyPermission.Edit;
             var mpInt = (int)myPermission;
             var mpStr = myPermission.ToString();
