@@ -37,6 +37,12 @@ namespace CSharpCore
 
             #region 1
 
+            var ens = Environment.GetEnvironmentVariables();
+            var l1 = new List<string> { "a", "b" };
+            var l2 = new List<string> { "c", "b" };
+            l1.AddRange(l2);
+            l1.Sort(ConfigurationKeyComparer.Instance);
+            MainConfig(args);
             //Host
             //    .CreateDefaultBuilder()
             //    .ConfigureWebHostDefaults(builder => builder
