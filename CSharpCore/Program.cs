@@ -12,29 +12,32 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
+            var str = "sad";
+            int.TryParse(str, out var number);
+            var s = string.Empty;
+            s=s.TrimEnd(',');
             ThreadPool.QueueUserWorkItem(x =>
             {
                 Console.WriteLine(x);
             }, "a");
 
+            //for (var dateTime = new DateTime(2024, 7, 15); dateTime <= DateTime.Now; dateTime = dateTime.AddDays(1))
+            //{
+            //    dateTime.AddDays(-1);
+            //}
+            //MyPermission myPermission = MyPermission.Select | MyPermission.Delete | MyPermission.Edit;
+            //var mpInt = (int)myPermission;
+            //var mpStr = myPermission.ToString();
+            //var asdS = myPermission.HasFlag(MyPermission.Delete);
+            //var asdS1 = myPermission.HasFlag(MyPermission.Add);
+            //var asdS2 = myPermission & MyPermission.Add;
+            //Console.WriteLine((int)MySourceLevels.Error);
+            //var sql = MyTags.MSSql;
 
-            for (var dateTime = new DateTime(2024, 7, 15); dateTime <= DateTime.Now; dateTime = dateTime.AddDays(1))
-            {
-                dateTime.AddDays(-1);
-            }
-            MyPermission myPermission = MyPermission.Select | MyPermission.Delete | MyPermission.Edit;
-            var mpInt = (int)myPermission;
-            var mpStr = myPermission.ToString();
-            var asdS = myPermission.HasFlag(MyPermission.Delete);
-            var asdS1 = myPermission.HasFlag(MyPermission.Add);
-            var asdS2 = myPermission & MyPermission.Add;
-            Console.WriteLine((int)MySourceLevels.Error);
-            var sql = MyTags.MSSql;
-
-            MainLogger2(args);
+            //MainLogger2(args);
 
             //MainConfig(args);
-
+                        
             #region 1
 
             var ens = Environment.GetEnvironmentVariables();
