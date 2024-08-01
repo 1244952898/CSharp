@@ -46,6 +46,8 @@ namespace CSharpCore
             l1.AddRange(l2);
             l1.Sort(ConfigurationKeyComparer.Instance);
             MainConfig(args);
+
+            #region 11
             //Host
             //    .CreateDefaultBuilder()
             //    .ConfigureWebHostDefaults(builder => builder
