@@ -1,7 +1,12 @@
 ﻿using CSharpCore.Models;
-using CSharpCore.Models.Logger;
+using CSharpCore.Models.Endpoints;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace CSharpCore
@@ -15,98 +20,17 @@ namespace CSharpCore
             var str = "sad";
             int.TryParse(str, out var number);
             var s = string.Empty;
-            s=s.TrimEnd(',');
+            s = s.TrimEnd(',');
             ThreadPool.QueueUserWorkItem(x =>
             {
                 Console.WriteLine(x);
             }, "a");
 
-            //for (var dateTime = new DateTime(2024, 7, 15); dateTime <= DateTime.Now; dateTime = dateTime.AddDays(1))
-            //{
-            //    dateTime.AddDays(-1);
-            //}
-            //MyPermission myPermission = MyPermission.Select | MyPermission.Delete | MyPermission.Edit;
-            //var mpInt = (int)myPermission;
-            //var mpStr = myPermission.ToString();
-            //var asdS = myPermission.HasFlag(MyPermission.Delete);
-            //var asdS1 = myPermission.HasFlag(MyPermission.Add);
-            //var asdS2 = myPermission & MyPermission.Add;
-            //Console.WriteLine((int)MySourceLevels.Error);
-            //var sql = MyTags.MSSql;
-
-            //MainLogger2(args);
-
-            //MainConfig(args);
-                        
             #region 1
 
-            var ens = Environment.GetEnvironmentVariables();
-            var l1 = new List<string> { "a", "b" };
-            var l2 = new List<string> { "c", "b" };
-            l1.AddRange(l2);
-            l1.Sort(ConfigurationKeyComparer.Instance);
-            MainConfig(args);
-
-            #region 11
-            //Host
-            //    .CreateDefaultBuilder()
-            //    .ConfigureWebHostDefaults(builder => builder
-            //    .Configure(app => app.UsePathBase("/files")
-            //    .UseMiddleware<FileProviderMiddleware>(@"c:\test")))
-            //    .Build()
-            //    .Run();
-
-
-            //RestProxyCreator.BuildAssembly();
-            //var dllName = "MyDynamic";
-            //var title = "This is a dynamic title.";
-            //AssemblyName assemblyName = new AssemblyName(dllName)
-            //{
-            //    Version = new Version("3.0.0.0")
-            //};
-            //var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
-            //ModuleBuilder moduleBuilder = assemblyBuilder.DefineDynamicModule("DefineDynamicModule");
-            //moduleBuilder.DefineEnum("DefineEnum", TypeAttributes.Public, typeof(int));
-
-            //static void Print(int layer, string name) => Console.WriteLine($"{new string(' ', layer * 4)}{name}");
-            //var fileManager = new ServiceCollection()
-            //    .AddSingleton<IFileProvider>(new PhysicalFileProvider(@"c:\test"))
-            //    .AddSingleton<IFileManager, FileManager>()
-            //    .BuildServiceProvider()
-            //    .GetService<IFileManager>();
-
-            //fileManager.ShowStructor(Print);
-            //var txt = fileManager.ReadAllTextAsync("data.txt").GetAwaiter().GetResult();
-
-            //var assemble = Assembly.GetEntryAssembly();
-            //var fileManager1 = new ServiceCollection()
-            //    .AddSingleton<IFileProvider>(new EmbeddedFileProvider(assemble))
-            //    .AddSingleton<IFileManager, FileManager>()
-            //    .BuildServiceProvider()
-            //    .GetService<IFileManager>();
-            //var txt = fileManager1.ReadAllTextAsync("data.txt").GetAwaiter().GetResult();
-
-            //using PhysicalFileProvider fileProvider = new(@"C:\test");
-            //string original = string.Empty;
-            //ChangeToken.OnChange(() => fileProvider.Watch("data.txt"), Callback);
-            //while (true)
-            //{
-            //    File.WriteAllText(@"C:\test\data.txt", DateTime.Now.ToString());
-            //    await Task.Delay(5000);
-            //}
-            //async void Callback()
-            //{
-            //    using var stream = fileProvider.GetFileInfo("data.txt").CreateReadStream();
-            //    var buffer = new byte[stream.Length];
-            //    await stream.ReadAsync(buffer);
-            //    var content = Encoding.Default.GetString(buffer);
-            //    if (content != original)
-            //    {
-            //        Console.WriteLine($"content:{content} {original == content}");
-            //    }
-            //}
-
+            MainEndpoint(args);
             #endregion
+
         }
 
         static void MainConfig(string[] args)
@@ -331,5 +255,61 @@ namespace CSharpCore
 
             #endregion
         }
+
+        #region Endpoints
+        public static Dictionary<string, string> _cities = new()
+        {
+            ["010"] = "北京",
+            ["028"] = "成都",
+            ["0512"] = "苏州",
+        };
+
+        static void MainEndpoint(string[] args)
+        {
+            Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder
+                    .ConfigureServices(svcs =>
+                    {
+                        svcs.AddRouting();
+                    })
+                    .Configure(app =>
+                    {
+                        app
+                        .UseRouting()
+                        .UseEndpoints(endpoints =>
+                        {
+                            endpoints.MapGet("weather/{city=010}/{days=4}", WeatherForcast);
+                        });
+                    });
+                })
+                .Build()
+                .Run();
+        }
+
+        static async Task WeatherForcast(HttpContext httpContext)
+        {
+            var routes = httpContext.GetRouteData().Values;
+            var city = routes.TryGetValue("city", out var ct) ? (string)ct : "0512";
+            city = _cities[city];
+            var days = routes.TryGetValue("days", out var dy) ? int.Parse(dy.ToString()) : 4;
+            var report = new WeatherReport(city, days);
+            await RendWeatherAsync(httpContext, report);
+        }
+
+        private static async Task RendWeatherAsync(HttpContext context, WeatherReport weatherReport)
+        {
+            context.Response.ContentType = "text/html;charset=utf-8";
+            await context.Response.WriteAsync($"<html><head><title>Weather</title></head><body>");
+            await context.Response.WriteAsync($"<h3>{weatherReport.City}</h3>");
+            foreach (var weatherInfo in weatherReport.WeatherInfos)
+            {
+                await context.Response.WriteAsync(weatherInfo.Key.ToString("yyyy-MM-dd HH:mm:ss"));
+                await context.Response.WriteAsync($"{weatherInfo.Value.Condition}({weatherInfo.Value.LowTemperature}℃ ~ {weatherInfo.Value.HighTemperature}℃)<br/><br/>");
+            }
+            await context.Response.WriteAsync($"</body></html>");
+        }
+        #endregion
     }
 }
