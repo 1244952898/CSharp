@@ -1,6 +1,7 @@
 ﻿using CSharpCore.Models;
 using CSharpCore.Models.Logger;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Concurrent;
 using System.Data;
 using System.Diagnostics;
 
@@ -12,20 +13,28 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
-            string a = "aaa";
-            Person p = a;
-            Person p2=new("aaa",3);
-            double a2 = p2;
+            ConcurrentQueue<string> cq = new();
+            cq.Enqueue("a");
+            cq.Enqueue("b");
 
-            Person p3 = (Person)a2;
-            string a3 = (string)p2;
+            ThreadPool.QueueUserWorkItem(x =>
+            {
+                Console.WriteLine(x);
+            });
+            //string a = "aaa";
+            //Person p = a;
+            //Person p2=new("aaa",3);
+            //double a2 = p2;
 
-            var ens = Environment.GetEnvironmentVariables();
-            var l1 = new List<string> { "a", "b" };
-            var l2 = new List<string> { "c", "b" };
-            l1.AddRange(l2);
-            l1.Sort(ConfigurationKeyComparer.Instance);
-            MainConfig(args);
+            //Person p3 = (Person)a2;
+            //string a3 = (string)p2;
+
+            //var ens = Environment.GetEnvironmentVariables();
+            //var l1 = new List<string> { "a", "b" };
+            //var l2 = new List<string> { "c", "b" };
+            //l1.AddRange(l2);
+            //l1.Sort(ConfigurationKeyComparer.Instance);
+            //MainConfig(args);
 
             #region 11
             //Host
