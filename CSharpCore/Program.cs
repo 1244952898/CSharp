@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
 
 namespace CSharpCore
 {
@@ -17,20 +18,55 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
-            var str = "sad";
-            int.TryParse(str, out var number);
-            var s = string.Empty;
-            s = s.TrimEnd(',');
-            ThreadPool.QueueUserWorkItem(x =>
+            Task.Run(() =>
             {
-                Console.WriteLine(x);
-            }, "a");
+                Console.WriteLine(1);
+            });
+
+            var t = ThreadPool.QueueUserWorkItem((x) =>{ });
+
+
+            List<StandardProcedureClass> lst = [];
+            lst.Add(new StandardProcedureClass { Value="1", Label="1", Label_zc="1"});
+            lst.Add(new StandardProcedureClass { Value="2", Label="2", Label_zc="2"});
+            lst.Add(new StandardProcedureClass { Value="2", Label="22", Label_zc="22"});
+            lst.Add(new StandardProcedureClass { Value="3", Label="3", Label_zc="3"});
+
+            var grpLst=lst.GroupBy(x => x.Value).ToList();
+            foreach(var grp in grpLst)
+            {
+                var ct= grp.Count();
+                for (int i = 0; i < ct; i++)
+                {
+                }
+                foreach (var g in grp)
+                {
+
+                }
+            }
+
+            var taskList=new List<Task>();
+            var dataList=new ConcurrentQueue<int>();
+            for (int i = 0; i < 200; i++)
+            {
+                int k = i;
+                taskList.Add(Task.Run(() =>
+                {
+                    dataList.Enqueue(k);
+                }));
+            }
+           var dataList1= dataList.Order().ToArray();
+            Task.WaitAll([.. taskList]);
+            Console.WriteLine($"{dataList1.Length}");
+            Console.WriteLine($"{string.Join(",", dataList1)}");
 
             #region 1
 
             MainEndpoint(args);
+
             #endregion
 
+            
         }
 
         static void MainConfig(string[] args)

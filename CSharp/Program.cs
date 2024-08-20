@@ -1,5 +1,6 @@
 ﻿using Aliyun.OSS;
 using CSharp.Emit;
+using CSharpCore.Models;
 using Nest;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
+            NPOIDemo demo = new NPOIDemo();
+            demo.Test();
+
+
             //RestProxyCreator.BuildAssembly();
             var c = TestEnum.a | TestEnum.b | TestEnum.c;
             EmitDemo.Create(c);
