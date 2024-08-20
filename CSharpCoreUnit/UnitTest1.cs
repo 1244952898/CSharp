@@ -1,5 +1,3 @@
-using Xunit;
-
 namespace CSharpCoreUnit
 {
     public class UnitTest1
