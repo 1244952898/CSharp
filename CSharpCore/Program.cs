@@ -1,5 +1,6 @@
 ﻿using CSharpCore.Models;
 using CSharpCore.Models.Endpoints;
+using CSharpCore.Models.Threads._1._10._2;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Collections.Concurrent;
 
 namespace CSharpCore
 {
@@ -18,55 +18,48 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
-            Task.Run(() =>
-            {
-                Console.WriteLine(1);
-            });
-
-            var t = ThreadPool.QueueUserWorkItem((x) =>{ });
-
-
-            List<StandardProcedureClass> lst = [];
-            lst.Add(new StandardProcedureClass { Value="1", Label="1", Label_zc="1"});
-            lst.Add(new StandardProcedureClass { Value="2", Label="2", Label_zc="2"});
-            lst.Add(new StandardProcedureClass { Value="2", Label="22", Label_zc="22"});
-            lst.Add(new StandardProcedureClass { Value="3", Label="3", Label_zc="3"});
-
-            var grpLst=lst.GroupBy(x => x.Value).ToList();
-            foreach(var grp in grpLst)
-            {
-                var ct= grp.Count();
-                for (int i = 0; i < ct; i++)
+            var clist=new List<Counter>() { 
+                new Counter
                 {
-                }
-                foreach (var g in grp)
+                    Name="aaa",
+                    Name2="bbb"
+                },
+                 new Counter
                 {
+                    Name="aaa",
+                    Name2="bbb2"
+                },
+                  new Counter
+                {
+                    Name="aaa",
+                    Name2="bbb3"
+                },
+                 new Counter
+                {
+                    Name="aaa1",
+                    Name2="bbb1"
+                },
+                  new Counter
+                {
+                    Name="aaa2",
+                    Name2="bbb2"
+                },
+            };
 
-                }
+            var cglist = clist.GroupBy(x => x.Name);
+            foreach (var c in cglist)
+            {
+                var k =c.Key;
+                var t=c.Select(x=>x.Name2).ToList();
             }
-
-            var taskList=new List<Task>();
-            var dataList=new ConcurrentQueue<int>();
-            for (int i = 0; i < 200; i++)
-            {
-                int k = i;
-                taskList.Add(Task.Run(() =>
-                {
-                    dataList.Enqueue(k);
-                }));
-            }
-           var dataList1= dataList.Order().ToArray();
-            Task.WaitAll([.. taskList]);
-            Console.WriteLine($"{dataList1.Length}");
-            Console.WriteLine($"{string.Join(",", dataList1)}");
 
             #region 1
 
-            MainEndpoint(args);
+            MainThread1(args);
 
             #endregion
 
-            
+
         }
 
         static void MainConfig(string[] args)
@@ -347,5 +340,84 @@ namespace CSharpCore
             await context.Response.WriteAsync($"</body></html>");
         }
         #endregion
+
+        static void MainThread(string[] args)
+        {
+            Console.WriteLine("Corrent Count");
+            var c = new Counter();
+
+            var t1 = new Thread(() => { MainTest.Test(c); });
+            var t2 = new Thread(() => { MainTest.Test(c); });
+            var t3 = new Thread(() => { MainTest.Test(c); });
+
+            t1.Start();
+            t2.Start();
+            t3.Start();
+
+            t1.Join();
+            t2.Join();
+            t3.Join();
+            Console.WriteLine($"Total Count: {c.Count}");
+            Console.WriteLine("----------------------------------------");
+
+            Console.WriteLine("Incorrent Count");
+            var c1 = new CounteWithLocks();
+
+            t1 = new Thread(() => { MainTest.Test(c1); });
+            t2 = new Thread(() => { MainTest.Test(c1); });
+            t3 = new Thread(() => { MainTest.Test(c1); });
+
+            t1.Start();
+            t2.Start();
+            t3.Start();
+
+            t1.Join();
+            t2.Join();
+            t3.Join();
+            Console.WriteLine($"Total Count: {c1.Count}");
+        }
+
+        static void MainThread1(string[] args)
+        {
+            object lock1 = new object();
+            object lock2 = new object();
+
+            new Thread(() => LockTooMuch(lock1, lock2)).Start();
+
+            lock (lock2)
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine($"Monitir.TryEnter allow ");
+                if (Monitor.TryEnter(lock1, TimeSpan.FromSeconds(5)))
+                {
+                    Console.WriteLine($"Acquired a protected resource successfully");
+                }
+                else
+                {
+                    Console.WriteLine($"Timeout acquiring a resource");
+                }
+            }
+
+            new Thread(() => LockTooMuch(lock1, lock2)).Start();
+            Console.WriteLine($"----------------------------------");
+            lock (lock2)
+            {
+                Console.WriteLine($"This is will deadlock ");
+                Thread.Sleep(1000);
+                lock (lock1)
+                {
+                    Console.WriteLine($"Acquired a protected resource successfully");
+                }
+            }
+        }
+
+        static void LockTooMuch(object lock1, object lock2)
+        {
+            lock (lock1)
+            {
+                Thread.Sleep(1000);
+                lock (lock2) { }
+            }
+        }
     }
 }
