@@ -18,44 +18,45 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
-            var clist=new List<Counter>() { 
-                new Counter
-                {
-                    Name="aaa",
-                    Name2="bbb"
-                },
-                 new Counter
-                {
-                    Name="aaa",
-                    Name2="bbb2"
-                },
-                  new Counter
-                {
-                    Name="aaa",
-                    Name2="bbb3"
-                },
-                 new Counter
-                {
-                    Name="aaa1",
-                    Name2="bbb1"
-                },
-                  new Counter
-                {
-                    Name="aaa2",
-                    Name2="bbb2"
-                },
-            };
+            Console.WriteLine(11111111);
+            //var clist=new List<Counter>() { 
+            //    new Counter
+            //    {
+            //        Name="aaa",
+            //        Name2="bbb"
+            //    },
+            //     new Counter
+            //    {
+            //        Name="aaa",
+            //        Name2="bbb2"
+            //    },
+            //      new Counter
+            //    {
+            //        Name="aaa",
+            //        Name2="bbb3"
+            //    },
+            //     new Counter
+            //    {
+            //        Name="aaa1",
+            //        Name2="bbb1"
+            //    },
+            //      new Counter
+            //    {
+            //        Name="aaa2",
+            //        Name2="bbb2"
+            //    },
+            //};
 
-            var cglist = clist.GroupBy(x => x.Name);
-            foreach (var c in cglist)
-            {
-                var k =c.Key;
-                var t=c.Select(x=>x.Name2).ToList();
-            }
+            //var cglist = clist.GroupBy(x => x.Name);
+            //foreach (var c in cglist)
+            //{
+            //    var k =c.Key;
+            //    var t=c.Select(x=>x.Name2).ToList();
+            //}
 
             #region 1
 
-            MainThread1(args);
+            //MainThread1(args);
 
             #endregion
 
