@@ -22,7 +22,6 @@ namespace CSharp
 
             Console.WriteLine(2222222);
 
-
             Console.ReadKey();
         }
     }

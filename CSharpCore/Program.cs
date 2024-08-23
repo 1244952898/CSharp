@@ -18,45 +18,11 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
-            Console.WriteLine(11111111);
-            //var clist=new List<Counter>() { 
-            //    new Counter
-            //    {
-            //        Name="aaa",
-            //        Name2="bbb"
-            //    },
-            //     new Counter
-            //    {
-            //        Name="aaa",
-            //        Name2="bbb2"
-            //    },
-            //      new Counter
-            //    {
-            //        Name="aaa",
-            //        Name2="bbb3"
-            //    },
-            //     new Counter
-            //    {
-            //        Name="aaa1",
-            //        Name2="bbb1"
-            //    },
-            //      new Counter
-            //    {
-            //        Name="aaa2",
-            //        Name2="bbb2"
-            //    },
-            //};
 
-            //var cglist = clist.GroupBy(x => x.Name);
-            //foreach (var c in cglist)
-            //{
-            //    var k =c.Key;
-            //    var t=c.Select(x=>x.Name2).ToList();
-            //}
 
             #region 1
 
-            //MainThread1(args);
+            MainThread2(args);
 
             #endregion
 
@@ -158,6 +124,7 @@ namespace CSharpCore
             #endregion
 
             #region 5
+
             var configSource = new Dictionary<string, string>
             {
                 ["point"] = "(134,432)"
@@ -167,6 +134,7 @@ namespace CSharpCore
                 .Build();
             var point = config.GetValue<Point>("point");
             Console.WriteLine(point);
+
             #endregion
         }
 
@@ -340,7 +308,6 @@ namespace CSharpCore
             }
             await context.Response.WriteAsync($"</body></html>");
         }
-        #endregion
 
         static void MainThread(string[] args)
         {
@@ -420,5 +387,48 @@ namespace CSharpCore
                 lock (lock2) { }
             }
         }
+
+        static void MainThread2(string[] args)
+        {
+            var t = new Thread(FaultyThread);
+            t.Start();
+            t.Join();
+
+            try
+            {
+                t = new Thread(BadFaultyThread);
+                t.Start();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("We won`t get here!");
+            }
+            t.Join();
+        }
+
+        static void BadFaultyThread()
+        {
+            Console.WriteLine("Start a faulty thread...");
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            throw new Exception("Boom!");
+        }
+
+        static void FaultyThread()
+        {
+            try
+            {
+                Console.WriteLine("Start a faulty thread1...");
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                throw new Exception("Boom1!");
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Exception handled1: {ex.Message}");
+            }
+        }
+
+        #endregion
+
     }
 }
