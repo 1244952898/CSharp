@@ -1,6 +1,7 @@
 ﻿using CSharpCore.Models;
 using CSharpCore.Models.Endpoints;
 using CSharpCore.Models.Threads._1._10._2;
+using CSharpCore.Models.Threads._2._2._2;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,15 +19,13 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
-
-
             #region 1
 
-            MainThread2(args);
+            MutexThread(args);
 
             #endregion
 
-
+            // "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=MyApp;Trusted_Connection=True;"
         }
 
         static void MainConfig(string[] args)
@@ -428,6 +427,57 @@ namespace CSharpCore
             }
         }
 
+        static void MainThread3(string[] args)
+        {
+            Console.WriteLine("MainThread3");
+
+            var c = new Counter();
+            var t1 = new Thread(() => TestCounter.Test(c));
+            var t2 = new Thread(() => TestCounter.Test(c));
+            var t3 = new Thread(() => TestCounter.Test(c));
+
+            t1.Start();
+            t2.Start();
+            t3.Start();
+
+            t1.Join();
+            t2.Join();
+            t3.Join();
+
+            Console.WriteLine($"MainThread3 total0: {c.Count}");
+
+            var c1 = new CounterInterLocker();
+            t1 = new Thread(() => TestCounter.Test(c1));
+            t2 = new Thread(() => TestCounter.Test(c1));
+            t3 = new Thread(() => TestCounter.Test(c1));
+
+            t1.Start();
+            t2.Start();
+            t3.Start();
+
+            t1.Join();
+            t2.Join();
+            t3.Join();
+
+            Console.WriteLine($"MainThread3 total1: {c1.Count}");
+        }
+
+        const string MutexName = "CSharpThreadingCookbook";
+        static void MutexThread(string[] args)
+        {
+            using var m = new Mutex(false, MutexName);
+            Thread.Sleep(10100);
+            if (!m.WaitOne(TimeSpan.FromSeconds(5), false))
+            {
+                Console.WriteLine("Second instance is running.");
+            }
+            else
+            {
+                Console.WriteLine("Running.");
+                Console.ReadLine();
+                m.ReleaseMutex();
+            }
+        }
         #endregion
 
     }
