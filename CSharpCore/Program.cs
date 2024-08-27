@@ -21,7 +21,7 @@ namespace CSharpCore
         {
             #region 1
 
-            MutexThread(args);
+            SemaphoreSlimThread(args);
 
             #endregion
 
@@ -476,6 +476,31 @@ namespace CSharpCore
                 Console.WriteLine("Running.");
                 Console.ReadLine();
                 m.ReleaseMutex();
+            }
+        }
+
+
+        static SemaphoreSlim semaphoreSlim = new (2);
+        static void AccessDatabase(string name,int seconds)
+        {
+            Console.WriteLine($"{name} waits to access a database");
+            semaphoreSlim.Wait();
+            Console.WriteLine($"{name} was granted access a database");
+            Thread.Sleep(TimeSpan.FromSeconds(seconds));
+            Console.WriteLine($"{name} was complete");
+            semaphoreSlim.Release();
+        }
+        static void SemaphoreSlimThread(string[] args)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var threadName = $"thread {i}";
+                int secondWaits = 2 + 2 * i;
+                var t = new Thread(() =>
+                {
+                    AccessDatabase(threadName, 6);
+                });
+                t.Start();
             }
         }
         #endregion
