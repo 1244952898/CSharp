@@ -480,29 +480,51 @@ namespace CSharpCore
         }
 
 
-        static SemaphoreSlim semaphoreSlim = new (2);
-        static void AccessDatabase(string name,int seconds)
+        static SemaphoreSlim semaphoreSlim = new (1);
+        static void AccessDatabase(string name,int seconds,bool isRelease=false)
         {
             Console.WriteLine($"{name} waits to access a database");
+            if (isRelease)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(3));
+                semaphoreSlim.Release();
+            }
             semaphoreSlim.Wait();
-            Console.WriteLine($"{name} was granted access a database");
+            Console.WriteLine($"{name} was running");
             Thread.Sleep(TimeSpan.FromSeconds(seconds));
             Console.WriteLine($"{name} was complete");
             semaphoreSlim.Release();
         }
         static void SemaphoreSlimThread(string[] args)
         {
-            for (int i = 0; i < 7; i++)
+            var t = new Thread(() =>
             {
-                var threadName = $"thread {i}";
-                int secondWaits = 2 + 2 * i;
-                var t = new Thread(() =>
-                {
-                    AccessDatabase(threadName, 6);
-                });
-                t.Start();
-            }
+                AccessDatabase("threadName", 100);
+            });
+            var t1 = new Thread(() =>
+            {
+                AccessDatabase("threadName1", 100);
+            });
+            var t2 = new Thread(() =>
+            {
+                AccessDatabase("threadName2", 100,true);
+            });
+            t.Start();
+            t1.Start();
+            t2.Start();
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    var threadName = $"thread {i}";
+            //    int secondWaits = 2 + 2 * i;
+            //    var t = new Thread(() =>
+            //    {
+            //        AccessDatabase(threadName, secondWaits);
+            //    });
+            //    t.Start();
+            //}
         }
+
+
         #endregion
 
     }
