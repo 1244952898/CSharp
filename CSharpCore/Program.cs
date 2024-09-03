@@ -21,7 +21,7 @@ namespace CSharpCore
         {
             #region 1
 
-            SemaphoreSlimThread(args);
+            AutoResetEventThread(args);
 
             #endregion
 
@@ -480,8 +480,8 @@ namespace CSharpCore
         }
 
 
-        static SemaphoreSlim semaphoreSlim = new (1);
-        static void AccessDatabase(string name,int seconds,bool isRelease=false)
+        static SemaphoreSlim semaphoreSlim = new(1);
+        static void AccessDatabase(string name, int seconds, bool isRelease = false)
         {
             Console.WriteLine($"{name} waits to access a database");
             if (isRelease)
@@ -507,7 +507,7 @@ namespace CSharpCore
             });
             var t2 = new Thread(() =>
             {
-                AccessDatabase("threadName2", 100,true);
+                AccessDatabase("threadName2", 100, true);
             });
             t.Start();
             t1.Start();
@@ -524,6 +524,38 @@ namespace CSharpCore
             //}
         }
 
+        private static AutoResetEvent _workEvent = new(false);
+        private static AutoResetEvent _mainEvent = new(false);
+        static void Process(int seconds)
+        {
+            Console.WriteLine($"Start a long running work");
+            Thread.Sleep(TimeSpan.FromSeconds(seconds));
+            Console.WriteLine("Working is done");
+            _workEvent.Set();
+            Console.WriteLine($"Waiting for a main thread to complete its work");
+            _mainEvent.WaitOne();
+            Console.WriteLine($"Starting second operation...");
+            Thread.Sleep(TimeSpan.FromSeconds(seconds));
+            Console.WriteLine($"Work is done.");
+            _workEvent.Set();
+        }
+        static void AutoResetEventThread(string[] args)
+        {
+            var t = new Thread(() =>
+            {
+                Process(10);
+            });
+            t.Start();
+            Console.WriteLine($"Waiting for another thread to complete work");
+            _workEvent.WaitOne();
+            Console.WriteLine($"First operation is completed");
+            Console.WriteLine($"Performing an operation on a main thread");
+            Thread.Sleep(TimeSpan.FromSeconds(5));
+            _mainEvent.Set();
+            Console.WriteLine($"Now running the second operation on a second thread");
+            _workEvent.WaitOne();
+            Console.WriteLine($"Second operation is completed");
+        }
 
         #endregion
 
