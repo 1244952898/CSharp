@@ -45,18 +45,25 @@ namespace DesignModel
         20.享元模式(flyweight)：运用共享技术有效的支持大量细粒度的对象交互。
         21.解释器模式(Interpreter)：定义一种语言，定义它的文法的一种表示，并定义一个解释器这个解释器使用该表示来解释语言中的句子。
         22.访问者模式(Visitor)：作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。
-    
+
          */
+        #endregion
+        /*
+            工厂模式(Factory):定义一个创建对象的接口，让子类决定实例化哪个类。使一个类的实例化延迟到子类。
+            原型模式(Prototype)：用原型实例指定创建对象的种类，并通过拷贝这些原形创建新的对象
+         */
+        #region 1
+
         #endregion
 
         static void Main(string[] args)
-        {
-            FactoryPatternDemo.A();
-            //Console.WriteLine("Hello World!");
-            //ClainOfResponsibilityDemo.main();
-            //Console.ReadLine();
+{
+    FactoryPatternDemo.A();
+    //Console.WriteLine("Hello World!");
+    //ClainOfResponsibilityDemo.main();
+    //Console.ReadLine();
 
-            //ConcurrentDictionary<int,string> keyValuePairs= new ConcurrentDictionary<int,string>();
-        }
-    }
+    //ConcurrentDictionary<int,string> keyValuePairs= new ConcurrentDictionary<int,string>();
+}
+}
 }
