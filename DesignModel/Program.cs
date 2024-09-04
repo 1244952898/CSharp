@@ -49,8 +49,11 @@ namespace DesignModel
          */
         #endregion
         /*
+         
             工厂模式(Factory):定义一个创建对象的接口，让子类决定实例化哪个类。使一个类的实例化延迟到子类。
             原型模式(Prototype)：用原型实例指定创建对象的种类，并通过拷贝这些原形创建新的对象
+            
+            
          */
         #region 1
 
