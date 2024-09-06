@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 
 namespace DesignModel
@@ -41,7 +39,7 @@ namespace DesignModel
         {
             if (instance == null)
             {
-                var temp= new SingletonModel1();
+                var temp = new SingletonModel1();
                 Volatile.Write(ref instance, temp);
             }
             return instance;
@@ -65,7 +63,7 @@ namespace DesignModel
                 lock (obj)
                 {
                     // 获取类对象锁，其他线程在外等待，其他线程进来再次判断，如果对象实例化了，则不需要再实例化
-                    var temp= new SingletonModel2();
+                    var temp = new SingletonModel2();
                     Volatile.Write(ref instance, temp);
                 }
             }

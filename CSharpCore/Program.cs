@@ -19,6 +19,7 @@ namespace CSharpCore
 
         static void Main(string[] args)
         {
+            PatternGame.Run();
             #region 1
 
             AutoResetEventThread(args);
