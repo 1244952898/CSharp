@@ -8,6 +8,7 @@ namespace DesignModel
     internal class Program
     {
         #region 0
+
         /*
         开闭原则：对修改关闭，对拓展开放。
         单一职责：就一个类而言，应该仅有一个引起它变化点原因。
@@ -32,7 +33,7 @@ namespace DesignModel
 
         9.观察者模式(Observer/Subscrbe)：定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个对象。此主题对象发生变化时会通知所有观察者对象，使他们自动更新自己
         10.状态模式(State)：一个对象的内在状态改变时允许改变其行为，这个对象看起来是改变了其类
-        10.1 状态模式：类的行为是基于它的状态改变的
+        10.1 状态模式：类的行为是基于它的状态改变的。
         11.适配器模式(Adapter)：将一个接口转换为客户希望的另一个接口使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
         12.备忘录模式(Momento)：在不破坏封装的前提下捕获一个对象内部状态，并在对象内部之外进行保存，这样以后可将该对象恢复到原先保存的状态。
         13.组合模式(Composite)：将对象组合成树形结构以表示‘部分-整体’的层次结构。组合模式使得单个对象和组合对象使用具有一致性。
@@ -45,18 +46,37 @@ namespace DesignModel
         20.享元模式(flyweight)：运用共享技术有效的支持大量细粒度的对象交互。
         21.解释器模式(Interpreter)：定义一种语言，定义它的文法的一种表示，并定义一个解释器这个解释器使用该表示来解释语言中的句子。
         22.访问者模式(Visitor)：作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。
-    
+
          */
+
+        #endregion
+
+        /*
+            工厂模式(Factory):定义一个创建对象的接口，让子类决定实例化哪个类。使一个类的实例化延迟到子类。
+            原型模式(Prototype)：用原型实例指定创建对象的种类，并通过拷贝这些原形创建新的对象
+            单例模式(Singleton)：保证一个类只有一个实例，并提供一个访问它的全局访问点。
+            建造者模式(Builder)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
+            抽象工厂(Abstract Factory)：提供一个创建一系列相关的或者相互依赖的对象的接口，而无需指定他们具体的类。
+
+            享元模式(flyweight)：运用共享技术有效的支持大量细粒度的对象交互。
+            外观模式(Facade)：为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口这个接口使子系统更加容易使用。
+            组合模式(Composite)：将对象组合成树形结构以表示‘部分-整体’的层次结构。组合模式使得单个对象和组合对象使用具有一致性
+            适配器模式(Adapter)：将一个接口转换为客户希望的另一个接口使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
+            代理模式(Proxy)：为其他对象提供一种代理以控制对这个对象的访问。
+
+         */
+        #region 1
+
         #endregion
 
         static void Main(string[] args)
-        {
-            FactoryPatternDemo.A();
-            //Console.WriteLine("Hello World!");
-            //ClainOfResponsibilityDemo.main();
-            //Console.ReadLine();
+{
+    FactoryPatternDemo.A();
+    //Console.WriteLine("Hello World!");
+    //ClainOfResponsibilityDemo.main();
+    //Console.ReadLine();
 
-            //ConcurrentDictionary<int,string> keyValuePairs= new ConcurrentDictionary<int,string>();
-        }
-    }
+    //ConcurrentDictionary<int,string> keyValuePairs= new ConcurrentDictionary<int,string>();
+}
+}
 }

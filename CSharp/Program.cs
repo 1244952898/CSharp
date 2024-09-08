@@ -1,4 +1,7 @@
-﻿using CSharp.Emit;
+﻿using Aliyun.OSS;
+using CSharp.Emit;
+using CSharpCore.Models;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,23 +14,15 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            //RestProxyCreator.BuildAssembly();
-            var c = TestEnum.a | TestEnum.b | TestEnum.c;
-            EmitDemo.Create(c);
-            //var lst=new List<string>();
-            //lst.Where(x => x.Equals("a")).Select(x=>x=="");
-            //lst.RemoveRange(0, lst.Count);
-            //var stack= new Stack<int>();
-            //stack.Push(lst.Count);
-            //stack.Pop();
+            //NPOIDemo demo = new NPOIDemo();
+            //demo.Test();
 
-            //var q=new Queue<int>();
-            //q.Enqueue(lst.Count);
-            //q.Dequeue();
+            //var c = TestEnum.a | TestEnum.b | TestEnum.c;
+            //EmitDemo.Create(c);
 
-            //var ints1=new int[lst.Count];
-            //var ints2=new int[lst.Count];
-            ////Array.Copy(ints1,1, ints2, 2);
+            Console.WriteLine(2222222);
+
+            Console.ReadKey();
         }
     }
 }
