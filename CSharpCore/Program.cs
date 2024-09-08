@@ -34,6 +34,8 @@ namespace CSharpCore
             //Person p = a;
             //Person p2=new("aaa",3);
             //double a2 = p2;
+            PatternGame.Run();
+            #region 1
 
             AutoResetEventThread(args);
             //Person p3 = (Person)a2;

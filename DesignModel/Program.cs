@@ -1,7 +1,4 @@
-﻿using DesignModel.ClainOfResponsibility_责任链模式_;
-using DesignModel.FactoryPattern_工厂模式_;
-using System;
-using System.Collections.Concurrent;
+﻿using DesignModel.FactoryPattern_工厂模式_;
 
 namespace DesignModel
 {
@@ -51,6 +48,7 @@ namespace DesignModel
 
         #endregion
 
+        #region 1
         /*
             工厂模式(Factory):定义一个创建对象的接口，让子类决定实例化哪个类。使一个类的实例化延迟到子类。
             原型模式(Prototype)：用原型实例指定创建对象的种类，并通过拷贝这些原形创建新的对象
@@ -63,20 +61,31 @@ namespace DesignModel
             组合模式(Composite)：将对象组合成树形结构以表示‘部分-整体’的层次结构。组合模式使得单个对象和组合对象使用具有一致性
             适配器模式(Adapter)：将一个接口转换为客户希望的另一个接口使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
             代理模式(Proxy)：为其他对象提供一种代理以控制对这个对象的访问。
+            装饰器模式(Decorator)：动态的给一个对象添加额外的职责，装饰器模式比子类更加灵活。
+            桥接模式(Bridge)：将抽象部分与它的实现部分分离，使它们都可以独立变化。
+
+            状态模式(State)：一个对象的内在状态改变时允许改变其行为，这个对象看起来是改变了其类。
+            责任链模式(Chain of Responsibility)：使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将对象连成一条链，沿着这条链传递请求，直到有一个对象处理它为止。
+            中介者模式(Mediator)：使用一个中介对象来封装一系列的对象交互。中介者使对象不需要显示地相互引用。从而使其耦合松散，并可以独立的改变他们之间的交互。
+            模板方法(TempleteMethod)：定义操作中一个算法的骨架，将一些步骤延迟到子类中，模板方法使得子类不改变一个算法得结构即可重新定义某些方法的特定步骤。        
+            访问者模式(Visitor)：作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。
+
+            备忘录模式(Momento)：在不破坏封装的前提下捕获一个对象内部状态，并在对象内部之外进行保存，这样以后可将该对象恢复到原先保存的状态。
             装饰器模式(Decorator)：动态的给一个对象添加额外的职责，装饰器模式比子类更加灵活
          */
-        #region 1
-
         #endregion
 
         static void Main(string[] args)
-{
-    FactoryPatternDemo.A();
-    //Console.WriteLine("Hello World!");
-    //ClainOfResponsibilityDemo.main();
-    //Console.ReadLine();
+        {
+            PatternGame.Run();
 
-    //ConcurrentDictionary<int,string> keyValuePairs= new ConcurrentDictionary<int,string>();
-}
-}
+
+            FactoryPatternDemo.A();
+            //Console.WriteLine("Hello World!");
+            //ClainOfResponsibilityDemo.main();
+            //Console.ReadLine();
+
+            //ConcurrentDictionary<int,string> keyValuePairs= new ConcurrentDictionary<int,string>();
+        }
+    }
 }
