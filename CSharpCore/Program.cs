@@ -49,6 +49,7 @@ namespace CSharpCore
             //MainConfig(args);
 
             // "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=MyApp;Trusted_Connection=True;"
+            #endregion
         }
 
         static void MainConfig(string[] args)
