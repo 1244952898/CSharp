@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EventBusCore.MyEventBus
 {
     /// <summary>
     /// 泛型事件
     /// </summary>
-    public class MyPubSubEvent<T>:MyEventBase where T: EventArgs
+    public class MyPubSubEvent<T> : MyEventBase where T : EventArgs
     {
         protected static readonly object Locker = new object();
 
@@ -18,7 +16,7 @@ namespace EventBusCore.MyEventBus
         ///  注册
         /// </summary>
         /// <param name="eventHandler"></param>
-        public void Subscribe(Action<object,T> eventHandler)
+        public void Subscribe(Action<object, T> eventHandler)
         {
             lock (Locker)
             {
@@ -44,7 +42,7 @@ namespace EventBusCore.MyEventBus
             }
         }
 
-        public virtual void Publish(object sender,T eventArgs)
+        public virtual void Publish(object sender, T eventArgs)
         {
             lock (Locker)
             {

@@ -24,5 +24,22 @@ namespace CSharp
                 yield return i;
             }
         }
+
+        public IEnumerable<int> YieldTest1()
+        {
+            int i = 0;
+            Console.WriteLine("内部遍历了:{0}", i++);
+            yield return i;
+
+            Console.WriteLine("内部遍历了:{0}", i++);
+            yield return i;
+
+            for (int j = 0; j < 10; j++)
+            {
+                Console.WriteLine("内部遍历了:{0}", j);
+                yield return j;
+            }
+            Console.WriteLine("内部遍历了:结束");
+        }
     }
 }

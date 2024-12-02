@@ -14,6 +14,10 @@ namespace CSharp
         public string Name4 { get; set; }
         public string Name5 { get; set; }
 
+
+        #region MyRegion
+
+        #endregion
         public object GetFormat(Type formatType)
         {
             return null;

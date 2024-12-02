@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 using System.Data;
 using System.Diagnostics;
+using System.Text;
 
 namespace CSharpCore
 {
@@ -20,8 +21,30 @@ namespace CSharpCore
     {
         public delegate int GetNumber(int x);
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
+            StringBuilder stringBuilder = new StringBuilder();
+            CountdownEventThread(args);
+            List<string> lst = ["a","b"];
+            var l1=lst.Where(lst=>lst.Contains("a")).ToList().Max();
+            SynchronizationContext context = SynchronizationContext.Current;
+            try
+            {
+                var b = 2323;
+                if (b > 0)
+                {
+                    return;
+                }
+            }
+            finally
+            {
+                int a = 11;
+            }
+            var res= await Task.FromResult(1);
+            using (var httpClient =new HttpClient())
+            {
+                Task<string> task = httpClient.GetStringAsync("https://devblogs.microsoft.com/dotnet/");
+            }
             ConcurrentQueue<string> cq = new();
             cq.Enqueue("a");
             cq.Enqueue("b");
@@ -127,9 +150,9 @@ namespace CSharpCore
             #endregion
 
             #region 4
-            //var config = new ConfigurationBuilder()
-            //   .AddJsonFile(@"Models\HttpFiles\appsettings.json", true, true)
-            //   .Build();
+            var config = new ConfigurationBuilder()
+               .AddJsonFile(@"Models\HttpFiles\appsettings.json", true, true)
+               .Build();
 
             //ChangeToken.OnChange(() => config.GetReloadToken(), () =>
             //{
@@ -582,6 +605,29 @@ namespace CSharpCore
             Console.WriteLine($"Second operation is completed");
         }
 
+        static CountdownEvent _countdown = new CountdownEvent(3);
+        static void CountdownEventThread(string[] args)
+        {
+            new Thread(SaySomething).Start("I am thread 1");
+            new Thread(SaySomething).Start("I am thread 2");
+            new Thread(SaySomething1).Start("I am thread 3");
+
+            _countdown.Wait();   // Blocks until Signal has been called 3 times
+            Console.WriteLine("All threads have finished speaking!");
+        }
+
+        static void SaySomething(object thing)
+        {
+            Thread.Sleep(1000);
+            Console.WriteLine(thing);
+            _countdown.Signal();
+        }
+        static void SaySomething1(object thing)
+        {
+            Thread.Sleep(11000);
+            Console.WriteLine(thing);
+            _countdown.Signal();
+        }
         #endregion
 
     }
