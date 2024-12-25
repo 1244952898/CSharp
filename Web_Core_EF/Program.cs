@@ -3,6 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Web_Core_EF.Data;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddLogging(builder =>
+{
+
+});
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<SchoolContext>(options =>

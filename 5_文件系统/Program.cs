@@ -1,14 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using _5_文件系统;
+using Microsoft.Extensions.Configuration.Xml;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Primitives;
-using System.Diagnostics;
-using System.Reflection;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Memory;
+using Microsoft.Extensions.Logging;
 #region 1
 //static void Print(int i, string message) => Console.WriteLine($"{new string(' ', i * 4)}{message}");
 
@@ -66,23 +60,83 @@ using Microsoft.Extensions.Configuration.Memory;
 #endregion
 
 #region 4
-var source = new Dictionary<string, string>
+//var source = new Dictionary<string, string>
+//{
+//    ["LongDatePattern"] = "dddd, MMMM, d yyyy",
+//    ["LongTimePattern"] = "h:mm:ss tt",
+//    ["ShortDatePattern"] = "M/d/yyyy",
+//    ["ShortTimePattern"] = "h:mm:tt"
+//};
+
+var asdfsdfsf = new XmlConfigurationSource();
+//var confg = new ConfigurationBuilder()
+//    //.AddJsonFile(@"Models\HttpFiles\appsettings.json", true, true)
+//    .Add(new MemoryConfigurationSource { InitialData = source })
+//    .Build();
+//var option = new DateTimeFormatOptions(confg);
+//Console.WriteLine(option.LongTimePattern);
+//Console.WriteLine(option.LongDatePattern);
+//Console.WriteLine(option.ShortDatePattern);
+//Console.WriteLine(option.ShortTimePattern);
+//Environment.SetEnvironmentVariable("a", "b");
+//var vars = Environment.GetEnvironmentVariables();
+
+//foreach (var v in vars)
+//{
+//    Console.WriteLine(v.ToString());
+//}
+#endregion
+
+#region 5
+//TraceSource traceSources=new("Foobar",SourceLevels.Warning);
+////traceSources.Listeners
+//TraceEventType[] traceEventTypes=(TraceEventType[])Enum.GetValues(typeof(TraceEventType));
+//var eventId = 1;
+//foreach (var eventType in traceEventTypes)
+//{
+//    traceSources.TraceEvent(eventType, eventId++,$"this is a {eventType} message");
+//}
+#endregion
+
+#region 8.2
+//if (!Debugger.IsAttached)
+//{
+//    Debugger.Launch();
+//}
+
+//MyEnumMethod myEnum = new();
+//myEnum.Test(MyEnumExtend.Sqlserver);
+//myEnum.Test(MyEnum.Default);
+#endregion
+
+#region MyRegion
+//var listener =new PerformanceCounterListener();
+//RuntimeEventSource
+//listener.EnableEvents()
+#endregion
+
+#region 9.1
+var logger = new ServiceCollection()
+    .AddLogging(builder =>
+    {
+        builder.AddConsole();
+        builder.AddDebug();
+        builder.AddFilter((str, str2) =>
+        {
+            return true;
+        });
+    })
+    .BuildServiceProvider()
+    //.GetRequiredService<ILoggerFactory>()
+    //.CreateLogger("_5_文件系统.Program");
+    .GetRequiredService<ILogger<Program>>();
+
+var levels = (LogLevel[])Enum.GetValues(typeof(LogLevel));
+levels = levels.Where(it => it != LogLevel.None).ToArray();
+var evenId = -1;
+foreach (var level in levels)
 {
-    ["LongDatePattern"] = "dddd, MMMM, d yyyy",
-    ["LongTimePattern"] = "h:mm:ss tt",
-    ["ShortDatePattern"] = "M/d/yyyy",
-    ["ShortTimePattern"] = "h:mm:tt"
-};
-
-
-var confg = new ConfigurationBuilder()
-    //.AddJsonFile(@"Models\HttpFiles\appsettings.json", true, true)
-    .Add(new MemoryConfigurationSource { InitialData = source })
-    .Build();
-var option = new DateTimeFormatOptions(confg);
-Console.WriteLine(option.LongTimePattern);
-Console.WriteLine(option.LongDatePattern);
-Console.WriteLine(option.ShortDatePattern);
-Console.WriteLine(option.ShortTimePattern);
-
+    logger.Log(level, evenId++, $"This is a/an {level} log message.",level);
+    //Console.Read();
+}
 #endregion
