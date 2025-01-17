@@ -1,68 +1,80 @@
 
+using Microsoft.AspNetCore.Hosting.Server;
+using System.Diagnostics;
+using System.Globalization;
+
 internal class Program
 {
     private static void Main(string[] args)
     {
+        Debug.Assert(ReferenceEquals(CultureInfo.CurrentCulture, Thread.CurrentThread.CurrentCulture));
+        Debug.Assert(ReferenceEquals(CultureInfo.CurrentUICulture, Thread.CurrentThread.CurrentUICulture));
         #region Original
 
         var builder = WebApplication.CreateBuilder(args);
 
-        //// Add services to the container.
-        //builder.Services.AddRazorPages();
+        // Add services to the container.
+        builder.Services.AddRazorPages();
 
-        //var app = builder.Build();
+        var app = builder.Build();
 
-        //// Configure the HTTP request pipeline.
-        //if (!app.Environment.IsDevelopment())
-        //{
-        //    app.UseExceptionHandler("/Error");
-        //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-        //    app.UseHsts();
-        //}
+        // Configure the HTTP request pipeline.
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
 
-        //app.UseHttpsRedirection();
-        //app.UseStaticFiles();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+        
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
 
-        //app.UseRouting();
+        app.UseRouting();
 
-        //app.UseAuthorization();
+        app.UseAuthorization();
 
-        //app.MapRazorPages();
+        app.MapRazorPages();
 
-        //app.Run();
+        app.Run();
         #endregion
 
         #region 11.1
-        static RequestDelegate Middleware0(RequestDelegate next)
-        {
-            return async context =>
-            {
-                await context.Response.WriteAsync($"Hello");
-                await next(context);
-            };
-        }
-        //AppContext.BaseDirectory
-        static RequestDelegate Middleware1(RequestDelegate next) =>
-         async context =>
-         {
-             await context.Response.WriteAsync($" world");
-         };
+   
+        //static RequestDelegate Middleware0(RequestDelegate next)
+        //{
+        //    return async context =>
+        //    {
+        //        await context.Response.WriteAsync($"Hello");
+        //        await next(context);
+        //    };
+        //}
+        ////AppContext.BaseDirectory
+        //static RequestDelegate Middleware1(RequestDelegate next) =>
+        // async context =>
+        // {
+        //     await context.Response.WriteAsync($" world");
+        // };
 
-        Host.CreateDefaultBuilder()
-            .ConfigureWebHostDefaults(builder =>
-            {
-                builder.Configure(app =>
-                {
-                    app
-                    .Use(Middleware0)
-                    .Use(Middleware1);
-                });
-            })
-            
-            .Build()
-            .Run();
+        //Host.CreateDefaultBuilder()
+        //    .ConfigureWebHostDefaults(builder =>
+        //    {
+        //        builder.Configure(app =>
+        //        {
+        //            app
+        //            .Use(Middleware0)
+        //            .Use(Middleware1);
+        //        });
+        //    })
 
-        //WebHostDefaults.ServerUrlsKey
+        //    .Build()
+        //    .Run();
+
+        ////WebHostDefaults.ServerUrlsKey
         #endregion
     }
 }
