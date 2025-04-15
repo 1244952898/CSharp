@@ -7,14 +7,20 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Debug.Assert(ReferenceEquals(CultureInfo.CurrentCulture, Thread.CurrentThread.CurrentCulture));
-        Debug.Assert(ReferenceEquals(CultureInfo.CurrentUICulture, Thread.CurrentThread.CurrentUICulture));
-        #region Original
+        //Debug.Assert(ReferenceEquals(CultureInfo.CurrentCulture, Thread.CurrentThread.CurrentCulture));
+        //Debug.Assert(ReferenceEquals(CultureInfo.CurrentUICulture, Thread.CurrentThread.CurrentUICulture));
 
+        #region Original
+        var t=TaskFactory
+    
         var builder = WebApplication.CreateBuilder(args);
+
+        //builder.Environment.IsDevelopment();
 
         // Add services to the container.
         builder.Services.AddRazorPages();
+
+        //builder.Host.UseDefaultServiceProvider(spo => { spo.ValidateScopes = false; });
 
         var app = builder.Build();
 
@@ -35,11 +41,17 @@ internal class Program
         app.UseStaticFiles();
 
         app.UseRouting();
-
+        //app.Use(_ =>
+        //{
+        //    return new RequestDelegate("");
+        //})
         app.UseAuthorization();
 
         app.MapRazorPages();
-
+        //app.Run(c =>
+        //{
+        //    return c.Response.WriteAsync("11");
+        //});
         app.Run();
         #endregion
 
